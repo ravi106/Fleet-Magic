@@ -35,6 +35,7 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
 	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
 	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
 	private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
+	private static final String PROPERTY_NAME_HIBERNATE_HBM_DDL_AUTO = "hibernate.hbm2ddl.auto";
 	// private static final String PROPERTY_NAME_HIBERNATE_hb =
 	// "hibernate.hbm2ddl.auto";
 	@Resource
@@ -77,7 +78,7 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
 				env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
 		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL,
 				env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
-		properties.put("hibernate.hbm2ddl.auto", "create");
+		properties.put(PROPERTY_NAME_HIBERNATE_HBM_DDL_AUTO, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM_DDL_AUTO));
 		return properties;
 	}
 
