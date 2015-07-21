@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>FleetMagic Inventory</title>
+		
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" charset="utf8" src="../js/dataTable.js"></script>
+		<script type="text/javascript" src="../js/fleetManagement.js"></script>
+		
+		
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="../css/fleetManagement.css">
+		<link rel="stylesheet" type="text/css" href="../css/dataTable.css">
+	</head>
+
+	<body>
+	
+		<nav class="navbar navbar-default" id="navigBar">
+		<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		
+<a class="navbar-brand" href="#"><i>Fleet Magic</i></a>
+<!-- <img class="navbar-brand" id="logo" src="../img/logo.jpg"> -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li class="active"><a href="#">Inventory</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Report <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Report 1</a></li>
+            <li><a href="#">Report 2</a></li>
+            <li><a href="#">Report 3</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Export reports</a></li>
+          </ul>
+        </li>
+		<li><a href="#">About Us</a></li>
+		<li><a href="#">Contact Us</a></li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form>
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	<div class="container-fluid mainBody">
+	<div class="row" id="radioFields">
+    <div class="col-md-2 col-md-offset-1">
+	<label>
+      <input type="radio" name="optionsRadios" id="categoryBrowse" value="category" checked>
+    Browse by Category
+    </label>
+	</div>
+	<div class="col-md-2">
+	<label>
+      <input type="radio" name="optionsRadios" id="freeSearch" value="search">
+    Search Inventory
+    </label>
+	</div>
+	</div>
+	<div class="container-fluid" id="categoryData">
+		<div class="btn-group row" role="group" id="yearList" aria-label="...">
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default active">All</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default">2015</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default">2014</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default">2013</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default">2012</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default">Older</button>
+			</div>
+		</div>
+		<div class="container-fluid" id="vehicleCategory">
+			<div class="col-md-3" id="sedanCar">
+				<span class="center-block catDesc">Sedan / Full Size</span>
+				<img class="center-block" src="../img/sedan.jpg" id="sedanImg">
+				<span class="carCount center-block">Total Cars: 20</span>
+				<button type="button" class="btn btn-primary center-block" id="sedanList">View All</button>
+			</div>
+			<div class="col-md-3" id="hatchbackCar">
+				<span class="center-block catDesc">Hatch Back</span>
+				<img class="center-block" src="../img/hatchbackCar.png" id="sedanImg">
+				<span class="carCount center-block">Total Cars: 20</span>
+				<button type="button" class="btn btn-primary center-block" id="hatchbackList">View All</button>
+			</div>
+			<div class="col-md-3" id="suvCar">
+				<span class="center-block catDesc">SUV</span>
+				<img class="center-block" src="../img/suv.jpg" id="sedanImg">
+				<span class="carCount center-block">Total Cars: 20</span>
+				<button type="button" class="btn btn-primary center-block" id="suvList">View All</button>
+			</div>
+			<div class="container-fluid" id="carList" style="display:none;">
+				<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+			<th>Make</th>
+			<th>Odometer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Nissan</td>
+            <td>Altima</td>
+			<td>2014</td>
+			<td>20834</td>
+        </tr>
+        <tr>
+            <td>Toyota</td>
+            <td>Camry</td>
+			<td>2015</td>
+			<td>1836</td>
+        </tr>
+		<tr>
+            <td>Hyundai</td>
+            <td>Sonata</td>
+			<td>2014</td>
+			<td>17325</td>
+        </tr>
+		<tr>
+            <td>Ford</td>
+            <td>Mustang</td>
+			<td>2015</td>
+			<td>123</td>
+        </tr>
+    </tbody>
+</table>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid col-md-10 col-md-offset-1" id="searchData" style="display:none;">
+		<form class="freeSearch" role="search">
+			<div class="form-group col-md-12 freeSearchForm">
+				<div class="col-md-10" id="inputDiv"><input type="text" class="form-control" placeholder="Search by Brand/Make/Model/Type/WIN" id="searchField"></div>
+				<div class="col-md-2" id="btnDiv"><button type="submit" class="btn btn-primary" id="searchButton">Go!</button></div>
+			</div>
+      </form>
+	  <div class="col-md-12 searchResult" style="display:none;">
+	  <p>Results for "sedan"</p>
+		<table id="searchTable" class="display">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+			<th>Make</th>
+			<th>Odometer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Nissan</td>
+            <td>Altima</td>
+			<td>2014</td>
+			<td>20834</td>
+        </tr>
+        <tr>
+            <td>Toyota</td>
+            <td>Camry</td>
+			<td>2015</td>
+			<td>1836</td>
+        </tr>
+		<tr>
+            <td>Hyundai</td>
+            <td>Sonata</td>
+			<td>2014</td>
+			<td>17325</td>
+        </tr>
+		<tr>
+            <td>Ford</td>
+            <td>Mustang</td>
+			<td>2015</td>
+			<td>123</td>
+        </tr>
+    </tbody>
+</table>
+	  </div>
+	</div>
+  </div>
+  <div id="footer1" class="footer"><hr id="line">
+	<footer class="col-md-offset-5">
+		<p>Created with Bootstrap v3.3.5</p>
+	</footer>
+  </div>
+	</body>
+</html>
