@@ -5,6 +5,7 @@ import com.fleetmagic.rm.domain.Rental;
 public class RentalService {
 
 	public void createRental(Rental rental) {
+		
 
 	}
 
