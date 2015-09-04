@@ -25,7 +25,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableTransactionManagement
 @ComponentScan("com.fleetmagic")
 @PropertySource("classpath:application.properties")
-@EnableJpaRepositories("com.fleetmagic.repository")
+@EnableJpaRepositories("com.fleetmagic")
 class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";

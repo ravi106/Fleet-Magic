@@ -13,7 +13,7 @@ import javax.servlet.ServletRegistration;
 
 public class AppInitializer implements WebApplicationInitializer {
 
-    private static final String CONFIG_LOCATION = "com.fleetmagic.config";
+    private static final String CONFIG_LOCATION = "com.fleetmagic";
     private static final String MAPPING_URL = "/";
 
 
