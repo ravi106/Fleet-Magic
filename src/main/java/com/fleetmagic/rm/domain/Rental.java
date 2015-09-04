@@ -3,20 +3,30 @@ package com.fleetmagic.rm.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fleetmagic.cm.domain.Customer;
 import com.fleetmagic.fm.domain.Vehicle;
 
 
+@Entity
+@Table(name = "rental")
 public class Rental {
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	private List<Customer> customers;
+	@OneToOne
+	private Customer customer;
+	
+	@OneToOne
 	private Payment payment;
+	@OneToOne
 	private Vehicle vehicle;
 	
 	private Date startDate;
@@ -36,11 +46,11 @@ public class Rental {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public List<Customer> getCustomers() {
-		return customers;
+	public Customer getCustomers() {
+		return customer;
 	}
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
+	public void setCustomers(Customer customer) {
+		this.customer = customer;
 	}
 	public Payment getPayment() {
 		return payment;
