@@ -1,8 +1,13 @@
 package com.fleetmagic.rm.domain;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -11,9 +16,55 @@ public class Payment {
 	
 	@Id
 	@GeneratedValue
-	private Long id;
-	
-	private String description;
+	private Long id;	
+	private String description;		
+	@Enumerated(EnumType.STRING)
+	private PaymentMethod paymentMethod;	
+	private Date payDate;	
+	private Integer amount;		
+	@OneToOne
+	private CardInfo cardInfo;	
+	private String payStatus;
+
+	public PaymentMethod getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(PaymentMethod paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+	public CardInfo getCardInfo() {
+		return cardInfo;
+	}
+
+	public void setCardInfo(CardInfo cardInfo) {
+		this.cardInfo = cardInfo;
+	}
+
+	public Date getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
+	}
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+
+	public String getPayStatus() {
+		return payStatus;
+	}
+
+	public void setPayStatus(String payStatus) {
+		this.payStatus = payStatus;
+	}
 
 	public Long getId() {
 		return id;

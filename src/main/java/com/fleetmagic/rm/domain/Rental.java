@@ -1,16 +1,12 @@
 package com.fleetmagic.rm.domain;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fleetmagic.cm.domain.Customer;
 import com.fleetmagic.fm.domain.Vehicle;
 
 
@@ -22,9 +18,6 @@ public class Rental {
 	private Long id;
 	
 	@OneToOne
-	private Customer customer;
-	
-	@OneToOne
 	private Payment payment;
 	@OneToOne
 	private Vehicle vehicle;
@@ -32,6 +25,23 @@ public class Rental {
 	private Date startDate;
 	private Date endDate;
 	private double price;
+	private Long customerId1;
+	private Long customerId2;
+	
+	
+	public Long getCustomerId1() {
+		return customerId1;
+	}
+	public void setCustomerId1(Long customerId1) {
+		this.customerId1 = customerId1;
+	}
+	public Long getCustomerId2() {
+		return customerId2;
+	}
+	public void setCustomerId2(Long customerId2) {
+		this.customerId2 = customerId2;
+	}
+	
 	
 	
 	public Long getId() {
@@ -46,12 +56,7 @@ public class Rental {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public Customer getCustomers() {
-		return customer;
-	}
-	public void setCustomers(Customer customer) {
-		this.customer = customer;
-	}
+	
 	public Payment getPayment() {
 		return payment;
 	}
