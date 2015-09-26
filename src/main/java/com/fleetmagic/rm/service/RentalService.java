@@ -26,7 +26,7 @@ public class RentalService {
 	}
 
 	public void fetchRental(Rental rental) {
-
+		
 	}
 	
 	

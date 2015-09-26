@@ -15,7 +15,7 @@ public class CardInfo {
 	private String type;
 	private Long number;
 	private Integer expMonth;
-	private Integer expDate;
+	private Integer expYear;	
 	private Integer cvv;
 	private String Name;
 	public Long getId() {
@@ -42,12 +42,7 @@ public class CardInfo {
 	public void setExpMonth(Integer expMonth) {
 		this.expMonth = expMonth;
 	}
-	public Integer getExpDate() {
-		return expDate;
-	}
-	public void setExpDate(Integer expDate) {
-		this.expDate = expDate;
-	}
+	
 	public Integer getCvv() {
 		return cvv;
 	}
@@ -59,6 +54,13 @@ public class CardInfo {
 	}
 	public void setName(String name) {
 		Name = name;
+	}
+	
+	public Integer getExpYear() {
+		return expYear;
+	}
+	public void setExpYear(Integer expYear) {
+		this.expYear = expYear;
 	}
 
 }

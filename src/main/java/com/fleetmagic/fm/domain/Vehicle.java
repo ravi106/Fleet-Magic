@@ -45,6 +45,16 @@ public class Vehicle {
 	private Date roadTaxExpiryDate;
 	private Date insuranceExpiryDate;
 	private Date purchaseDate;
+	@Enumerated(EnumType.STRING)
+	private VehicleStatus status;
+
+	public VehicleStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(VehicleStatus status) {
+		this.status = status;
+	}
 
 	public String getRegistration() {
 		return registration;
