@@ -1,12 +1,16 @@
 package com.fleetmagic.rm.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "cardInfo")
 public class CardInfo {
 	
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String type;
 	private Long number;
