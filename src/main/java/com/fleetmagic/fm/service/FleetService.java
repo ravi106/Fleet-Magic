@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
 import com.fleetmagic.fm.domain.Vehicle;
+import com.fleetmagic.fm.domain.VehicleStatus;
 import com.fleetmagic.repository.VehicleRepository;
+
 import javax.annotation.Resource;
 
 
@@ -22,7 +23,24 @@ public class FleetService {
     	
     	return vehicleRepository.findAll();
     }
-
+    
+    public List<Vehicle> getAvailableVehicles(){
+    	return vehicleRepository.getAvailableVehicles(VehicleStatus.AVAILABLE.toString());
+    }
+    
+    public List<Vehicle> getRentedVehicles(){
+    	return vehicleRepository.getAvailableVehicles(VehicleStatus.RENTED.toString());
+    }
+    
+    public List<Vehicle> getMaintenanceVehicles(){
+    	return vehicleRepository.getAvailableVehicles(VehicleStatus.MAINTENANCE.toString());
+    }
+    
+    public List<Vehicle> getNotAvailableVehicles(){
+    	return vehicleRepository.getAvailableVehicles(VehicleStatus.NOT_AVAILABLE.toString());
+    }
+    
+    
     public List<Vehicle> getVehicleFallback() {
 	
 	System.out.println("FleetService.getVehicleFallback()");
