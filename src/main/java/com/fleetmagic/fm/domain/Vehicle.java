@@ -49,6 +49,16 @@ public class Vehicle {
 	private VehicleStatus status;
 	@Enumerated(EnumType.STRING)
 	private InsuranceMode InsuranceStatus;
+	@Enumerated(EnumType.STRING)
+	private DriveMode driveMode;
+
+	public DriveMode getDriveMode() {
+		return driveMode;
+	}
+
+	public void setDriveMode(DriveMode driveMode) {
+		this.driveMode = driveMode;
+	}
 
 	public InsuranceMode getInsuranceStatus() {
 		return InsuranceStatus;
