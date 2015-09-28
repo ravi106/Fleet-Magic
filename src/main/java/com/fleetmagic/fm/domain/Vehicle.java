@@ -23,7 +23,7 @@ public class Vehicle {
 
 	private String registration;
 
-	private String vim;
+	private String vin;
 
 	private String make;
 	private String model;
@@ -184,12 +184,12 @@ public class Vehicle {
 		this.id = id;
 	}
 
-	public String getVim() {
-		return vim;
+	public String getVin() {
+		return vin;
 	}
 
-	public void setVim(String vim) {
-		this.vim = vim;
+	public void setVin(String vin) {
+		this.vin = vin;
 	}
 
 	public String getMake() {

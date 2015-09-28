@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fleetmagic.cm.domain.Customer;
 import com.fleetmagic.fm.domain.Vehicle;
 
 
@@ -25,20 +27,22 @@ public class Rental {
 	private Date startDate;
 	private Date endDate;
 	private double price;
-	private Long customerId1;
-	private Long customerId2;
+	@OneToOne
+	private Customer customerId1;
+	@OneToOne
+	private Customer customerId2;
 	
 	
-	public Long getCustomerId1() {
+	public Customer getCustomerId1() {
 		return customerId1;
 	}
-	public void setCustomerId1(Long customerId1) {
+	public void setCustomerId1(Customer customerId1) {
 		this.customerId1 = customerId1;
 	}
-	public Long getCustomerId2() {
+	public Customer getCustomerId2() {
 		return customerId2;
 	}
-	public void setCustomerId2(Long customerId2) {
+	public void setCustomerId2(Customer customerId2) {
 		this.customerId2 = customerId2;
 	}
 	

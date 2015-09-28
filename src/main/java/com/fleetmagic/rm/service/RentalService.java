@@ -5,8 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-
-import com.fleetmagic.cm.domain.Customer;
 import com.fleetmagic.rm.domain.Rental;
 import com.fleetmagic.rm.repository.RentalRepository;
 
@@ -18,8 +16,7 @@ public class RentalService {
 	private RentalRepository rentalRepository;
 
 	public void createRental(Rental rental) {
-		
-
+		rentalRepository.saveAndFlush(rental);
 	}
 
 	public void updateRental(Rental rental) {
@@ -34,10 +31,7 @@ public class RentalService {
 	public List<Rental> getRentals(){
 		return rentalRepository.findAll();
 		
-	}
+	}	
 	
-	public Customer getCustomerByCustId(Long custId){
-		return rentalRepository.getCustomerByCustId(custId);
-	}
 
 }

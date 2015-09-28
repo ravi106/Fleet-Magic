@@ -24,20 +24,8 @@ public class FleetService {
     	return vehicleRepository.findAll();
     }
     
-    public List<Vehicle> getAvailableVehicles(){
-    	return vehicleRepository.getAvailableVehicles(VehicleStatus.AVAILABLE.toString());
-    }
-    
-    public List<Vehicle> getRentedVehicles(){
-    	return vehicleRepository.getAvailableVehicles(VehicleStatus.RENTED.toString());
-    }
-    
-    public List<Vehicle> getMaintenanceVehicles(){
-    	return vehicleRepository.getAvailableVehicles(VehicleStatus.MAINTENANCE.toString());
-    }
-    
-    public List<Vehicle> getNotAvailableVehicles(){
-    	return vehicleRepository.getAvailableVehicles(VehicleStatus.NOT_AVAILABLE.toString());
+      public List<Vehicle> findByStatus(){
+    	return vehicleRepository.findByStatus(VehicleStatus.AVAILABLE);
     }
     
     
@@ -48,7 +36,7 @@ public class FleetService {
 	v2.setId((long) 22);
 	v2.setMake("Toyota2");
 	v2.setModel("Camry2");
-	v2.setVim("BBB222");
+	v2.setVin("BBB222");
 	
 	List<Vehicle> fleet = new ArrayList<Vehicle>();
 
