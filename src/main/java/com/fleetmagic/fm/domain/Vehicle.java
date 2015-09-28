@@ -47,6 +47,16 @@ public class Vehicle {
 	private Date purchaseDate;
 	@Enumerated(EnumType.STRING)
 	private VehicleStatus status;
+	@Enumerated(EnumType.STRING)
+	private InsuranceMode InsuranceStatus;
+
+	public InsuranceMode getInsuranceStatus() {
+		return InsuranceStatus;
+	}
+
+	public void setInsuranceStatus(InsuranceMode insuranceStatus) {
+		InsuranceStatus = insuranceStatus;
+	}
 
 	public VehicleStatus getStatus() {
 		return status;

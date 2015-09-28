@@ -28,22 +28,22 @@ public class Rental {
 	private Date endDate;
 	private double price;
 	@OneToOne
-	private Customer customerId1;
+	private Customer customer1;
 	@OneToOne
-	private Customer customerId2;
+	private Customer customer2;
 	
 	
-	public Customer getCustomerId1() {
-		return customerId1;
+	public Customer getCustomer1() {
+		return customer1;
 	}
-	public void setCustomerId1(Customer customerId1) {
-		this.customerId1 = customerId1;
+	public void setCustomer1(Customer customer1) {
+		this.customer1 = customer1;
 	}
-	public Customer getCustomerId2() {
-		return customerId2;
+	public Customer getCustomer2() {
+		return customer2;
 	}
-	public void setCustomerId2(Customer customerId2) {
-		this.customerId2 = customerId2;
+	public void setCustomer2(Customer customer2) {
+		this.customer2 = customer2;
 	}
 	
 	
