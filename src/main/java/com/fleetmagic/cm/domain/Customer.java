@@ -26,14 +26,21 @@ public class Customer {
 	private String zip;
 	private String ssn;
 	private Date dob;
-	private String driversLicence;
+	private String driversLicence;	
 	private String dlState;
+	private String dlCountry;
 	private Date dlExperiryDate;
 	private String employer;
 	private String employerCity;
 	private String employerState;
 	
 	
+	public String getDlCountry() {
+		return dlCountry;
+	}
+	public void setDlCountry(String dlCountry) {
+		this.dlCountry = dlCountry;
+	}
 	public Long getId() {
 		return id;
 	}

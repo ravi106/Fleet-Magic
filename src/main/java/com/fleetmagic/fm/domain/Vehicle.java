@@ -48,9 +48,37 @@ public class Vehicle {
 	@Enumerated(EnumType.STRING)
 	private VehicleStatus status;
 	@Enumerated(EnumType.STRING)
-	private InsuranceMode InsuranceStatus;
+	private InsuranceMode physicalInsuranceStatus;
+	@Enumerated(EnumType.STRING)
+	private InsuranceMode liabilityInsuranceStatus;
 	@Enumerated(EnumType.STRING)
 	private DriveMode driveMode;
+	private String dispenseReason;
+	
+
+	public InsuranceMode getPhysicalInsuranceStatus() {
+		return physicalInsuranceStatus;
+	}
+
+	public void setPhysicalInsuranceStatus(InsuranceMode physicalInsuranceStatus) {
+		this.physicalInsuranceStatus = physicalInsuranceStatus;
+	}
+
+	public InsuranceMode getLiabilityInsuranceStatus() {
+		return liabilityInsuranceStatus;
+	}
+
+	public void setLiabilityInsuranceStatus(InsuranceMode liabilityInsuranceStatus) {
+		this.liabilityInsuranceStatus = liabilityInsuranceStatus;
+	}
+
+	public String getDispenseReason() {
+		return dispenseReason;
+	}
+
+	public void setDispenseReason(String dispenseReason) {
+		this.dispenseReason = dispenseReason;
+	}
 
 	public DriveMode getDriveMode() {
 		return driveMode;
@@ -58,14 +86,6 @@ public class Vehicle {
 
 	public void setDriveMode(DriveMode driveMode) {
 		this.driveMode = driveMode;
-	}
-
-	public InsuranceMode getInsuranceStatus() {
-		return InsuranceStatus;
-	}
-
-	public void setInsuranceStatus(InsuranceMode insuranceStatus) {
-		InsuranceStatus = insuranceStatus;
 	}
 
 	public VehicleStatus getStatus() {

@@ -1,8 +1,11 @@
 package com.fleetmagic.rm.service;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import com.fleetmagic.rm.domain.Payment;
+import com.fleetmagic.rm.domain.Rental;
 import com.fleetmagic.rm.repository.PaymentRepository;
 
 public class PaymentService {
@@ -27,6 +30,10 @@ public class PaymentService {
 	public List<Payment> getPayments(){
 		return paymentRepository.findAll();
 		
+	}
+	
+	public List<Payment> getPaymentsByRentalPaymentId(int rentalPaymentId){
+		return paymentRepository.findByRentalPaymentId(rentalPaymentId);
 	}
 
 }

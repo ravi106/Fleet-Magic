@@ -24,7 +24,43 @@ public class Payment {
 	private Integer amount;		
 	@OneToOne
 	private CardInfo cardInfo;	
-	private String payStatus;
+	private String payStatus;	
+	private int rentalPaymentId;
+	private String paidFor;
+	private String chequeNumber;
+	private String chequeIssuedBy;
+	
+	public int getRentalPaymentId() {
+		return rentalPaymentId;
+	}
+
+	public void setRentalPaymentId(int rentalPaymentId) {
+		this.rentalPaymentId = rentalPaymentId;
+	}
+
+	public String getPaidFor() {
+		return paidFor;
+	}
+
+	public void setPaidFor(String paidFor) {
+		this.paidFor = paidFor;
+	}
+
+	public String getChequeNumber() {
+		return chequeNumber;
+	}
+
+	public void setChequeNumber(String chequeNumber) {
+		this.chequeNumber = chequeNumber;
+	}
+
+	public String getChequeIssuedBy() {
+		return chequeIssuedBy;
+	}
+
+	public void setChequeIssuedBy(String chequeIssuedBy) {
+		this.chequeIssuedBy = chequeIssuedBy;
+	}
 
 	public PaymentMethod getPaymentMethod() {
 		return paymentMethod;

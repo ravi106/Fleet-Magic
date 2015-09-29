@@ -3,7 +3,10 @@ package com.fleetmagic.rm.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fleetmagic.cm.domain.Customer;
 
 @Entity
 @Table(name = "cardInfo")
@@ -18,6 +21,22 @@ public class CardInfo {
 	private Integer expYear;	
 	private Integer cvv;
 	private String Name;
+	@OneToOne
+	private Customer customer;
+	private String priority;
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public String getPriority() {
+		return priority;
+	}
+	public void setPriority(String priority) {
+		this.priority = priority;
+	}
+	
 	public Long getId() {
 		return id;
 	}

@@ -3,12 +3,15 @@ package com.fleetmagic.rm.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fleetmagic.cm.domain.Customer;
+import com.fleetmagic.fm.domain.InsuranceMode;
 import com.fleetmagic.fm.domain.Vehicle;
 
 
@@ -31,8 +34,23 @@ public class Rental {
 	private Customer customer1;
 	@OneToOne
 	private Customer customer2;
+	@Enumerated(EnumType.STRING)
+	private InsuranceMode insuranceStatus;
+	private int rentalPaymentId;
 	
 	
+	public InsuranceMode getInsuranceStatus() {
+		return insuranceStatus;
+	}
+	public void setInsuranceStatus(InsuranceMode insuranceStatus) {
+		this.insuranceStatus = insuranceStatus;
+	}
+	public int getRentalPaymentId() {
+		return rentalPaymentId;
+	}
+	public void setRentalPaymentId(int rentalPaymentId) {
+		this.rentalPaymentId = rentalPaymentId;
+	}
 	public Customer getCustomer1() {
 		return customer1;
 	}

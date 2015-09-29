@@ -31,7 +31,8 @@ public class RentalService {
 	public List<Rental> getRentals(){
 		return rentalRepository.findAll();
 		
-	}	
+	}
+	
 	
 
 }
