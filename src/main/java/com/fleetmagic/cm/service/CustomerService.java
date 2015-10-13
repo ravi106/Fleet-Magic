@@ -23,6 +23,14 @@ public class CustomerService {
 	 return customerRepository.findAll();
 	 
  }
+ 
+ public Customer saveCustomer(Customer customer) {
+	 if(customer != null){
+	 return customerRepository.saveAndFlush(customer);
+	 }else{
+		 return null;
+	 }
+}
 	
 	
 }

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 @Table(name = "vehicle")
 public class Vehicle {
 
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -246,6 +247,26 @@ public class Vehicle {
 
 	public void setModel(String model) {
 		this.model = model;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Vehicle [id=" + id + ", registration=" + registration
+				+ ", vin=" + vin + ", make=" + make + ", model=" + model
+				+ ", lastServiceDate=" + lastServiceDate
+				+ ", serviceIntervalDays=" + serviceIntervalDays + ", color="
+				+ color + ", type=" + type + ", title=" + title
+				+ ", dispenseDate=" + dispenseDate + ", soldPrice=" + soldPrice
+				+ ", costPrice=" + costPrice + ", category=" + category
+				+ ", tankCapacity=" + tankCapacity + ", nextInspectionDate="
+				+ nextInspectionDate + ", roadTaxExpiryDate="
+				+ roadTaxExpiryDate + ", insuranceExpiryDate="
+				+ insuranceExpiryDate + ", purchaseDate=" + purchaseDate
+				+ ", status=" + status + ", physicalInsuranceStatus="
+				+ physicalInsuranceStatus + ", liabilityInsuranceStatus="
+				+ liabilityInsuranceStatus + ", driveMode=" + driveMode
+				+ ", dispenseReason=" + dispenseReason + "]";
 	}
 
 }

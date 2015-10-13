@@ -118,4 +118,14 @@ public class Payment {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "Payment [id=" + id + ", description=" + description
+				+ ", paymentMethod=" + paymentMethod + ", payDate=" + payDate
+				+ ", amount=" + amount + ", cardInfo=" + cardInfo
+				+ ", payStatus=" + payStatus + ", rentalPaymentId="
+				+ rentalPaymentId + ", paidFor=" + paidFor + ", chequeNumber="
+				+ chequeNumber + ", chequeIssuedBy=" + chequeIssuedBy + "]";
+	}
+
 }
