@@ -103,6 +103,15 @@ public class Rental {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	@Override
+	public String toString() {
+		return "Rental [id=" + id + ", payment=" + payment + ", vehicle="
+				+ vehicle + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", price=" + price + ", customer1=" + customer1
+				+ ", customer2=" + customer2 + ", insuranceStatus="
+				+ insuranceStatus + ", rentalPaymentId=" + rentalPaymentId
+				+ "]";
+	}
 	
 	
 	

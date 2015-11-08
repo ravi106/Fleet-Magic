@@ -34,8 +34,9 @@ public class RentalController {
     @RequestMapping(value = "/rental", method = RequestMethod.POST,consumes="application/json", produces = "application/json")
     public Rental createRental(@RequestBody Rental rental) {
 	
-    	rentalService.createRental(rental);
-    	return null;
+    
+    	
+    	return 	rentalService.createRental(rental);
 
     }
 }
