@@ -20,11 +20,8 @@ public class Vehicle {
 	@Id
 	@GeneratedValue
 	private Long id;
-
 	private String registration;
-
 	private String vin;
-
 	private String make;
 	private String model;
 	private Date lastServiceDate;
