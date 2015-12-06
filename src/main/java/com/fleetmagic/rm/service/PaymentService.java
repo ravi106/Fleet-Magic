@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.fleetmagic.rm.domain.Payment;
-import com.fleetmagic.rm.domain.Rental;
 import com.fleetmagic.rm.repository.PaymentRepository;
 
 public class PaymentService {
