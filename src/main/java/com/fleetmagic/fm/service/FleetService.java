@@ -43,7 +43,7 @@ public class FleetService {
     public List<Vehicle> getVehicleFallback() {
 	
 	System.out.println("FleetService.getVehicleFallback()");
-	System.out.println("HI..");
+	//System.out.println("HI..");
 	Vehicle v2 = new Vehicle();
 	v2.setId((long) 22);
 	v2.setMake("Toyota2");
