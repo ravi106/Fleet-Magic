@@ -1,11 +1,11 @@
 <div class="container" ng-init="initRentalController()">
-    <uib-accordion close-others="true">
+    <uib-accordion close-others="false">
         <div uib-accordion-group is-open="accordion.selectCarPanelOpen" class="panel-primary" heading="Choose Your Car">
             <div>
-                <ac-select ac-model="accordion.selectedCar"
+                <ac-select ac-model="accordion.selectedCar" class="form-control"
                            ac-options="car.carDetails for car in carList" ac-change="showCarDetails(value)"></ac-select>
             </div>
-            <div ng-show="accordion.showDetails">
+            <div ng-show="accordion.showDetails" style="margin-top: 5px;">
                 <span class="col-lg-3">
                     <img src="css/images/sedan.jpg" alt="car image">
                 </span>
@@ -19,6 +19,51 @@
             <button class="btn-success btn-xs" ng-click="getPersonalDetails()">Next</button>
             <div ng-show="accordion.selectCarPanelError">Please select car</div>
         </div>
+
+        <div uib-accordion-group is-open="accordion.selectInsurancePanelOpen" class="panel-primary"
+             heading="Insurance Details">
+            <div>Insurance Policy Number : 123</div>
+            <div>Insurance Company Name : FleetMagic</div>
+            <div>Insurance Expiration Date : 21/06/2017</div>
+            <div>Insurance Company Contact Number : 9848561561</div>
+        </div>
+
+        <div uib-accordion-group is-open="accordion.selectPricePanelOpen" class="panel-primary"
+             heading="Price Details">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                               is-open="dob.opened" datepicker-options="dob.dateOptions"
+                               ng-model="customer.dateIn"
+                               placeholder="Date In (MM/dd/yyyy)">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="dob.open()"><i
+                                class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </span>
+                        </div>
+                        <div class="col-lg-12">
+                            <span class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                               is-open="dob.opened" datepicker-options="dob.dateOptions"
+                               ng-model="customer.dateOut"
+                               placeholder="Date Out (MM/dd/yyyy)">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="dob.open()"><i
+                                class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
         <div uib-accordion-group class="panel-primary" heading="Personal Details"
              is-open="accordion.personalDetailsPanelOpen">
             <div ng-init="isExistingcustomer=false">
@@ -46,7 +91,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <input type="text" class="form-control" style="width: 95%"
-                                           ng-model="customer.lastname" placeholder="Last Name">
+                                           ng-model="customer.lastName" placeholder="Last Name">
                                 </div>
                                 <div class="col-lg-12">
                                     <input type="text" class="form-control" style="width: 95%"
@@ -57,8 +102,16 @@
                                            placeholder="SSN">
                                 </div>
                                 <div class="col-lg-12">
-                                    <input type="text" class="form-control" style="width: 95%" ng-model="customer.dob"
-                                           placeholder="Date Of birth(mm/dd/yyyy)">
+                                    <span class="input-group">
+                                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                               is-open="dob.opened" datepicker-options="dob.dateOptions"
+                                               ng-model="customer.dob"
+                                               placeholder="Date Of birth(MM/dd/yyyy)">
+                                        <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="dob.open()"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                      </span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +157,7 @@
                                            ng-model="customer.mobile" placeholder="Mobile">
                                 </div>
                                 <div class="col-lg-12">
-                                    <input type="text" class="form-control" style="width: 95%"
+                                    <input type="email" class="form-control" style="width: 95%"
                                            ng-model="customer.email" placeholder="email">
                                 </div>
                             </div>
@@ -150,12 +203,22 @@
                             <div class="row customer">
                                 <div class="col-lg-12">
                                     <input type="text" class="form-control" style="width: 95%"
-                                           ng-model="customer.dlCountry" placeholder="Licence Issuing COuntry">
+                                           ng-model="customer.dlCountry"
+                                           placeholder="Licence Issuing Country">
                                 </div>
                                 <div class="col-lg-12">
-                                    <input type="text" class="form-control" style="width: 95%"
-                                           ng-model="customer.dlExpiryDate"
-                                           placeholder="Licence Expire Date (mm/yyyy)">
+                                    <span class="input-group">
+                                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                           is-open="licenseExpiryDate.opened"
+                                           datepicker-options="licenseExpiryDate.dateOptions"
+                                           ng-model="customer.dlExperiryDate"
+                                           placeholder="Licence Expire Date (mm/yyyy)">{{customer.dlExperiryDate}}
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default"
+                                                ng-click="licenseExpiryDate.open()"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                      </span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -163,11 +226,18 @@
                 </div>
             </div>
             <div>
-                <button class="btn btn-xs btn-success" ng-click="accordion.personalDetailsPanelOpen = ! accordion.personalDetailsPanelOpen;accordion.selectCarPanelOpen = !accordion.selectCarPanelOpen">Previous</button>
-                <button class="btn btn-xs btn-success" ng-click="accordion.personalDetailsPanelOpen = ! accordion.personalDetailsPanelOpen;accordion.paymentDetailsPanelOpen = !accordion.paymentDetailsPanelOpen">Next</button>
+                <button class="btn btn-xs btn-success"
+                        ng-click="accordion.personalDetailsPanelOpen = ! accordion.personalDetailsPanelOpen;accordion.selectCarPanelOpen = !accordion.selectCarPanelOpen">
+                    Previous
+                </button>
+                <button class="btn btn-xs btn-success"
+                        ng-click="accordion.personalDetailsPanelOpen = ! accordion.personalDetailsPanelOpen;accordion.paymentDetailsPanelOpen = !accordion.paymentDetailsPanelOpen">
+                    Next
+                </button>
             </div>
         </div>
-        <div uib-accordion-group class="panel-primary" heading="Payment Information" is-open="accordion.paymentDetailsPanelOpen">
+        <div uib-accordion-group class="panel-primary" heading="Payment Information"
+             is-open="accordion.paymentDetailsPanelOpen">
 
             <div class="row">
                 <div class="col-lg-6">
@@ -177,19 +247,19 @@
                         </div>
                         <div class="col-lg-12">
                             <input type="text" class="form-control" style="width: 95%"
-                                   ng-model="payment.cardNumber" placeholder="Card Number">
+                                   ng-model="payment.cardInfo.number" placeholder="Card Number">
                         </div>
                         <div class="col-lg-12">
                             <input type="text" class="form-control" style="width: 95%"
-                                   ng-model="payment.cvv" placeholder="CVV">
+                                   ng-model="payment.cardInfo.cvv" placeholder="CVV">
                         </div>
                         <div class="col-lg-12">
                             <input type="text" class="form-control" style="width: 95%"
-                                   ng-model="payment.NameOnCard" placeholder="Name On Card">
+                                   ng-model="payment.cardInfo.name" placeholder="Name On Card">
                         </div>
                         <div class="col-lg-12">
-                            <input type="text" class="form-control" style="width: 95%" ng-model="payment.zip"
-                                   placeholder="ZIP">
+                            <!--<input type="text" class="form-control" style="width: 95%" ng-model="payment.cardInfo.zip"
+                                   placeholder="ZIP">-->
                         </div>
                     </div>
                 </div>

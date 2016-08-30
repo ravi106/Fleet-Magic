@@ -1,12 +1,12 @@
 {
   "payment": {
-    "id": 2,
+    "id": 1,
     "description": "paid in person",
     "paymentMethod": "DEBITCARD",
     "payDate": 1443119400000,
     "amount": 575,
     "cardInfo": {
-      "id": 5,
+      "id": 4,
       "type": "Debit",
       "number": 4356234589012341,
       "expMonth": 5,
@@ -23,7 +23,7 @@
     "chequeIssuedBy": null
   },
   "vehicle": {
-    "id": 2,
+    "id": 1,
     "registration": "asdk232",
     "vin": "4T1BG22K01U083224",
     "make": "Toyots",
@@ -75,5 +75,5 @@
     "employerState": "MI"
   },
   "insuranceStatus": "ON",
-  "rentalPaymentId": 2
+  "rentalPaymentId": 1
 }

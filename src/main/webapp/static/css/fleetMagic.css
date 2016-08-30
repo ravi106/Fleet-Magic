@@ -70,3 +70,8 @@ table td, table th {
     margin-bottom: 3px;
     margin-top: 3px
 }
+
+.customer button.btn-default {
+    margin-top: 4px;
+    margin-right: 27px;
+}
