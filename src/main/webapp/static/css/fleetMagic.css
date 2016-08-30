@@ -1,0 +1,72 @@
+.ac-select-widener:focus{
+        outline: none !important;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table td, table th {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#items {
+    clear: both;
+    width: 100%;
+    margin: 30px 0 0 0;
+    border: 1px solid black;
+}
+
+#items td.item-name {
+    width: 60%;
+}
+
+#items td.description textarea, #items td.item-name textarea {
+    width: 100%;
+}
+
+#items td.total-line {
+    border-right: 0;
+    text-align: right;
+}
+
+#items td.total-value {
+    border-left: 0;
+    padding: 10px;
+}
+
+#items td.total-value textarea {
+    height: 20px;
+    background: none;
+}
+
+#items td.balance {
+    background: #eee;
+}
+
+#items td.blank {
+    border: 0;
+}
+
+.agreementHeadings {
+    text-align: center;
+    font-size: large;
+}
+
+.agreementPaddings {
+    padding: 5px 0 0 0;
+}
+
+.agreementWidth {
+    width: 100%;
+}
+
+.agreementPaddings1 {
+    padding: 0 0 264px 0;
+}
+
+.customer input {
+    margin-bottom: 3px;
+    margin-top: 3px
+}

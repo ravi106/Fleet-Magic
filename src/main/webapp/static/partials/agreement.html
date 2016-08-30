@@ -1,0 +1,334 @@
+<div id="rentalAgreement">
+    <table id="items">
+        <tr>
+            <td colspan="3"><span>CustLastName: {{rentalResponse.customer1.lastName}}</span> <span>first Name: {{rentalResponse.customer1.firstName}}</span>
+                <span>MI : {{rentalResponse.customer1.middleName}}</span></td>
+            <td>Unit Number</td>
+            <td class="item-name"></td>
+        </tr>
+
+        <tr class="item-row">
+            <td class="item-name" colspan="3">Home Address: {{rentalResponse.customer1.address1}}</td>
+            <td>Make-Model : {{rentalResponse.vehicle.make}} {{rentalResponse.vehicle.model}}</td>
+            <td class="item-name"><span class="price">Color : {{rentalResponse.vehicle.color}}</span></td>
+        </tr>
+
+        <tr class="item-row">
+            <td class="item-name" colspan="3">City: {{rentalResponse.customer1.city}} State:
+                {{rentalResponse.customer1.state}} Zip: {{rentalResponse.customer1.zip}}
+            </td>
+            <td>VIN: {{rentalResponse.vehicle.vin}}</td>
+            <td class="item-name"><span class="price">Tag Number</span></td>
+        </tr>
+
+        <tr>
+            <td colspan="3" class="item-name">Home Phone: {{rentalResponse.customer1.homePhone}} Other Phone:
+                {{rentalResponse.customer1.mobile}} Email Address: {{rentalResponse.customer1.email}}
+            </td>
+            <td class="item-name">Replacement Vehicle</td>
+            <td class="item-name">
+                <div id="subtotal">Color</div>
+            </td>
+        </tr>
+        <tr>
+
+            <td colspan="3" class="item-name">Employer: {{rentalResponse.customer1.employer}}
+                City-State:{{rentalResponse.customer1.city}}{{rentalResponse.customer1.state}}
+            </td>
+            <td class="item-name">Make-Model {{rentalResponse.vehicle.make}} {{rentalResponse.vehicle.model}}</td>
+            <td class="item-name">
+                <div id="total">Tag Number</div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="item-name">Drivers Lic: {{rentalResponse.customer1.driversLicence}} State: {{rentalResponse.customer1.state}} Exp Date: {{rentalResponse.customer1.insuranceExpiryDate}}</td>
+            <td class="item-name">VIN {{rentalResponse.vehicle.vin}}</td>
+            <td class="item-name">Date Out : {{rentalResponse.startDate}}</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="item-name">Social Security Number: {{rentalResponse.customer1.homePhone}} DOB: {{rentalResponse.customer1.dob}}</td>
+            <td class="item-name">MillesIn</td>
+            <td class="item-name">
+                <div class="due">Date Due In: {{rentalResponse.endDate}}</div>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="item-name agreementHeadings" colspan="3">Additional Driver</td>
+            <td>Miles Out</td>
+            <td>Date Time In</td>
+        </tr>
+
+        <tr>
+            <td colspan="3" class="item-name">Additional Driver: {{rentalResponse.customer2.lastName}} {{rentalResponse.customer2.firstName}}</td>
+            <td class="item-name">Total Miles</td>
+            <td rowspan="8" class="item-name agreementPaddings">
+                <table class="agreementWidth">
+                    <tr>
+                        <th colspan="3">Rental</th>
+                    </tr>
+                    <tr>
+                        <td>DAY@</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Month@</td>
+                        <td>550</td>
+                    </tr>
+                    <tr>
+                        <td>Est Milleage</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Second Driver</div>
+                            <div>Tax</div>
+                        </td>
+                        <td>
+                            <div>$</div>
+                            <div>$20</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Amount Paid</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name" colspan="3">Address: {{rentalResponse.customer2.address1}}</td>
+            <td class="item-name">Free Miles</td>
+        </tr>
+        <tr>
+            <td class="item-name" colspan="3">City: {{rentalResponse.customer2.city}} State : {{rentalResponse.customer2.state}} Zip: {{rentalResponse.customer2.zip}}</td>
+            <td class="item-name">Excess Miles</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="item-name">Driver License: {{rentalResponse.customer2.driversLicence}} State: {{rentalResponse.customer2.state}} Exp Date: {{rentalResponse.customer2.insuranceExpiryDate}}</td>
+            <td class="item-name"></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="item-name">DOB: {{rentalResponse.customer2.dob}} Phone: {{rentalResponse.customer2.mobile}} Email: {{rentalResponse.customer2.email}}</td>
+            <td rowspan="4" class="item-name">VEHICLE MUST NOT BE DRIVEN OUTSIDE _______ MILE RADIUS. Customer is
+                allowed __2000__ miles free per day. Excess miles will be charged an additional rate of 25 cents per
+                mile. C.D.W.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="item-name agreementHeadings">CUSTOMER'S INSURANCE COMPANY
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="item-name">Insurance Company:</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="item-name">Address:</td>
+        </tr>
+
+        <tr>
+            <td colspan="3" class="item-name">City: State: Zip:</td>
+            <td class="item-name">All charges subject to final audit</td>
+            <td rowspan="8" class="item-name agreementPaddings1">
+                <table class="agreementWidth">
+                    <tr>
+                        <th colspan="3">Rental Return</th>
+                    </tr>
+                    <tr>
+                        <td>DAY@</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Month@</td>
+                        <td>550</td>
+                    </tr>
+                    <tr>
+                        <td>Est Milleage</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Second Driver</div>
+                            <div>Tax</div>
+                        </td>
+                        <td>
+                            <div>$</div>
+                            <div>$20</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Amount Paid</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="3" class="item-name">Agent: Phone: Address:</td>
+            <td class="item-name">
+                GAS E ¼ ½ ¾ F
+                OUT
+                GAS E ¼ ½ ¾ F
+                IN
+
+                You acknowledge that the
+                Vehicle has no damage except:
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="item-name">Collision Damage Waiver (CDW)
+
+                __ By initialing here, you agree to purchase our CDW.
+                Our damage waiver does not cover all instances of damage to
+                the vehicle. There are exclusions. Subject to the conditions in
+                paragraph 5, your responsibility for Physical Damage to the
+                Vehicle is limited to $ 1000__ .
+                ___ By initialing here, you decline our Collision Damage
+                Waiver. You agree to be responsible for all damage to, or loss
+                of, the Vehicle.
+            </td>
+            <td class="item-name">By signing below, you agree to
+                all of the terms and conditions
+                of this rental agreement. Your
+                signature below authorizes us to
+                process a credit card voucher in
+                Your name for all rental charges
+                0arges DUE.
+                due.
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name" colspan="3">Additional Charges and descriptions</td>
+            <td class="item-name" colspan="2">
+                <div>Customer Signature</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name" colspan="3">Exteded To: / /</td>
+            <td class="item-name" colspan="2">
+                <div>Second Driver Signature</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name" colspan="3">Exteded To: / /</td>
+            <td class="item-name" colspan="2">
+                <div>Agent Signature</div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <div class="text-center"><b>No Drivers Under 21</b></div>
+            </td>
+        </tr>
+    </table>
+    <p>
+    <div><b>Terms and Conditions</b></div>
+    <br/>
+
+    1. Definitions. "Agreement" means all terms and conditions found on both sides of this form. "You" or "your" means
+    the person identified as the customer elsewhere in this Agreement, any person signing this Agreement, any Authorized
+    Driver and any person or organization to whom charges are billed by us at its or the customer's direction. All
+    persons referred to as "you" or "your" are jointly and severally bound by this Agreement. "We", "our" or "us" means
+    the business named on the reverse side of this Agreement. "Authorized Driver" means the renter and any additional
+    driver listed by us on this Agreement, provided that person has a valid driver's license and, is at least age 21.
+    Only Authorized Drivers may operate the Vehicle. 'Vehicle" means the automobile or truck identified in this
+    Agreement and any vehicle we substitute for it, and all its tires, tools, accessories, equipment, keys and vehicle
+    documents. "CDW" means Collision Damage Waiver. "Physical Damage" means damage to, or loss of, the Vehicle caused by
+    collision or upset; it does not include comprehensive damage or loss, such as: loss of the Vehicle due to theft;
+    vandalism; act of nature; riot or civil disturbance; hail, flood; or, fire. Physical Damage excludes interior burn
+    holes, window stars or cracks not caused by collision or upset. "Loss of use" means the loss of our ability to use
+    the Vehicle for any purpose caused by damage or loss during this rental. Loss of use is calculated by multiplying
+    the number of days from the date the Vehicle is damaged or lost until it is repaired or replaced, times the daily
+    rental rate.
+    2. Rental Indemnity and Warranties. This is a contract for the rental of the Vehicle. We may repossess the Vehicle
+    at your expense without notice to you, if the Vehicle is abandoned or used in violation of law or this Agreement.
+    You agree to indemnify us, defend us and hold us harmless from all claims, liability, costs and attorney fees we
+    incur resulting from, or arising out of, this rental and your use of the Vehicle. We make no warranties, express,
+    implied or apparent, regarding the vehicle, no warranty of merchantability and no warranty that the vehicle is fit
+    for a particular purpose.
+    3. Condition and Return of Vehicle. You must return the Vehicle to our rental office on the date and time specified
+    in this Agreement, and in the same condition that you received it, except for ordinary wear. If the Vehicle is
+    returned after closing hours, you remain responsible for the safety of, and any damage to, or loss of, the Vehicle
+    until we inspect it upon our next opening for business. Service to the Vehicle or replacement of parts or
+    accessories during the rental must have our prior approval. You must check and maintain all fluid levels.
+    4. Responsibility for Damage or Loss: Reporting to Police. You are responsible for all loss or theft of, or damage
+    to, the Vehicle, which includes the cost of repair, or the actual cash retail value of the Vehicle on the date of
+    the loss if the Vehicle is not repairable or if we elect not to repair the vehicle, plus loss of use, diminished
+    value of the Vehicle caused by damage to it or repair of it, and our administrative expenses incurred processing the
+    claim. You must report all accidents or incidents of theft and vandalism to us and the police as soon as you
+    discover them.
+    5. Damage Waiver. If you purchase CDW, and pay for it on return of the Vehicle to us, we will waive our right to
+    collect from you for a portion of Physical Damage to the Vehicle. We will not waive this right if damage to the
+    Vehicle: (a) is caused by anyone who is not an Authorized Driver, or by anyone whose driving license is suspended in
+    any jurisdiction; (b) is caused by anyone under the influence of prescription or non-prescription drugs or alcohol;
+    (c) Is caused by anyone who obtained the Vehicle or extended the rental period by giving us false, fraudulent or
+    misleading information; (d) occurs while the Vehicle is used in furtherance of any illegal purpose or under any
+    circumstance that would constitute a violation of law, other than a minor traffic violation; (e) occurs while
+    carrying persons or property for hire or while pushing or towing anything, or in any race, speed test or contest;
+    (f) occurs while teaching anyone to drive; (g) occurs while carrying dangerous or hazardous items or illegal
+    materiel in or on the Vehicle; (h) occurs outside the geographic limitations indicated on the reverse; (i) occurs
+    when it is loaded beyond its capacity; or occurs as a result of driving the Vehicle on unpaved roads; (k) occurs
+    while transporting more persons than the Vehicle has seat belts, or while carrying persons outside the passenger
+    compartment; (I) occurs while transporting children without approved child safety seats as required by law; (m)
+    occurs when the odometer has been tampered with or disconnected; (n) occurs when the vehicle's fluid levels are low,
+    or it is otherwise reasonable to expect you to know that further operation would damage the vehicle; (0) results
+    from inadequately secured cargo; (p) where applicable, is caused by anyone who lacks experience operating a manual
+    transmission; (q) is a result of your willful, wanton or reckless act; (r) occurs and you fail to summon the police
+    to any accident involving personal injury or property damage; or, (s) is caused by an animal transported in the
+    Vehicle.
+    6. Insurance. You are responsible for all damage or loss you cause to others. You agree to provide auto liability,
+    collision and comprehensive insurance covering you, us and the Vehicle. Where state law requires us to provide auto
+    liability insurance, or if you have no auto liability insurance, we provide auto liability insurance (the ·Policy")
+    that is secondary to any other valid and collectible insurance whether primary, secondary, excess or contingent. The
+    Policy provides bodily injury and property damage liability coverage with limits no higher than minimum levels
+    prescribed by the vehicular financial responsibility laws of the state whose laws apply to the loss. You and we
+    reject PIP, medical payments, no-fault and uninsured and under-insured motorist coverage, where permitted by law.
+    The Policy is void if you violate the terms of this Agreement, or if you fail to cooperate in any loss investigation
+    conducted by us or our insurer.
+    7. Charges. You will pay us, or the appropriate government authorities, on demand all charges due us under this
+    Agreement. including, but not limited to: (a) time and mileage for the period you keep the Vehicle, or a mileage
+    charged based on our experience if the odometer is tampered with or disconnected; (b) charges for additional
+    drivers; (c) optional products and services you purchased; (d) fuel, if you return the Vehicle with less fuel than
+    when rented; (e) applicable taxes; (f) all parking, traffic and toll violations, fines, penalties, forfeitures,
+    court costs, towing, impound and storage charges and other expenses involving the Vehicle assessed against us or the
+    vehicle, unless these expenses are our fault; (g) $50, plus $5/mile for every mile between the renting location and
+    the place where the Vehicle is returned, repossessed or abandoned, plus all other expenses we incur in locating and
+    recovering the Vehicle if you fail to return it or if we elect to repossess the Vehicle under the terms of this
+    Agreement; (h) all costs, including pre- and post-judgment attorney fees, we incur collecting payment from you or
+    otherwise enforcing our rights under this Agreement; (i) a 2% per month late payment fee, or the maximum amount
+    allowed by law (if less than 2%) on all amounts past due; U) $50 or the maximum amount permitted by law, whichever
+    is greater, if you pay us with a check returned unpaid for any reason; and (k) a reasonable fee not to exceed $350
+    to clean the Vehicle if returned substantially less clean than when rented.
+    8. Deposit. We may use your deposit to pay any amounts owed to us under this Agreement.
+    9. Your Property. You release us, our agents and employees from all claims for loss of, or damage to, your personal
+    property (including a vehicle) or that of any other person, that we received, handled or stored, or that was left or
+    carried in or on the Vehicle or in any service vehicle or in our offices, whether or not the loss or damage was
+    caused by our negligence or was otherwise our responsibility.
+    10. Breach of Agreement. The acts listed in paragraph 5, above, are prohibited uses of the Vehicle and breaches of
+    this Agreement. You waive all recourse against us for any criminal reports or prosecutions that we take against you
+    that arise out of your breach of this Agreement.
+    11. Modifications. No term of this Agreement can be waived or modified except by a writing that we have signed. If
+    you wish to extend the rental period, you must return the Vehicle to our rental office for inspection and written
+    amendment by us of the due-in date. This Agreement constitutes the entire agreement between you and us. All prior
+    representations and agreements between you and us regarding this rental are void.
+    12. Miscellaneous. A waiver by us of any breach of this Agreement is not a waiver of any additional breach or waiver
+    of the performance of your obligations under this Agreement. Our acceptance of payment from you or our failure,
+    refusal or neglect to exercise any of our rights under this Agreement does not constitute a waiver of any other
+    provision of this Agreement. Unless prohibited by law, you release us from any liability for consequential, special
+    or punitive damages in connection with this rental or the reservation of a vehicle. If any provision of this
+    Agreement is deemed void or unenforceable, the remaining provisions are valid and enforceable.
+    </p>
+</div>
+<button class="btn btn-xs btn-success" ng-click="printDiv()">Print</button>
+<button class="btn btn-xs btn-success" ng-click="saveAsPdf()">Save as Pdf</button>
