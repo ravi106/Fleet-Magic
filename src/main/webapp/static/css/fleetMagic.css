@@ -1,6 +1,3 @@
-.ac-select-widener:focus{
-        outline: none !important;
-}
 
 table {
     border-collapse: collapse;
@@ -73,5 +70,4 @@ table td, table th {
 
 .customer button.btn-default {
     margin-top: 4px;
-    margin-right: 27px;
 }

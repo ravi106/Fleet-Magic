@@ -11,15 +11,177 @@
         </ui-select>
     </div>
 
-    <div class="row" ng-show="inventory.showDetails" style="margin-top: 5px;">
-        <span class="col-lg-3">
-            <img src="css/images/sedan.jpg" alt="car image">
-        </span>
-        <span class="col-lg-9">
-            <div>Brand : {{inventory.selectedCarFullDetails.make}}</div>
-            <div>Type : {{inventory.selectedCarFullDetails.model}}</div>
-            <div>Color : {{inventory.selectedCarFullDetails.color}}</div>
-            <div>WIN/Serial No : {{inventory.selectedCarFullDetails.vin}}</div>
-        </span>
+    <div class="row customer" style="margin-top: 5px;">
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-12">
+                    Registration :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.registration">
+                </div>
+                <div class="col-lg-12">
+                    Make :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.make">
+                </div>
+                <div class="col-lg-12">
+                    Model :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.model">
+                </div>
+                <div class="col-lg-12">
+                    Last Service Date :
+                    <span class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                               is-open="lastServiceDate.opened"
+                               ng-model="inventory.vehicle.lastServiceDate">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="lastServiceDate.open()"><i
+                                class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </span>
+                </div>
+                <div class="col-lg-12">
+                    Service Interval Days :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.serviceIntervalDays">
+                </div>
+                <div class="col-lg-12">
+                    Color :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.color">
+                </div>
+                <div class="col-lg-12">
+                    Type :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.type">
+                </div>
+                <div class="col-lg-12">
+                    Title :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.title">
+                </div>
+
+                <div class="col-lg-12">
+                    DispenseDate :
+                    <span class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                               is-open="dispenseDate.opened"
+                               ng-model="inventory.vehicle.dispenseDate">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="dispenseDate.open()"><i
+                                class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </span>
+                </div>
+                <div class="col-lg-12">
+                    Sold Price :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.soldPrice">
+                </div>
+                <div class="col-lg-12">
+                    Cost Price :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.costPrice">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-12">
+                    Category :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.category">
+                </div>
+                <div class="col-lg-12">
+                    Tank Capacity :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.tankCapacity">
+                </div>
+                <div class="col-lg-12">
+                    Next Inspection Date :
+                    <span class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                               is-open="nextInspectionDate.opened"
+                               ng-model="inventory.vehicle.nextInspectionDate">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="nextInspectionDate.open()"><i
+                                class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </span>
+                </div>
+                <div class="col-lg-12">
+                    Road Tax ExpiryDate :
+                    <span class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                               is-open="roadTaxExpiryDate.opened"
+                               ng-model="inventory.vehicle.roadTaxExpiryDate">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="roadTaxExpiryDate.open()"><i
+                                class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </span>
+                </div>
+
+                <div class="col-lg-12">
+                    Insurance ExpiryDate :
+                    <span class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                               is-open="insuranceExpiryDate.opened"
+                               ng-model="inventory.vehicle.insuranceExpiryDate">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="insuranceExpiryDate.open()"><i
+                                class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </span>
+                </div>
+                <div class="col-lg-12">
+                    PurchaseDate :
+                    <span class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                               is-open="purchaseDate.opened"
+                               ng-model="inventory.vehicle.purchaseDate">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="purchaseDate.open()"><i
+                                class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </span>
+                </div>
+                <div class="col-lg-12">
+                    Status
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.status">
+                </div>
+
+                <div class="col-lg-12">
+                    Physical Insurance Status :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.physicalInsuranceStatus">
+                </div>
+
+                <div class="col-lg-12">
+                    Liability Insurance Status :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.liabilityInsuranceStatus">
+                </div>
+                <div class="col-lg-12">
+                    DriveMode :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.driveMode">
+                </div>
+                <div class="col-lg-12">
+                    Dispense Reason :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.dispenseReason">
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="inventory.showDetails">
+            <button class="btn btn-primary" ng-click="updateVehicle()">Update</button>
+        </div>
+        <div class="row" ng-hide="inventory.showDetails">
+            <button class="btn btn-primary" ng-click="addVehicle()">Add Vehicle</button>
+        </div>
     </div>
 </div>
