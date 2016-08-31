@@ -43,6 +43,7 @@ public class RentalService {
 		Payment payment = paymentRepository.saveAndFlush(rental.getPayment());
 		rental.setPayment(payment);
 		
+		vehicleRepository.saveAndFlush(rental.getVehicle());
 		
 		
 		
