@@ -1,11 +1,18 @@
 <div class="container" ng-init="initRentalController()">
     <uib-accordion close-others="false">
         <div uib-accordion-group is-open="accordion.selectCarPanelOpen" class="panel-primary" heading="Choose Your Car">
-            <div>
-                <ac-select ac-model="accordion.selectedCar" class="form-control"
-                           ac-options="car.carDetails for car in carList" ac-change="showCarDetails(value)"></ac-select>
+            <div class="form-group">
+                <label>Select table or add:</label>
+                <ui-select ng-model="fleetMagic.selectedCar" on-select="showCarDetails($item)">
+                    <ui-select-match placeholder="Select A Car">
+                        <span>{{fleetMagic.selectedCar.carDetails}}</span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="car in (carList | filter:  $select.search) track by car.id">
+                        <span>{{car.carDetails}}</span>
+                    </ui-select-choices>
+                </ui-select>
             </div>
-            <div ng-show="accordion.showDetails" style="margin-top: 5px;">
+            <div ng-show="accordion.showDetails" class="row" style="margin-top: 5px;">
                 <span class="col-lg-3">
                     <img src="css/images/sedan.jpg" alt="car image">
                 </span>

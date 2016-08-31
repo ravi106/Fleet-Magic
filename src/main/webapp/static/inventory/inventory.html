@@ -1,5 +1,25 @@
 <div ng-init="initInventoryController()">
-    <select class="ac-select stateList form-control" ac-model="inventory.selectedCar"
-               ac-options="car.carDetails for car in carList" ac-change="showCarDetails(value)" ac-settings="{ loadOnOpen: true, minWidth: '300px' }"></select>
-    {{carList}}jhkk
+    <div class="form-group">
+        <label>Select table or add:</label>
+        <ui-select ng-model="inventory.selectedCar" on-select="showCarDetails($item)">
+            <ui-select-match placeholder="Select A Car">
+                <span>{{inventory.selectedCar.carDetails}}</span>
+            </ui-select-match>
+            <ui-select-choices repeat="car in (carList | filter:  $select.search) track by car.id">
+                <span>{{car.carDetails}}</span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+
+    <div class="row" ng-show="inventory.showDetails" style="margin-top: 5px;">
+        <span class="col-lg-3">
+            <img src="css/images/sedan.jpg" alt="car image">
+        </span>
+        <span class="col-lg-9">
+            <div>Brand : {{inventory.selectedCarFullDetails.make}}</div>
+            <div>Type : {{inventory.selectedCarFullDetails.model}}</div>
+            <div>Color : {{inventory.selectedCarFullDetails.color}}</div>
+            <div>WIN/Serial No : {{inventory.selectedCarFullDetails.vin}}</div>
+        </span>
+    </div>
 </div>

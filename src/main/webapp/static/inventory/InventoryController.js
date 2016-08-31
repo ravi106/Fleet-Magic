@@ -5,7 +5,6 @@
 angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http', '$state', 'ClientConfig', function ($scope, $http, $state, ClientConfig) {
 
     $scope.inventory = {};
-    $scope.inventory.selectedCar = "Select A Car";
     $scope.initInventoryController = function () {
         $http.get(ClientConfig.CLIENT_BASE_URL + "vehicles").success(function (data) {
             $scope.inventory.vehicles = data;
@@ -16,7 +15,6 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
                 car.carDetails = $scope.inventory.vehicles[i].make + " " + $scope.inventory.vehicles[i].model + ", " + $scope.inventory.vehicles[i].color;
                 $scope.carList.push(car);
             }
-            $scope.inventory.selectedCar = $scope.carList[0];
         }).error(function (err) {
             console.log(err);
         });
@@ -25,9 +23,9 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
     $scope.showCarDetails = function (car) {
         for (var i = 0; i < $scope.inventory.vehicles.length; i++) {
             if (car.id == $scope.inventory.vehicles[i].id) {
-                $scope.accordion.selectedCarFullDetails = $scope.inventory.vehicles[i];
+                $scope.inventory.selectedCarFullDetails = $scope.inventory.vehicles[i];
             }
         }
-        $scope.accordion.showDetails = true;
+        $scope.inventory.showDetails = true;
     };
 }]);

@@ -1,7 +1,7 @@
 /**
  * Created by A101-KAVA on 8/25/2016.
  */
-angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', '$state', 'acuteSelectService', 'ClientConfig', 'fleetMagicService', function ($scope, $http, $state, acuteSelectService, ClientConfig, fleetMagicService) {
+angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', '$state', 'ClientConfig', 'fleetMagicService', function ($scope, $http, $state, ClientConfig, fleetMagicService) {
 
     $scope.fleetMagic = {};
     $scope.formats = ['dd-MMMM-yyyy', 'MM/dd/yyyy', 'dd.MM.yyyy', 'shortDate'];
@@ -90,7 +90,6 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         $http.get(ClientConfig.CLIENT_BASE_URL + "vehiclesByStatus/AVAILABLE").success(function (data) {
             $scope.fleetMagic.vehicles = data;
             $scope.accordion = {};
-            $scope.accordion.selectedCar = "Select A Car";
             $scope.carList = [];
             for (var i = 0; i < $scope.fleetMagic.vehicles.length; i++) {
                 var car = {};
@@ -104,7 +103,7 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     };
 
     $scope.getPersonalDetails = function () {
-        if ($scope.accordion.selectedCar != null && $scope.accordion.selectedCar != "Select A Car") {
+        if ($scope.fleetMagic.selectedCar != null && $scope.fleetMagic.selectedCar != "Select A Car") {
             $scope.accordion.selectCarPanelOpen = !$scope.accordion.selectCarPanelOpen;
             $scope.accordion.personalDetailsPanelOpen = !$scope.accordion.personalDetailsPanelOpen;
         } else {
@@ -112,9 +111,9 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         }
     };
 
-    $scope.showCarDetails = function (car) {
+    $scope.showCarDetails = function (item) {
         for (var i = 0; i < $scope.fleetMagic.vehicles.length; i++) {
-            if (car.id == $scope.fleetMagic.vehicles[i].id) {
+            if (item.id == $scope.fleetMagic.vehicles[i].id) {
                 $scope.accordion.selectedCarFullDetails = $scope.fleetMagic.vehicles[i];
             }
         }
