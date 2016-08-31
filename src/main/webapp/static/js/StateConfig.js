@@ -17,12 +17,6 @@ angular.module('fleetMagic').config(['$stateProvider', '$urlRouterProvider', fun
     }).state('report', {
         url: '/report',
         templateUrl: 'partials/report.html'
-    }).state('about', {
-        url: '/about',
-        templateUrl: 'partials/about.html'
-    }).state('contact', {
-        url: '/contact',
-        templateUrl: 'partials/contact.html'
     }).state('agreement', {
         url: '/agreement',
         templateUrl: 'partials/agreement.html',

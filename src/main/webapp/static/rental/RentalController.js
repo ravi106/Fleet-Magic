@@ -6,7 +6,8 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.fleetMagic = {};
     $scope.formats = ['dd-MMMM-yyyy', 'MM/dd/yyyy', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
-
+    $scope.priceDetails={};
+    $scope.insuranceDetails={};
     $scope.dob = {
         opened: false,
         dateOptions: {
