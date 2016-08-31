@@ -10,6 +10,10 @@ angular.module('fleetMagic').config(['$stateProvider', '$urlRouterProvider', fun
         url: '/inventory',
         templateUrl: 'inventory/inventory.html',
         controller: 'InventoryController'
+    }).state('customer', {
+        url: '/customer',
+        templateUrl: 'customer/customer.html',
+        controller: 'CustomerController'
     }).state('rental', {
         url: '/rental',
         templateUrl: 'rental/rental.html',

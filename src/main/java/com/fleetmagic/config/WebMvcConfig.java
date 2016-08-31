@@ -12,10 +12,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.MediaType;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -99,5 +101,10 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
 	 //   registry.addResourceHandler("/favicon.ico").addResourceLocations("/").setCachePeriod(cachePeriod);
 	   // registry.addResourceHandler("/robots.txt").addResourceLocations("/").setCachePeriod(cachePeriod);
 	}
-
+	
+	@Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer contentNegotiationConfigurer){
+		contentNegotiationConfigurer.favorPathExtension(false);
+		contentNegotiationConfigurer.defaultContentType(MediaType.APPLICATION_JSON);
+	}
 }
