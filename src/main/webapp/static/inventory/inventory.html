@@ -1,0 +1,5 @@
+<div ng-init="initInventoryController()">
+    <select class="ac-select stateList form-control" ac-model="inventory.selectedCar"
+               ac-options="car.carDetails for car in carList" ac-change="showCarDetails(value)" ac-settings="{ loadOnOpen: true, minWidth: '300px' }"></select>
+    {{carList}}jhkk
+</div>

@@ -8,7 +8,8 @@ angular.module('fleetMagic').config(['$stateProvider', '$urlRouterProvider', fun
         templateUrl: 'partials/home.html'
     }).state('inventory', {
         url: '/inventory',
-        templateUrl: 'partials/inventory.html'
+        templateUrl: 'inventory/inventory.html',
+        controller: 'InventoryController'
     }).state('rental', {
         url: '/rental',
         templateUrl: 'rental/rental.html',
@@ -25,7 +26,7 @@ angular.module('fleetMagic').config(['$stateProvider', '$urlRouterProvider', fun
     }).state('agreement', {
         url: '/agreement',
         templateUrl: 'partials/agreement.html',
-        controller:'AgreementController'
+        controller: 'AgreementController'
     });
 
 }]);
