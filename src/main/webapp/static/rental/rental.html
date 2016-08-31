@@ -88,7 +88,7 @@
      is-open="accordion.personalDetailsPanelOpen">
     <div ng-init="isExistingcustomer=false">
         <label>
-            <input type="radio" checked="checke" ng-model="isExistingcustomer" ng-value="true">
+            <input type="radio" ng-model="isExistingcustomer" ng-value="true">
             Existing Customer
         </label>
         <label>
@@ -96,7 +96,32 @@
             New Customer
         </label>
         <div ng-if="isExistingcustomer">
-            I Am a Old Customer
+            <div class="col-lg-3">
+		        <select ng-model="searchCriteria.type">
+		            <option value="mobile" >mobile</option>
+		            <option value="email">email</option>
+		            <option value="fnln">FirstName&LastName</option>
+		        </select>
+		    </div>
+		    <div class="col-lg-3">
+		        <div ng-if="searchCriteria.type == 'mobile'">
+		            <input type="text" ng-model="searchCriteria.mobile" placeholder="Mobile">
+		        </div>
+		        <div ng-if="searchCriteria.type == 'email'">
+		            <input type="email" ng-model="searchCriteria.email" placeholder="email">
+		        </div>
+		        <div ng-if="searchCriteria.type == 'fnln'">
+		            <input type="text" ng-model="searchCriteria.firstName" placeholder="FirstName" >
+		        </div>
+		    </div>
+		    <div class="col-lg-3" ng-if="searchCriteria.type == 'fnln'">
+		        <div >
+		        <input type="text" ng-model="searchCriteria.lastName" placeholder="LastName">
+		        </div>
+		    </div>
+		    <div class="col-lg-3">
+		        <button ng-click="search()">Search</button>
+		    </div>
         </div>
         <div ng-if="!isExistingcustomer">
             <div class="row">
