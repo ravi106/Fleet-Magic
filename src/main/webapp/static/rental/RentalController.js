@@ -6,9 +6,9 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.fleetMagic = {};
     $scope.formats = ['dd-MMMM-yyyy', 'MM/dd/yyyy', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
-    $scope.priceDetails={};
-    $scope.priceDetails.perDay=25;
-    $scope.insuranceDetails={};
+    $scope.priceDetails = {};
+    $scope.priceDetails.perDay = 25;
+    $scope.insuranceDetails = {};
     $scope.dob = {
         opened: false,
         dateOptions: {
@@ -216,17 +216,25 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.billing = {};
     $scope.customer = {};
     $scope.rental = {};
+    var startDate, endDate, oneDay;
+    $scope.checkPrice = function () {
+        startDate = new Date($scope.rental.startDate);
+        endDate = new Date($scope.rental.endDate);
+        oneDay = 24*60*60*1000;
+        $scope.rental.startDate = startDate.getTime();
+        $scope.rental.endDate = endDate.getTime();
+        if ($scope.rental.startDate != null && $scope.rental.endDate != null && $scope.accordion.selectedCarFullDetails.perDayRent) {
+            $scope.rental.price = Math.ceil(((endDate - startDate)/oneDay) * $scope.accordion.selectedCarFullDetails.perDayRent);
+        }
+    };
+
     $scope.submitPaymentDetails = function () {
         $scope.rental.payment = {};
 
-        $scope.rental.payment.cardInfo=$scope.payment.cardInfo;
+        $scope.rental.payment.cardInfo = $scope.payment.cardInfo;
 
-        $scope.rental.payment.cardInfo.id=4;
+        $scope.rental.payment.cardInfo.id = 4;
         $scope.rental.vehicle = $scope.accordion.selectedCarFullDetails;
-
-        $scope.rental.startDate = 1441218600000;
-        $scope.rental.endDate = 1443810600000;
-        $scope.rental.price = 100;
 
         $scope.rental.customer1 = $scope.customer;
         $scope.rental.customer1.dob = new Date($scope.customer.dob).getTime();
@@ -250,65 +258,65 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.selectedCustomer = 0;
 
     $scope.selectCustomer = function (customer) {
-        $scope.customer=customer;
+        $scope.customer = customer;
     };
 
     $scope.selectCustomer1 = function (customer) {
-        $scope.customer1=customer;
+        $scope.customer1 = customer;
     };
 
     $scope.searchAdditionalExistingDriver = function () {
-        $scope.error1=null;
+        $scope.error1 = null;
         var url;
         console.log($scope.searchCriteria1);
-        if($scope.searchCriteria1.type=="mobile"){
-            url = ClientConfig.CLIENT_BASE_URL + "customer/mobile/"+$scope.searchCriteria1.mobile;
-        }else if($scope.searchCriteria1.type=="email"){
-            url = ClientConfig.CLIENT_BASE_URL + "customer/email/"+$scope.searchCriteria1.email
-        }else{
-            url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/"+$scope.searchCriteria1.firstName+"/lastName/"+$scope.searchCriteria1.lastName;
+        if ($scope.searchCriteria1.type == "mobile") {
+            url = ClientConfig.CLIENT_BASE_URL + "customer/mobile/" + $scope.searchCriteria1.mobile;
+        } else if ($scope.searchCriteria1.type == "email") {
+            url = ClientConfig.CLIENT_BASE_URL + "customer/email/" + $scope.searchCriteria1.email
+        } else {
+            url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/" + $scope.searchCriteria1.firstName + "/lastName/" + $scope.searchCriteria1.lastName;
         }
         $http.get(url).success(function (data) {
-            if(data.length ==1){
+            if (data.length == 1) {
                 $scope.customer1 = data[0];
-                $scope.customers1=[];
-            }else{
+                $scope.customers1 = [];
+            } else {
                 $scope.customers1 = data;
                 $scope.customer1 = [];
             }
-            if (data.length == 0){
-                $scope.error1="No Records Found.";
+            if (data.length == 0) {
+                $scope.error1 = "No Records Found.";
             }
         }).error(function (err) {
-            $scope.error1="Error While Searching..  Try Again";
+            $scope.error1 = "Error While Searching..  Try Again";
             console.log(err);
         });
     };
 
-    $scope.search = function (){
-        $scope.error=null;
+    $scope.search = function () {
+        $scope.error = null;
         var url;
         console.log($scope.searchCriteria);
-        if($scope.searchCriteria.type=="mobile"){
-            url = ClientConfig.CLIENT_BASE_URL + "customer/mobile/"+$scope.searchCriteria.mobile;
-        }else if($scope.searchCriteria.type=="email"){
-            url = ClientConfig.CLIENT_BASE_URL + "customer/email/"+$scope.searchCriteria.email
-        }else{
-            url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/"+$scope.searchCriteria.firstName+"/lastName/"+$scope.searchCriteria.lastName;
+        if ($scope.searchCriteria.type == "mobile") {
+            url = ClientConfig.CLIENT_BASE_URL + "customer/mobile/" + $scope.searchCriteria.mobile;
+        } else if ($scope.searchCriteria.type == "email") {
+            url = ClientConfig.CLIENT_BASE_URL + "customer/email/" + $scope.searchCriteria.email
+        } else {
+            url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/" + $scope.searchCriteria.firstName + "/lastName/" + $scope.searchCriteria.lastName;
         }
         $http.get(url).success(function (data) {
-            if(data.length ==1){
+            if (data.length == 1) {
                 $scope.customer = data[0];
-                $scope.customers=[];
-            }else{
+                $scope.customers = [];
+            } else {
                 $scope.customers = data;
                 $scope.customer = [];
             }
-            if (data.length == 0){
-                $scope.error="No Records Found.";
+            if (data.length == 0) {
+                $scope.error = "No Records Found.";
             }
         }).error(function (err) {
-            $scope.error="Error While Searching..  Try Again";
+            $scope.error = "Error While Searching..  Try Again";
             console.log(err);
         });
     };

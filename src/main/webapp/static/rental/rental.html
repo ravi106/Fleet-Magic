@@ -46,12 +46,12 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <span class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                               is-open="dateIn.opened" datepicker-options="dateIn.dateOptions"
-                               ng-model="customer3.dateIn"
-                               placeholder="Date In (MM/dd/yyyy)">
+                        <input type="text" ng-blur="checkPrice()" class="form-control" uib-datepicker-popup="{{format}}"
+                               is-open="dateOut.opened" datepicker-options="dateOut.dateOptions"
+                               ng-model="rental.startDate"
+                               placeholder="Date Out (MM/dd/yyyy)">
                         <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="dateIn.open()"><i
+                        <button type="button" class="btn btn-default" ng-click="dateOut.open()"><i
                                 class="glyphicon glyphicon-calendar"></i></button>
                       </span>
                     </span>
@@ -60,12 +60,12 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <span class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                               is-open="dateOut.opened" datepicker-options="dateOut.dateOptions"
-                               ng-model="customer3.dateOut"
-                               placeholder="Date Out (MM/dd/yyyy)">
+                        <input type="text" ng-blur="checkPrice()" class="form-control" uib-datepicker-popup="{{format}}"
+                               is-open="dateIn.opened" datepicker-options="dateIn.dateOptions"
+                               ng-model="rental.endDate"
+                               placeholder="Date In (MM/dd/yyyy)">
                         <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="dateOut.open()"><i
+                        <button type="button" class="btn btn-default" ng-click="dateIn.open()"><i
                                 class="glyphicon glyphicon-calendar"></i></button>
                       </span>
                     </span>
@@ -75,12 +75,12 @@
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-lg-12">
-                            Price Per day : <input type="text" class="form-control" ng-model="priceDetails.perDay">
+                            Price Per day : <input type="text" class="form-control" ng-blur="checkPrice()" ng-model="accordion.selectedCarFullDetails.perDayRent">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            Price Per Month : <input type="text" class="form-control" ng-model="priceDetails.perMonth">
+                            Price Per Month : <input type="text" class="form-control" ng-model="rental.price">
                         </div>
                     </div>
                 </div>
