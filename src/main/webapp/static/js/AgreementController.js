@@ -9,7 +9,7 @@ angular.module('fleetMagic').controller('AgreementController',['$scope','fleetMa
 
     $scope.printDiv = function () {
         var printContents = document.getElementById("rentalAgreement").innerHTML;
-        var popupWin = window.open('', '_blank', 'width=300,height=300');
+        var popupWin = window.open();
         popupWin.document.open();
         popupWin.document.write('<html><head><link rel="stylesheet" href="css/fleetMagic.css"></head><body onload="window.print()">' + printContents + '</body></html>');
         popupWin.document.close();
