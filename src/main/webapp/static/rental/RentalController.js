@@ -174,4 +174,37 @@ console.log($scope.payment);
         })
     };
 
+    $scope.searchCriteria = {};
+    $scope.selectedCustomer = 0;
+
+    $scope.selectCustomer = function (customer) {
+      console.log(customer);
+        $scope.customer=customer;
+    };
+    $scope.search = function (){
+        $scope.error=null;
+        var url;
+        console.log($scope.searchCriteria);
+        if($scope.searchCriteria.type=="mobile"){
+            url = ClientConfig.CLIENT_BASE_URL + "customer/mobile/"+$scope.searchCriteria.mobile;
+        }else if($scope.searchCriteria.type=="email"){
+            url = ClientConfig.CLIENT_BASE_URL + "customer/email/"+$scope.searchCriteria.email
+        }else{
+            url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/"+$scope.searchCriteria.firstName+"/lastName/"+$scope.searchCriteria.lastName;
+        }
+        $http.get(url).success(function (data) {
+            if(data.length ==1){
+                $scope.customer = data[0];
+            }else{
+                $scope.customers = data;
+            }
+            if (data.length == 0){
+                $scope.error="No Records Found.";
+            }
+        }).error(function (err) {
+            $scope.error="Error While Searching..  Try Again";
+            console.log(err);
+        });
+    } ;
+
 }]);
