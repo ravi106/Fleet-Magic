@@ -56,15 +56,29 @@ public class RentalService {
 	}
 
 	public void fetchRental(Rental rental) {
-	
+		
 	}
 	
-	
+
 	public List<Rental> getRentals(){
 		return rentalRepository.findAll();
 		
 	}
 	
+	public List<Rental> getRentalsByEmail(String email){
+		return rentalRepository.getRentalByEmail(email);
+		
+	}
+	
+	public List<Rental> getRentalsByMobile(String mobile){
+		return rentalRepository.getRentalByMobile(mobile);
+		
+	}
+	
+	public List<Rental> getRentalsByNumber(String number){
+		return rentalRepository.getRentalByNumber(number);
+		
+	}
 	
 
 }
