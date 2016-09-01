@@ -2,11 +2,11 @@
 
     <div ng-init="isExistingRental=false">
         <label>
-            <input type="radio" ng-model="isExistingRental" ng-value="true">
+            <input type="radio" ng-model="isExistingRental" ng-value="true" ng-change="destroyDetails()">
             Existing Rental
         </label>
         <label>
-            <input type="radio" ng-model="isExistingRental" ng-value="false">
+            <input type="radio" ng-model="isExistingRental" ng-value="false" ng-change="destroyDetails()">
             New Rental
         </label>
         <div ng-if="isExistingRental" class="row">
@@ -38,7 +38,7 @@
     <span ng-init="selectRental(existingRental)"></span>
 </span>
 
-    <div class="row" ng-if="existingRentals.length>1">
+    <div class="row" ng-if="existingRentals.length>1 && isExistingRental">
         <table class="table table-bordered">
             <tr>
                 <th>Select One</th>
