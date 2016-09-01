@@ -1,4 +1,68 @@
 <div class="container" ng-init="initRentalController()">
+
+    <div ng-init="isExistingRental=false">
+        <label>
+            <input type="radio" ng-model="isExistingRental" ng-value="true">
+            Existing Rental
+        </label>
+        <label>
+            <input type="radio" ng-model="isExistingRental" ng-value="false">
+            New Rental
+        </label>
+        <div ng-if="isExistingRental" class="row">
+            <div class="col-lg-3">
+                <select class="form-control" ng-model="rentalSearchCriteria.type">
+                    <option value="id">id</option>
+                    <option value="mobile">mobile</option>
+                    <option value="email">email</option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <div ng-if="rentalSearchCriteria.type == 'id'">
+                    <input type="text" class="form-control" ng-model="rentalSearchCriteria.id" placeholder="Id">
+                </div>
+                <div ng-if="rentalSearchCriteria.type == 'mobile'">
+                    <input type="text" class="form-control" ng-model="rentalSearchCriteria.mobile" placeholder="Mobile">
+                </div>
+                <div ng-if="rentalSearchCriteria.type == 'email'">
+                    <input type="email" class="form-control" ng-model="rentalSearchCriteria.email" placeholder="Email">
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <button class="btn btn-primary" ng-click="searchRentals()">Search</button>
+            </div>
+        </div>
+        </div>
+
+<span ng-if="isExistingRental && existingRental">
+    <span ng-init="selectRental(existingRental)"></span>
+</span>
+
+    <div class="row" ng-if="existingRentals.length>1">
+        <table class="table table-bordered">
+            <tr>
+                <th>Select One</th>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Address</th>
+            </tr>
+            <tr ng-repeat="existingRental in existingRentals">
+                <td>
+                    <input type="radio" name="rental" ng-model="$parent.selectedRental"
+                           ng-value="existingRental.id"
+                           ng-change="selectRental(existingRental)">
+                </td>
+                <td>{{existingRental.id}}</td>
+                <td>{{existingRental.customer1.firstName}}</td>
+                <td>{{existingRental.customer1.lastName}}</td>
+                <td>{{existingRental.customer1.email}}</td>
+                <td>{{existingRental.customer1.address1}}</td>
+            </tr>
+        </table>
+    </div>
+
     <uib-accordion close-others="false">
         <div uib-accordion-group is-open="accordion.selectCarPanelOpen" class="panel-primary" heading="Choose Your Car">
             <div class="form-group">

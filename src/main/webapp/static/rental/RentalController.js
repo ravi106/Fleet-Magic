@@ -9,6 +9,7 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.priceDetails = {};
     $scope.priceDetails.perDay = 25;
     $scope.insuranceDetails = {};
+    $scope.rentalSearchCriteria = {};
     $scope.dob = {
         opened: false,
         dateOptions: {
@@ -220,11 +221,11 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.checkPrice = function () {
         startDate = new Date($scope.rental.startDate);
         endDate = new Date($scope.rental.endDate);
-        oneDay = 24*60*60*1000;
+        oneDay = 24 * 60 * 60 * 1000;
         $scope.rental.startDate = startDate.getTime();
         $scope.rental.endDate = endDate.getTime();
         if ($scope.rental.startDate != null && $scope.rental.endDate != null && $scope.accordion.selectedCarFullDetails.perDayRent) {
-            $scope.rental.price = Math.ceil(((endDate - startDate)/oneDay) * $scope.accordion.selectedCarFullDetails.perDayRent);
+            $scope.rental.price = Math.ceil(((endDate - startDate) / oneDay) * $scope.accordion.selectedCarFullDetails.perDayRent);
         }
     };
 
@@ -242,9 +243,11 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
 
         $scope.rental.insuranceStatus = "ON";
         $scope.rental.rentalPaymentId = 2;
-        $scope.rental.customer2 = $scope.customer1;
-        $scope.rental.customer2.dob = new Date($scope.customer1.dob).getTime();
-        $scope.rental.customer2.dlExperiryDate = new Date($scope.customer1.dlExperiryDate).getTime();
+        if ($scope.customer1) {
+            $scope.rental.customer2 = $scope.customer1;
+            $scope.rental.customer2.dob = new Date($scope.customer1.dob).getTime();
+            $scope.rental.customer2.dlExperiryDate = new Date($scope.customer1.dlExperiryDate).getTime();
+        }
         $http.post(ClientConfig.CLIENT_BASE_URL + "rental", $scope.rental).success(function (response) {
             $state.go("agreement");
             fleetMagicService.setRentalAgreement(response);
@@ -321,4 +324,33 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         });
     };
 
+    $scope.searchRentals = function () {
+        var url;
+        if ($scope.rentalSearchCriteria.type == "mobile") {
+            url = ClientConfig.CLIENT_BASE_URL + "rental/mobile/" + $scope.rentalSearchCriteria.mobile;
+        } else if ($scope.rentalSearchCriteria.type == "email") {
+            url = ClientConfig.CLIENT_BASE_URL + "rental/email/" + $scope.rentalSearchCriteria.email
+        } else {
+            url = ClientConfig.CLIENT_BASE_URL + "rental/number/" + $scope.rentalSearchCriteria.id;
+        }
+        $http.get(url).success(function (res) {
+            if (res.length > 1) {
+                $scope.existingRentals = res;
+                $scope.existingRental = [];
+            } else {
+                $scope.existingRental = res[0];
+                $scope.existingRentals = [];
+            }
+        });
+    }
+
+    $scope.selectRental = function (rental) {
+        $scope.accordion.selectedCarFullDetails = rental.vehicle;
+        $scope.accordion.showDetails = true;
+        $scope.rental = rental;
+        $scope.isExistingcustomer = true;
+        $scope.customer = rental.customer1;
+        $scope.customer1 = rental.customer2;
+        $scope.payment = rental.payment;
+    }
 }]);
