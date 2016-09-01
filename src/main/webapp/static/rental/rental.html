@@ -47,11 +47,11 @@
                         <div class="col-lg-12">
                             <span class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                               is-open="dob.opened" datepicker-options="dob.dateOptions"
+                               is-open="dateIn.opened" datepicker-options="dateIn.dateOptions"
                                ng-model="customer3.dateIn"
                                placeholder="Date In (MM/dd/yyyy)">
                         <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="dob.open()"><i
+                        <button type="button" class="btn btn-default" ng-click="dateIn.open()"><i
                                 class="glyphicon glyphicon-calendar"></i></button>
                       </span>
                     </span>
@@ -61,11 +61,11 @@
                         <div class="col-lg-12">
                             <span class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                               is-open="dob.opened" datepicker-options="dob.dateOptions"
+                               is-open="dateOut.opened" datepicker-options="dateOut.dateOptions"
                                ng-model="customer3.dateOut"
                                placeholder="Date Out (MM/dd/yyyy)">
                         <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="dob.open()"><i
+                        <button type="button" class="btn btn-default" ng-click="dateOut.open()"><i
                                 class="glyphicon glyphicon-calendar"></i></button>
                       </span>
                     </span>
@@ -101,7 +101,7 @@
                 </label>
                 <div ng-if="isExistingcustomer" class="row">
                     <div class="col-lg-3">
-                        <select ng-model="searchCriteria.type">
+                        <select class="form-control" ng-model="searchCriteria.type">
                             <option value="mobile">mobile</option>
                             <option value="email">email</option>
                             <option value="fnln">FirstName&LastName</option>
@@ -109,33 +109,48 @@
                     </div>
                     <div class="col-lg-3">
                         <div ng-if="searchCriteria.type == 'mobile'">
-                            <input type="text" ng-model="searchCriteria.mobile" placeholder="Mobile">
+                            <input type="text" class="form-control" ng-model="searchCriteria.mobile" placeholder="Mobile">
                         </div>
                         <div ng-if="searchCriteria.type == 'email'">
-                            <input type="email" ng-model="searchCriteria.email" placeholder="email">
+                            <input type="email" class="form-control" ng-model="searchCriteria.email" placeholder="email">
                         </div>
                         <div ng-if="searchCriteria.type == 'fnln'">
-                            <input type="text" ng-model="searchCriteria.firstName" placeholder="FirstName">
+                            <input type="text" class="form-control" ng-model="searchCriteria.firstName" placeholder="FirstName">
                         </div>
                     </div>
                     <div class="col-lg-3" ng-if="searchCriteria.type == 'fnln'">
                         <div>
-                            <input type="text" ng-model="searchCriteria.lastName" placeholder="LastName">
+                            <input type="text" class="form-control" ng-model="searchCriteria.lastName" placeholder="LastName">
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <button ng-click="search()">Search</button>
+                        <button class="btn btn-primary" ng-click="search()">Search</button>
                     </div>
                 </div>
 
                 <div class="row" ng-if="customers.length >1">
-                    <div ng-repeat="cust in customers">
-                        <input type="radio" name="customer" ng-model="$parent.selectedCustomer" ng-value="cust.id" ng-change="selectCustomer(cust)">
-                        <span> ID : {{cust.id}},</span>
-                        <span> First Name : {{cust.firstName}},</span>
-                        <span> Last Name : {{cust.lastName}},</span>
-                        <span> Email : {{cust.email}}</span>
-                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Select One</th>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                        </tr>
+                        <tr ng-repeat="cust in customers">
+                            <td>
+                                <input type="radio" name="customer" ng-model="$parent.selectedCustomer"
+                                       ng-value="cust.id"
+                                       ng-change="selectCustomer(cust)">
+                            </td>
+                            <td>{{cust.id}}</td>
+                            <td>{{cust.firstName}}</td>
+                            <td>{{cust.lastName}}</td>
+                            <td>{{cust.email}}</td>
+                            <td>{{cust.address1}}</td>
+                        </tr>
+                    </table>
                 </div>
 
                 <div class="row">
@@ -144,7 +159,11 @@
                             <div class="col-1g-12 panel-heading" style="font-weight: bold">
                                 Driver Details
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-6" ng-show="customer.id || customer.firstName || customer.email">
+                                <input type="text" class="form-control"
+                                       ng-model="customer.id" placeholder="Customer Id">
+                            </div>
+                            <div class="col-lg-12" ng-class="{'col-lg-6':customer.id || customer.firstName || customer.email}">
                                 <input type="text" class="form-control"
                                        ng-model="customer.firstName" placeholder="First Name">
                             </div>
@@ -245,25 +264,25 @@
                         Licence Details
                     </div>
                     <div class="col-lg-6">
-                    <div class="row customer">
-                                <div class="col-lg-12">
-                                    <input type="text" class="form-control"
-                                           ng-model="customer.driversLicence" placeholder="Licence Number">
-                                </div>
-                                <div class="col-lg-12">
-                                    <input type="text" class="form-control"
-                                           ng-model="customer.dlState" placeholder="Licence Issuing State">
-                                </div>
+                        <div class="row customer">
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer.driversLicence" placeholder="Licence Number">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer.dlState" placeholder="Licence Issuing State">
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="row customer">
-                                <div class="col-lg-12">
-                                    <input type="text" class="form-control"
-                                           ng-model="customer.dlCountry"
-                                           placeholder="Licence Issuing Country">
-                                </div>
-                                <div class="col-lg-12">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row customer">
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer.dlCountry"
+                                       placeholder="Licence Issuing Country">
+                            </div>
+                            <div class="col-lg-12">
                                     <span class="input-group">
                                     <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                            is-open="licenseExpiryDate.opened"
@@ -276,11 +295,11 @@
                                                 class="glyphicon glyphicon-calendar"></i></button>
                                       </span>
                                     </span>
-                                </div>
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
+            </div>
             <div>
                 <button class="btn btn-xs btn-success"
                         ng-click="accordion.personalDetailsPanelOpen = ! accordion.personalDetailsPanelOpen;accordion.selectCarPanelOpen = !accordion.selectCarPanelOpen">
@@ -290,7 +309,221 @@
                         ng-click="accordion.personalDetailsPanelOpen = ! accordion.personalDetailsPanelOpen;accordion.paymentDetailsPanelOpen = !accordion.paymentDetailsPanelOpen">
                     Next
                 </button>
+                <a ng-click="additionalDriver=true">Add Driver</a>
             </div>
+
+
+            <div ng-init="isExistingcustomer1=false" ng-show="additionalDriver">
+                <label>
+                    <input type="radio" ng-model="isExistingcustomer1" ng-value="true">
+                    Existing Customer
+                </label>
+                <label>
+                    <input type="radio" ng-model="isExistingcustomer1" ng-value="false">
+                    New Customer
+                </label>
+                <div ng-if="isExistingcustomer1" class="row">
+                    <div class="col-lg-3">
+                        <select class="form-control" ng-model="searchCriteria1.type">
+                            <option value="mobile">mobile</option>
+                            <option value="email">email</option>
+                            <option value="fnln">FirstName&LastName</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <div ng-if="searchCriteria1.type == 'mobile'">
+                            <input type="text" class="form-control" ng-model="searchCriteria1.mobile" placeholder="Mobile">
+                        </div>
+                        <div ng-if="searchCriteria1.type == 'email'">
+                            <input type="email" class="form-control" ng-model="searchCriteria1.email" placeholder="email">
+                        </div>
+                        <div ng-if="searchCriteria1.type == 'fnln'">
+                            <input type="text" class="form-control" ng-model="searchCriteria1.firstName" placeholder="FirstName">
+                        </div>
+                    </div>
+                    <div class="col-lg-3" ng-if="searchCriteria1.type == 'fnln'">
+                        <div>
+                            <input type="text" class="form-control" ng-model="searchCriteria1.lastName" placeholder="LastName">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <button class="btn btn-primary" ng-click="searchAdditionalExistingDriver()">Search</button>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="customers1.length >1">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Select One</th>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                        </tr>
+                        <tr ng-repeat="cust in customers1">
+                            <td>
+                                <input type="radio" name="customer1" ng-model="$parent.selectedCustomer"
+                                       ng-value="cust.id"
+                                       ng-change="selectCustomer1(cust)">
+                            </td>
+                            <td>{{cust.id}}</td>
+                            <td>{{cust.firstName}}</td>
+                            <td>{{cust.lastName}}</td>
+                            <td>{{cust.email}}</td>
+                            <td>{{cust.address1}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row customer">
+                            <div class="col-1g-12 panel-heading" style="font-weight: bold">
+                                Driver Details
+                            </div>
+                            <div class="col-lg-6" ng-show="customer1.id || customer1.firstName || customer1.email">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.id" placeholder="Customer Id">
+                            </div>
+                            <div class="col-lg-12" ng-class="{'col-lg-6':customer1.id || customer1.firstName || customer1.email}">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.firstName" placeholder="First Name">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.lastName" placeholder="Last Name">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.middleName" placeholder="Middle Name">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control" ng-model="customer1.ssn"
+                                       placeholder="SSN">
+                            </div>
+                            <div class="col-lg-12">
+                            <span class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                       is-open="dob1.opened" datepicker-options="dob1.dateOptions"
+                                       ng-model="customer1.dob"
+                                       placeholder="Date Of birth(MM/dd/yyyy)">
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="dob1.open()"><i
+                                        class="glyphicon glyphicon-calendar"></i></button>
+                              </span>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row customer">
+                            <div class="col-1g-12 panel-heading" style="font-weight: bold">
+                                Address Details
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.address1" placeholder="Address1">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.address2" placeholder="Address">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control" ng-model="customer1.city"
+                                       placeholder="City">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.state" placeholder="State">
+                            </div>
+
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control" style="width: 52%" ng-model="customer1.zip"
+                                       placeholder="Zip">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row customer">
+                            <div class="col-1g-12 panel-heading" style="font-weight: bold">
+                                Contact Details
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.homePhone" placeholder="Home Phone">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.mobile" placeholder="Mobile">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="email" class="form-control"
+                                       ng-model="customer1.email" placeholder="email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="row customer">
+                            <div class="col-1g-12 panel-heading" style="font-weight: bold">
+                                <label>Employer Details</label>
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.employer" placeholder="Employer">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.employerCity" placeholder="Employer City">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.employerState" placeholder="Employer State">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1g-12 panel-heading" style="font-weight: bold">
+                        Licence Details
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row customer">
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.driversLicence" placeholder="Licence Number">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.dlState" placeholder="Licence Issuing State">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row customer">
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control"
+                                       ng-model="customer1.dlCountry"
+                                       placeholder="Licence Issuing Country">
+                            </div>
+                            <div class="col-lg-12">
+                                    <span class="input-group">
+                                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                           is-open="licenseExpiryDate1.opened"
+                                           datepicker-options="licenseExpiryDate1.dateOptions"
+                                           ng-model="customer1.dlExperiryDate"
+                                           placeholder="Licence Expire Date (mm/yyyy)">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default"
+                                                ng-click="licenseExpiryDate1.open()"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                      </span>
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div uib-accordion-group class="panel-primary" heading="Payment Information"

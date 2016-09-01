@@ -7,6 +7,7 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.formats = ['dd-MMMM-yyyy', 'MM/dd/yyyy', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
     $scope.priceDetails={};
+    $scope.priceDetails.perDay=25;
     $scope.insuranceDetails={};
     $scope.dob = {
         opened: false,
@@ -29,6 +30,73 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         }
     };
     $scope.dob.toggleMin();
+
+    $scope.dob1 = {
+        opened: false,
+        dateOptions: {
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 1
+        }, inlineOptions: {
+            customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
+        }, toggleMin: function () {
+            $scope.dob1.inlineOptions.minDate = $scope.dob1.inlineOptions.minDate ? null : new Date();
+            $scope.dob1.dateOptions.minDate = $scope.dob1.inlineOptions.minDate;
+        },
+        open: function () {
+            $scope.dob1.opened = true;
+        }
+    };
+    $scope.dob1.toggleMin();
+
+    $scope.dateOut = {
+        opened: false,
+        dateOptions: {
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 1
+        }, inlineOptions: {
+            customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
+        }, toggleMin: function () {
+            $scope.dateOut.inlineOptions.minDate = $scope.dateOut.inlineOptions.minDate ? null : new Date();
+            $scope.dateOut.dateOptions.minDate = $scope.dateOut.inlineOptions.minDate;
+        },
+        open: function () {
+            $scope.dateOut.opened = true;
+        }
+    };
+    $scope.dateOut.toggleMin();
+
+    $scope.dateIn = {
+        opened: false,
+        dateOptions: {
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 1
+        }, inlineOptions: {
+            customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
+        }, toggleMin: function () {
+            $scope.dateIn.inlineOptions.minDate = $scope.dateIn.inlineOptions.minDate ? null : new Date();
+            $scope.dateIn.dateOptions.minDate = $scope.dateIn.inlineOptions.minDate;
+        },
+        open: function () {
+            $scope.dateIn.opened = true;
+        }
+    };
+    $scope.dateIn.toggleMin();
+
     $scope.licenseExpiryDate = {
         opened: false,
         dateOptions: {
@@ -50,6 +118,28 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         }
     };
     $scope.licenseExpiryDate.toggleMin();
+
+    $scope.licenseExpiryDate1 = {
+        opened: false,
+        dateOptions: {
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 1
+        }, inlineOptions: {
+            customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
+        }, toggleMin: function () {
+            $scope.licenseExpiryDate1.inlineOptions.minDate = $scope.licenseExpiryDate1.inlineOptions.minDate ? null : new Date();
+            $scope.licenseExpiryDate1.dateOptions.minDate = $scope.licenseExpiryDate1.inlineOptions.minDate;
+        },
+        open: function () {
+            $scope.licenseExpiryDate1.opened = true;
+        }
+    };
+    $scope.licenseExpiryDate1.toggleMin();
 
     function disabled(data) {
         var date = data.date,
@@ -128,30 +218,10 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.rental = {};
     $scope.submitPaymentDetails = function () {
         $scope.rental.payment = {};
-        $scope.rental.payment.payStatus = "Approved";
-        $scope.rental.payment.description = "Paid";
-        $scope.rental.payment.payDate = 1443119400000;
-        $scope.rental.payment.amount = 76;
-        $scope.rental.payment.rentalPaymentId = 7;
-        $scope.rental.payment.paymentMethod = "DEBITCARD";
-        $scope.rental.payment.paidFor = null;
-        $scope.rental.payment.chequeNumber = null;
-        $scope.rental.payment.chequeIssuedBy = null;
-        $scope.rental.payment.cardInfo = {};
-        console.log($scope.payment);
 
         $scope.rental.payment.cardInfo=$scope.payment.cardInfo;
 
         $scope.rental.payment.cardInfo.id=4;
-        $scope.rental.payment.cardInfo.type = "Debit";
-        $scope.rental.payment.cardInfo.number = "4356234589012341";
-        $scope.rental.payment.cardInfo.expMonth = 6;
-        $scope.rental.payment.cardInfo.expYear = 2019;
-        $scope.rental.payment.cardInfo.cvv = 834;
-        $scope.rental.payment.cardInfo.customer = null;
-        $scope.rental.payment.cardInfo.priority = null;
-        $scope.rental.payment.cardInfo.name = "Ravi";
-console.log($scope.payment);
         $scope.rental.vehicle = $scope.accordion.selectedCarFullDetails;
 
         $scope.rental.startDate = 1441218600000;
@@ -160,12 +230,13 @@ console.log($scope.payment);
 
         $scope.rental.customer1 = $scope.customer;
         $scope.rental.customer1.dob = new Date($scope.customer.dob).getTime();
-        $scope.rental.customer1.dlExperiryDate = 1441218600000;
         $scope.rental.customer1.dlExperiryDate = new Date($scope.customer.dlExperiryDate).getTime();
 
         $scope.rental.insuranceStatus = "ON";
         $scope.rental.rentalPaymentId = 2;
-        $scope.rental.customer2 = $scope.customer2;
+        $scope.rental.customer2 = $scope.customer1;
+        $scope.rental.customer2.dob = new Date($scope.customer1.dob).getTime();
+        $scope.rental.customer2.dlExperiryDate = new Date($scope.customer1.dlExperiryDate).getTime();
         $http.post(ClientConfig.CLIENT_BASE_URL + "rental", $scope.rental).success(function (response) {
             $state.go("agreement");
             fleetMagicService.setRentalAgreement(response);
@@ -175,12 +246,45 @@ console.log($scope.payment);
     };
 
     $scope.searchCriteria = {};
+    $scope.searchCriteria1 = {};
     $scope.selectedCustomer = 0;
 
     $scope.selectCustomer = function (customer) {
-      console.log(customer);
         $scope.customer=customer;
     };
+
+    $scope.selectCustomer1 = function (customer) {
+        $scope.customer1=customer;
+    };
+
+    $scope.searchAdditionalExistingDriver = function () {
+        $scope.error1=null;
+        var url;
+        console.log($scope.searchCriteria1);
+        if($scope.searchCriteria1.type=="mobile"){
+            url = ClientConfig.CLIENT_BASE_URL + "customer/mobile/"+$scope.searchCriteria1.mobile;
+        }else if($scope.searchCriteria1.type=="email"){
+            url = ClientConfig.CLIENT_BASE_URL + "customer/email/"+$scope.searchCriteria1.email
+        }else{
+            url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/"+$scope.searchCriteria1.firstName+"/lastName/"+$scope.searchCriteria1.lastName;
+        }
+        $http.get(url).success(function (data) {
+            if(data.length ==1){
+                $scope.customer1 = data[0];
+                $scope.customers1=[];
+            }else{
+                $scope.customers1 = data;
+                $scope.customer1 = [];
+            }
+            if (data.length == 0){
+                $scope.error1="No Records Found.";
+            }
+        }).error(function (err) {
+            $scope.error1="Error While Searching..  Try Again";
+            console.log(err);
+        });
+    };
+
     $scope.search = function (){
         $scope.error=null;
         var url;
@@ -195,8 +299,10 @@ console.log($scope.payment);
         $http.get(url).success(function (data) {
             if(data.length ==1){
                 $scope.customer = data[0];
+                $scope.customers=[];
             }else{
                 $scope.customers = data;
+                $scope.customer = [];
             }
             if (data.length == 0){
                 $scope.error="No Records Found.";
@@ -205,6 +311,6 @@ console.log($scope.payment);
             $scope.error="Error While Searching..  Try Again";
             console.log(err);
         });
-    } ;
+    };
 
 }]);
