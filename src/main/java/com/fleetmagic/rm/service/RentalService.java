@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fleetmagic.cm.domain.Customer;
 import com.fleetmagic.cm.service.CustomerService;
+import com.fleetmagic.fm.domain.VehicleStatus;
 import com.fleetmagic.repository.VehicleRepository;
 import com.fleetmagic.rm.domain.Payment;
 import com.fleetmagic.rm.domain.Rental;
@@ -42,7 +43,7 @@ public class RentalService {
 		
 		Payment payment = paymentRepository.saveAndFlush(rental.getPayment());
 		rental.setPayment(payment);
-		
+		rental.getVehicle().setStatus(VehicleStatus.RENTED);
 		vehicleRepository.saveAndFlush(rental.getVehicle());
 		
 		
