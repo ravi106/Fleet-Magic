@@ -52,7 +52,16 @@ public class Vehicle {
 	@Enumerated(EnumType.STRING)
 	private DriveMode driveMode;
 	private String dispenseReason;
+	private int perDayRent;
 	
+
+	public int getPerDayRent() {
+		return perDayRent;
+	}
+
+	public void setPerDayRent(int perDayRent) {
+		this.perDayRent = perDayRent;
+	}
 
 	public InsuranceMode getPhysicalInsuranceStatus() {
 		return physicalInsuranceStatus;
