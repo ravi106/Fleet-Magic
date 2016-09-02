@@ -10,8 +10,10 @@ import com.fleetmagic.cm.domain.Customer;
 import com.fleetmagic.cm.service.CustomerService;
 import com.fleetmagic.fm.domain.VehicleStatus;
 import com.fleetmagic.repository.VehicleRepository;
+import com.fleetmagic.rm.domain.CardInfo;
 import com.fleetmagic.rm.domain.Payment;
 import com.fleetmagic.rm.domain.Rental;
+import com.fleetmagic.rm.repository.CardInfoRepository;
 import com.fleetmagic.rm.repository.PaymentRepository;
 import com.fleetmagic.rm.repository.RentalRepository;
 
@@ -24,6 +26,9 @@ public class RentalService {
 	
 	@Resource
 	private PaymentRepository paymentRepository;
+	
+	@Resource
+	private CardInfoRepository cardInfoRepository;
 	
 	@Resource
 	private CustomerService customerService;
@@ -39,10 +44,14 @@ public class RentalService {
 				
 		rental.setCustomer1(customer1);
 		rental.setCustomer2(customer2);
+		if(rental.getPayment() != null){
+			CardInfo cardInfo =cardInfoRepository.saveAndFlush(rental.getPayment().getCardInfo());
+			System.err.println(cardInfo);
+			rental.getPayment().setCardInfo(cardInfo);
+			Payment payment = paymentRepository.saveAndFlush(rental.getPayment());
+			rental.setPayment(payment);
+		}
 		
-		
-		Payment payment = paymentRepository.saveAndFlush(rental.getPayment());
-		rental.setPayment(payment);
 		rental.getVehicle().setStatus(VehicleStatus.RENTED);
 		vehicleRepository.saveAndFlush(rental.getVehicle());
 		

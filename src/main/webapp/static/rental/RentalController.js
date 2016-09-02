@@ -238,7 +238,7 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
 
         $scope.rental.payment.cardInfo = $scope.payment.cardInfo;
 
-        $scope.rental.payment.cardInfo.id = 4;
+//        $scope.rental.payment.cardInfo.id = 4;
         $scope.rental.vehicle = $scope.accordion.selectedCarFullDetails;
 
         $scope.rental.customer1 = $scope.customer;
