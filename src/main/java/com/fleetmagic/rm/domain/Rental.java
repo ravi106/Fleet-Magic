@@ -37,6 +37,11 @@ public class Rental {
 	private Customer customer1;
 	@OneToOne
 	private Customer customer2;
+	private String insurancePolicyNumber;
+	private String insuranceCompanyName;
+	private Date insuranceExpirationDate;
+	private String insuranceCompanyContactNumber;
+	
 	@Enumerated(EnumType.STRING)
 	private InsuranceMode insuranceStatus;
 	private int rentalPaymentId;
@@ -106,6 +111,30 @@ public class Rental {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	public String getInsurancePolicyNumber() {
+		return insurancePolicyNumber;
+	}
+	public void setInsurancePolicyNumber(String insurancePolicyNumber) {
+		this.insurancePolicyNumber = insurancePolicyNumber;
+	}
+	public String getInsuranceCompanyName() {
+		return insuranceCompanyName;
+	}
+	public void setInsuranceCompanyName(String insuranceCompanyName) {
+		this.insuranceCompanyName = insuranceCompanyName;
+	}
+	public Date getInsuranceExpirationDate() {
+		return insuranceExpirationDate;
+	}
+	public void setInsuranceExpirationDate(Date insuranceExpirationDate) {
+		this.insuranceExpirationDate = insuranceExpirationDate;
+	}
+	public String getInsuranceCompanyContactNumber() {
+		return insuranceCompanyContactNumber;
+	}
+	public void setInsuranceCompanyContactNumber(String insuranceCompanyContactNumber) {
+		this.insuranceCompanyContactNumber = insuranceCompanyContactNumber;
+	}
 	public BusinessUnit getBusinessUnit() {
 		return businessUnit;
 	}
@@ -114,18 +143,11 @@ public class Rental {
 	}
 	@Override
 	public String toString() {
-		return "Rental [id=" + id + ", payment=" + payment + ", vehicle="
-				+ vehicle + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", price=" + price + ", customer1=" + customer1
-				+ ", customer2=" + customer2 + ", insuranceStatus="
-				+ insuranceStatus + ", rentalPaymentId=" + rentalPaymentId
-				+ "]";
+		return "Rental [id=" + id + ", payment=" + payment + ", vehicle=" + vehicle + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", price=" + price + ", customer1=" + customer1 + ", customer2=" + customer2
+				+ ", insurancePolicyNumber=" + insurancePolicyNumber + ", insuranceCompanyName=" + insuranceCompanyName
+				+ ", insuranceExpirationDate=" + insuranceExpirationDate + ", insuranceCompanyContactNumber="
+				+ insuranceCompanyContactNumber + ", insuranceStatus=" + insuranceStatus + ", rentalPaymentId="
+				+ rentalPaymentId + "]";
 	}
-	
-	
-	
-	
-	
-	
-
 }
