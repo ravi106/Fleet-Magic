@@ -26,4 +26,22 @@ angular.module('fleetMagic').controller('CustomerController', ['$scope', '$http'
             console.log(err);
         });
     } ;
+    $scope.selectCustomer = function (customer) {
+        $scope.customer = customer;
+    };
+    $scope.updateCustomer = function(){
+    	   
+    	$http.post(ClientConfig.CLIENT_BASE_URL + "customer",convertDates($scope.customer)).success(function (data) {
+    	    console.log(data);
+        }).error(function(err){
+        	console.log(err);
+        });
+    };
+    function convertDates(customer) {
+    	customer.dob = new Date(customer.dob).getTime();
+    	customer.dlExperiryDate = new Date(customer.dlExperiryDate).getTime();
+        console.log(customer);
+        return customer;
+    }
+
 }]);

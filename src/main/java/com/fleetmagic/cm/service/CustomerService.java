@@ -38,7 +38,8 @@ public class CustomerService {
 
  public Customer saveCustomer(Customer customer) {
 	 if(customer != null){
-	 return customerRepository.saveAndFlush(customer);
+		 System.err.println(customer);
+		 return customerRepository.saveAndFlush(customer);
 	 }else{
 		 return null;
 	 }

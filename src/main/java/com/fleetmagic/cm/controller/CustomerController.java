@@ -25,6 +25,16 @@ public class CustomerController {
 		return customerService.getCustomers();
 
 	}
+	
+	@RequestMapping(value = "/customer", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public Customer updateCustomer(Customer customer) {
+
+		System.out.println("CustomerController.updateCustomer()");
+
+		return customerService.saveCustomer(customer);
+
+	}
+
 
 	@RequestMapping(value = "/customer/email/{email:.*}", method = RequestMethod.GET, produces = "application/json")
 	public List<Customer> findCustomersByEmail(@PathVariable("email") String email) {
