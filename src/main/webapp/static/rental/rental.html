@@ -32,9 +32,9 @@
                 <button class="btn btn-primary" ng-click="searchRentals()">Search</button>
             </div>
         </div>
-        </div>
+    </div>
 
-<span ng-if="isExistingRental && existingRental">
+    <span ng-if="isExistingRental && existingRental">
     <span ng-init="selectRental(existingRental)"></span>
 </span>
 
@@ -135,16 +135,46 @@
                     </span>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-lg-12">
-                            Price Per day : <input type="text" class="form-control" ng-blur="checkPrice()" ng-model="accordion.selectedCarFullDetails.perDayRent">
+                        <div class="col-lg-4">
+                            Price Per day :
+                        </div>
+                        <div class="col-lg-8"><input type="text" class="form-control" ng-blur="checkPrice()"
+                                                     ng-model="accordion.selectedCarFullDetails.perDayRent">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
-                            Price Per Month : <input type="text" class="form-control" ng-model="rental.price">
+                        <div class="col-lg-4">
+                            Price Per Month :
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" ng-model="rental.price">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            Additional Driver Charge :
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-blur="checkPrice()" ng-model="additionalDriverCharge">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            Tax :
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="tax">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            Total :
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" ng-model="total">
                         </div>
                     </div>
                 </div>
@@ -173,18 +203,22 @@
                     </div>
                     <div class="col-lg-3">
                         <div ng-if="searchCriteria.type == 'mobile'">
-                            <input type="text" class="form-control" ng-model="searchCriteria.mobile" placeholder="Mobile">
+                            <input type="text" class="form-control" ng-model="searchCriteria.mobile"
+                                   placeholder="Mobile">
                         </div>
                         <div ng-if="searchCriteria.type == 'email'">
-                            <input type="email" class="form-control" ng-model="searchCriteria.email" placeholder="email">
+                            <input type="email" class="form-control" ng-model="searchCriteria.email"
+                                   placeholder="email">
                         </div>
                         <div ng-if="searchCriteria.type == 'fnln'">
-                            <input type="text" class="form-control" ng-model="searchCriteria.firstName" placeholder="FirstName">
+                            <input type="text" class="form-control" ng-model="searchCriteria.firstName"
+                                   placeholder="FirstName">
                         </div>
                     </div>
                     <div class="col-lg-3" ng-if="searchCriteria.type == 'fnln'">
                         <div>
-                            <input type="text" class="form-control" ng-model="searchCriteria.lastName" placeholder="LastName">
+                            <input type="text" class="form-control" ng-model="searchCriteria.lastName"
+                                   placeholder="LastName">
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -223,11 +257,7 @@
                             <div class="col-1g-12 panel-heading" style="font-weight: bold">
                                 Driver Details
                             </div>
-                            <div class="col-lg-6" ng-show="customer.id || customer.firstName || customer.email">
-                                <input type="text" class="form-control"
-                                       ng-model="customer.id" placeholder="Customer Id">
-                            </div>
-                            <div class="col-lg-12" ng-class="{'col-lg-6':customer.id || customer.firstName || customer.email}">
+                            <div class="col-lg-12">
                                 <input type="text" class="form-control"
                                        ng-model="customer.firstName" placeholder="First Name">
                             </div>
@@ -366,10 +396,6 @@
             </div>
             <div>
                 <button class="btn btn-xs btn-success"
-                        ng-click="accordion.personalDetailsPanelOpen = ! accordion.personalDetailsPanelOpen;accordion.selectCarPanelOpen = !accordion.selectCarPanelOpen">
-                    Previous
-                </button>
-                <button class="btn btn-xs btn-success"
                         ng-click="accordion.personalDetailsPanelOpen = ! accordion.personalDetailsPanelOpen;accordion.paymentDetailsPanelOpen = !accordion.paymentDetailsPanelOpen">
                     Next
                 </button>
@@ -396,18 +422,22 @@
                     </div>
                     <div class="col-lg-3">
                         <div ng-if="searchCriteria1.type == 'mobile'">
-                            <input type="text" class="form-control" ng-model="searchCriteria1.mobile" placeholder="Mobile">
+                            <input type="text" class="form-control" ng-model="searchCriteria1.mobile"
+                                   placeholder="Mobile">
                         </div>
                         <div ng-if="searchCriteria1.type == 'email'">
-                            <input type="email" class="form-control" ng-model="searchCriteria1.email" placeholder="email">
+                            <input type="email" class="form-control" ng-model="searchCriteria1.email"
+                                   placeholder="email">
                         </div>
                         <div ng-if="searchCriteria1.type == 'fnln'">
-                            <input type="text" class="form-control" ng-model="searchCriteria1.firstName" placeholder="FirstName">
+                            <input type="text" class="form-control" ng-model="searchCriteria1.firstName"
+                                   placeholder="FirstName">
                         </div>
                     </div>
                     <div class="col-lg-3" ng-if="searchCriteria1.type == 'fnln'">
                         <div>
-                            <input type="text" class="form-control" ng-model="searchCriteria1.lastName" placeholder="LastName">
+                            <input type="text" class="form-control" ng-model="searchCriteria1.lastName"
+                                   placeholder="LastName">
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -446,11 +476,7 @@
                             <div class="col-1g-12 panel-heading" style="font-weight: bold">
                                 Driver Details
                             </div>
-                            <div class="col-lg-6" ng-show="customer1.id || customer1.firstName || customer1.email">
-                                <input type="text" class="form-control"
-                                       ng-model="customer1.id" placeholder="Customer Id">
-                            </div>
-                            <div class="col-lg-12" ng-class="{'col-lg-6':customer1.id || customer1.firstName || customer1.email}">
+                            <div class="col-lg-12">
                                 <input type="text" class="form-control"
                                        ng-model="customer1.firstName" placeholder="First Name">
                             </div>
@@ -600,6 +626,10 @@
                             Card Details
                         </div>
                         <div class="col-lg-12">
+                            <input type="text" class="form-control"  ng-model="payment.cardInfo.type"
+                                   placeholder="Card Type">
+                        </div>
+                        <div class="col-lg-12">
                             <input type="text" class="form-control"
                                    ng-model="payment.cardInfo.number" placeholder="Card Number">
                         </div>
@@ -612,8 +642,16 @@
                                    ng-model="payment.cardInfo.name" placeholder="Name On Card">
                         </div>
                         <div class="col-lg-12">
-                            <!--<input type="text" class="form-control"  ng-model="payment.cardInfo.zip"
-                                   placeholder="ZIP">-->
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="payment.cardInfo.expMonth"
+                                           placeholder="Expiry Month">
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="payment.cardInfo.expYear"
+                                           placeholder="Expiry Year">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

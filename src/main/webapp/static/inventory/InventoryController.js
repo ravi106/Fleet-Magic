@@ -12,7 +12,7 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
             for (var i = 0; i < $scope.inventory.vehicles.length; i++) {
                 var car = {};
                 car.id = $scope.inventory.vehicles[i].id;
-                car.carDetails = $scope.inventory.vehicles[i].make + " " + $scope.inventory.vehicles[i].model + ", " + $scope.inventory.vehicles[i].color;
+                car.carDetails = $scope.inventory.vehicles[i].make + " " + $scope.inventory.vehicles[i].model + ", " + $scope.inventory.vehicles[i].color+ ", {" + $scope.inventory.vehicles[i].registration + "}";
                 $scope.carList.push(car);
             }
         }).error(function (err) {
