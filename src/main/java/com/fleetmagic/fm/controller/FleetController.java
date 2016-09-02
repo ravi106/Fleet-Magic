@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fleetmagic.fm.domain.BusinessUnit;
 import com.fleetmagic.fm.domain.Vehicle;
 import com.fleetmagic.fm.service.FleetService;
 
@@ -59,6 +60,15 @@ public class FleetController {
 		System.out.println("FleetController.getVehiclesByStatus()");
 
 		return fleetService.fetchByType(type);
+
+	}
+	
+	@RequestMapping(value = "/businessUnits", method = RequestMethod.GET, produces = "application/json")
+	public List<BusinessUnit> getBusinessUnits() {
+
+		System.out.println("FleetController.getBusinessUnits()");
+
+		return fleetService.getBusinessUnits();
 
 	}
 
