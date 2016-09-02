@@ -5,6 +5,12 @@
 angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http', '$state', 'ClientConfig', function ($scope, $http, $state, ClientConfig) {
 
     $scope.inventory = {};
+    $scope.vehicleTypes=["SEDAN", "COUPE", "HATCHBACK", "CONVERTABLE", "VAN", "SUV"];
+    $scope.vehicleTitles=["CLEAN", "SALVAGE"];
+    $scope.vehicleCategories=["COMPACT", "MIDSIZE", "SUV", "FULLSIZE"];
+    $scope.vehicleStatuses = ["AVAILABLE", "NOT_AVAILABLE", "RENTED", "MAINTENANCE"];
+    $scope.insuranceModes=["ON", "OFF"];
+    $scope.driveModes=["AUTO", "MANUAL"];
     $scope.initInventoryController = function () {
         $http.get(ClientConfig.CLIENT_BASE_URL + "vehiclesByBusinessUnit/" + $scope.selectedBusinessUnit.id).success(function (data) {
             $scope.inventory.vehicles = data;
@@ -32,6 +38,7 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
     $scope.addOrUpdateVehicle = function () {
         $http.post(ClientConfig.CLIENT_BASE_URL + "vehicle", convertDates($scope.inventory.vehicle)).success(function (res) {
             console.log(res);
+            alert("Successfully loaded");
         });
     };
 

@@ -45,6 +45,7 @@ public class Rental {
 	@Enumerated(EnumType.STRING)
 	private InsuranceMode insuranceStatus;
 	private int rentalPaymentId;
+	private int additionalDriverCharge;
 	
 	
 	public InsuranceMode getInsuranceStatus() {
@@ -141,13 +142,20 @@ public class Rental {
 	public void setBusinessUnit(BusinessUnit businessUnit) {
 		this.businessUnit = businessUnit;
 	}
+	public int getAdditionalDriverCharge() {
+		return additionalDriverCharge;
+	}
+	public void setAdditionalDriverCharge(int additionalDriverCharge) {
+		this.additionalDriverCharge = additionalDriverCharge;
+	}
 	@Override
 	public String toString() {
-		return "Rental [id=" + id + ", payment=" + payment + ", vehicle=" + vehicle + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", price=" + price + ", customer1=" + customer1 + ", customer2=" + customer2
-				+ ", insurancePolicyNumber=" + insurancePolicyNumber + ", insuranceCompanyName=" + insuranceCompanyName
-				+ ", insuranceExpirationDate=" + insuranceExpirationDate + ", insuranceCompanyContactNumber="
-				+ insuranceCompanyContactNumber + ", insuranceStatus=" + insuranceStatus + ", rentalPaymentId="
-				+ rentalPaymentId + "]";
+		return "Rental [id=" + id + ", payment=" + payment + ", vehicle=" + vehicle + ", businessUnit=" + businessUnit
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", price=" + price + ", customer1=" + customer1
+				+ ", customer2=" + customer2 + ", insurancePolicyNumber=" + insurancePolicyNumber
+				+ ", insuranceCompanyName=" + insuranceCompanyName + ", insuranceExpirationDate="
+				+ insuranceExpirationDate + ", insuranceCompanyContactNumber=" + insuranceCompanyContactNumber
+				+ ", insuranceStatus=" + insuranceStatus + ", rentalPaymentId=" + rentalPaymentId
+				+ ", additionalDriverCharge=" + additionalDriverCharge + "]";
 	}
 }

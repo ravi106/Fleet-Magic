@@ -1,7 +1,13 @@
 <div class="container" ng-init="getBusinessUnits();">
     <div class="row">
         <div class="col-lg-4">Select Business Unit :</div>
-        <div class="col-lg-4"><select class="form-control" ng-change="initRentalController()" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="selectedBusinessUnit"></select></div>
+        <div class="col-lg-4">
+            <select class="form-control" ng-change="initRentalController()"
+                                      ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id"
+                                      ng-model="selectedBusinessUnit">
+            <option value="">Business Unit</option>
+        </select>
+        </div>
     </div>
     <div ng-init="isExistingRental=false">
         <label>
@@ -95,26 +101,26 @@
         <div uib-accordion-group is-open="accordion.selectInsurancePanelOpen" class="panel-primary"
              heading="Insurance Details">
             <div class="row customer">
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-6">Insurance Policy Number :</div>
-                    <div class="col-lg-6"><input type="text" class="form-control"
-                                                 ng-model="rental.insurancePolicyNumber"></div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">Insurance Policy Number :</div>
+                        <div class="col-lg-6"><input type="text" class="form-control"
+                                                     ng-model="rental.insurancePolicyNumber"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-6">Insurance Company Name :</div>
-                    <div class="col-lg-6"><input type="text" class="form-control"
-                                                 ng-model="rental.insuranceCompanyName"></div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">Insurance Company Name :</div>
+                        <div class="col-lg-6"><input type="text" class="form-control"
+                                                     ng-model="rental.insuranceCompanyName"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-6">Insurance Expiration Date :</div>
-                    <div class="col-lg-6">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">Insurance Expiration Date :</div>
+                        <div class="col-lg-6">
                         <span class="input-group">
                             <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                    is-open="insuranceExpirationDate.opened"
@@ -125,18 +131,18 @@
                           </span>
                         </span>
                         </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-6">Insurance Company Contact Number :</div>
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control"
-                               ng-model="rental.insuranceCompanyContactNumber">
                     </div>
                 </div>
-            </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">Insurance Company Contact Number :</div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control"
+                                   ng-model="rental.insuranceCompanyContactNumber">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -148,8 +154,7 @@
                         <div class="col-lg-12">
                             <span class="input-group">
                         <input type="text" ng-blur="checkPrice()" class="form-control" uib-datepicker-popup="{{format}}"
-                               is-open="dateOut.opened" datepicker-options="dateOut.dateOptions"
-                               ng-model="rental.startDate"
+                               is-open="dateOut.opened" ng-model="rental.startDate"
                                placeholder="Date Out (MM/dd/yyyy)">
                         <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="dateOut.open()"><i
@@ -162,8 +167,7 @@
                         <div class="col-lg-12">
                             <span class="input-group">
                         <input type="text" ng-blur="checkPrice()" class="form-control" uib-datepicker-popup="{{format}}"
-                               is-open="dateIn.opened" datepicker-options="dateIn.dateOptions"
-                               ng-model="rental.endDate"
+                               is-open="dateIn.opened" ng-model="rental.endDate"
                                placeholder="Date In (MM/dd/yyyy)">
                         <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="dateIn.open()"><i
@@ -176,8 +180,9 @@
                         <div class="col-lg-4">
                             Price Per day :
                         </div>
-                        <div class="col-lg-8"><input type="text" class="form-control" ng-blur="checkPrice()"
-                                                     ng-model="accordion.selectedCarFullDetails.perDayRent">
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" ng-blur="checkPrice()"
+                                   ng-model="accordion.selectedCarFullDetails.perDayRent">
                         </div>
                     </div>
                     <div class="row">
@@ -196,7 +201,7 @@
                         </div>
                         <div class="col-lg-6">
                             <input type="text" class="form-control" ng-blur="checkPrice()"
-                                   ng-model="additionalDriverCharge">
+                                   ng-model="rental.additionalDriverCharge">
                         </div>
                     </div>
                     <div class="row">
@@ -314,8 +319,7 @@
                             <div class="col-lg-12">
                             <span class="input-group">
                                 <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                                       is-open="dob.opened" datepicker-options="dob.dateOptions"
-                                       ng-model="customer.dob"
+                                       is-open="dob.opened" ng-model="customer.dob"
                                        placeholder="Date Of birth(MM/dd/yyyy)">
                                 <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="dob.open()"><i
@@ -418,7 +422,6 @@
                                     <span class="input-group">
                                     <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                            is-open="licenseExpiryDate.opened"
-                                           datepicker-options="licenseExpiryDate.dateOptions"
                                            ng-model="customer.dlExperiryDate"
                                            placeholder="Licence Expire Date (mm/yyyy)">
                                     <span class="input-group-btn">
@@ -533,8 +536,7 @@
                             <div class="col-lg-12">
                             <span class="input-group">
                                 <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                                       is-open="dob1.opened" datepicker-options="dob1.dateOptions"
-                                       ng-model="customer1.dob"
+                                       is-open="dob1.opened" ng-model="customer1.dob"
                                        placeholder="Date Of birth(MM/dd/yyyy)">
                                 <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="dob1.open()"><i
@@ -637,7 +639,6 @@
                                     <span class="input-group">
                                     <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                            is-open="licenseExpiryDate1.opened"
-                                           datepicker-options="licenseExpiryDate1.dateOptions"
                                            ng-model="customer1.dlExperiryDate"
                                            placeholder="Licence Expire Date (mm/yyyy)">
                                     <span class="input-group-btn">
@@ -656,80 +657,124 @@
 
         <div uib-accordion-group class="panel-primary" heading="Payment Information"
              is-open="accordion.paymentDetailsPanelOpen">
+            <div class="row">
+                <div class="col-lg-3">
+                    Payment Method :
+                </div>
+                <div class="col-lg-6">
+                    <select class="form-control" ng-options="paymentMethod for paymentMethod in paymentMethods"
+                            ng-model="rental.payment.paymentMethod">
+                        <option value="">Payment Method</option>
+                    </select>
+                </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-lg-3">
-                        Payment Method :
+            <div class="row" ng-show="rental.payment.paymentMethod == 'CASH'">
+                <div class="col-lg-12 panel-heading" style="font-weight: bold">
+                    Cash Details
+                </div>
+            </div>
+            <div class="row" ng-show="rental.payment.paymentMethod == 'CASH'">
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" ng-model="rental.payment.amount"
+                           placeholder="Amount">
+                </div>
+            </div>
+        <div class="row" ng-show="rental.payment.paymentMethod == 'CHEQUE'">
+            <div class="col-lg-12 panel-heading" style="font-weight: bold">
+                Cheque Details
+            </div>
+        </div>
+        <div class="row" ng-show="rental.payment.paymentMethod == 'CHEQUE'">
+            <div class="col-lg-6">
+                <div class="row customer">
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" ng-model="rental.payment.paidFor"
+                               placeholder="Paid For">
                     </div>
-                    <div class="col-lg-6">
-
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" ng-model="rental.payment.chequeNumber"
+                               placeholder="chequeNumber">
                     </div>
                 </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="row customer">
-                        <div class="col-1g-12 panel-heading" style="font-weight: bold">
-                            Card Details
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control" ng-model="payment.cardInfo.type"
-                                   placeholder="Card Type">
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control"
-                                   ng-model="payment.cardInfo.number" placeholder="Card Number">
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control"
-                                   ng-model="payment.cardInfo.cvv" placeholder="CVV">
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control"
-                                   ng-model="payment.cardInfo.name" placeholder="Name On Card">
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="payment.cardInfo.expMonth"
-                                           placeholder="Expiry Month">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="payment.cardInfo.expYear"
-                                           placeholder="Expiry Year">
-                                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="row customer">
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" ng-model="rental.payment.chequeIssuedBy"
+                               placeholder="chequeIssuedBy">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-hide="rental.payment.paymentMethod == 'CHEQUE' || rental.payment.paymentMethod == 'CASH'">
+            <div class="col-lg-6">
+                <div class="row customer">
+                    <div class="col-1g-12 panel-heading" style="font-weight: bold">
+                        Card Details
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" ng-model="payment.cardInfo.type"
+                               placeholder="Card Type">
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control"
+                               ng-model="payment.cardInfo.number" placeholder="Card Number">
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control"
+                               ng-model="payment.cardInfo.cvv" placeholder="CVV">
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control"
+                               ng-model="payment.cardInfo.name" placeholder="Name On Card">
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <select class="form-control" ng-options="expiryMonth for expiryMonth in expiryMonths" ng-model="payment.cardInfo.expMonth">
+                                    <option value="">Expiry Month</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <select class="form-control" ng-options="expiryYear for expiryYear in expiryYears" ng-model="payment.cardInfo.expYear">
+                                    <option value="">Expiry Year</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="row customer">
-                        <div class="col-1g-12 panel-heading" style="font-weight: bold">
-                            Billing Address
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control"
-                                   ng-model="billing.address1" placeholder="Address1">
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control"
-                                   ng-model="billing.address2" placeholder="Address2">
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control" ng-model="billing.city"
-                                   placeholder="City">
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control"
-                                   ng-model="billing.state" placeholder="State">
-                        </div>
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control" style="width: 52%" ng-model="billing.zip"
-                                   placeholder="Zip">
-                        </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row customer">
+                    <div class="col-1g-12 panel-heading" style="font-weight: bold">
+                        Billing Address
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control"
+                               ng-model="payment.cardInfo.address1" placeholder="Address1">
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control"
+                               ng-model="payment.cardInfo.address2" placeholder="Address2">
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" ng-model="payment.cardInfo.city"
+                               placeholder="City">
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control"
+                               ng-model="payment.cardInfo.State" placeholder="State">
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" style="width: 52%" ng-model="payment.cardInfo.zip"
+                               placeholder="Zip">
                     </div>
                 </div>
             </div>
-            <button ng-click="submitPaymentDetails()">Submit</button>
         </div>
-    </uib-accordion>
+        <button ng-click="submitPaymentDetails()">Submit</button>
+</div>
+</uib-accordion>
 </div>

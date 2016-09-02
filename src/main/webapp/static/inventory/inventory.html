@@ -2,7 +2,11 @@
 
     <div class="row">
         <div class="col-lg-4">Select Business Unit :</div>
-        <div class="col-lg-4"><select class="form-control" ng-change="initInventoryController()" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="selectedBusinessUnit"></select></div>
+        <div class="col-lg-4">
+            <select class="form-control" ng-change="initInventoryController()" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="selectedBusinessUnit">
+                <option value="">Business Unit</option>
+            </select>
+        </div>
     </div>
 
     <div class="form-group">
@@ -64,13 +68,15 @@
                 </div>
                 <div class="col-lg-12">
                     Type :
-                    <input type="text" class="form-control"
-                           ng-model="inventory.vehicle.type">
+                    <select class="form-control" ng-options="vehicleType for vehicleType in vehicleTypes" ng-model="inventory.vehicle.type">
+                        <option value="">Vehicle Type</option>
+                    </select>
                 </div>
                 <div class="col-lg-12">
                     Title :
-                    <input type="text" class="form-control"
-                           ng-model="inventory.vehicle.title">
+                    <select class="form-control" ng-options="vehicleTitle for vehicleTitle in vehicleTitles" ng-model="inventory.vehicle.title">
+                        <option value="">Vehicle Title</option>
+                    </select>
                 </div>
 
                 <div class="col-lg-12">
@@ -96,7 +102,9 @@
                            ng-model="inventory.vehicle.costPrice">
                 </div>
                 <div class="col-lg-12">
-                    Business Unit : <select class="form-control" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="inventory.vehicle.businessUnit"></select>
+                    Business Unit : <select class="form-control" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="inventory.vehicle.businessUnit">
+                    <option value="">Business Unit</option>
+                </select>
                 </div>
             </div>
         </div>
@@ -105,8 +113,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     Category :
-                    <input type="text" class="form-control"
-                           ng-model="inventory.vehicle.category">
+                    <select class="form-control" ng-options="vehicleCategory for vehicleCategory in vehicleCategories" ng-model="inventory.vehicle.category">
+                        <option value="">Vehicle Category</option>
+                    </select>
                 </div>
                 <div class="col-lg-12">
                     Tank Capacity :
@@ -164,25 +173,29 @@
                 </div>
                 <div class="col-lg-12">
                     Status
-                    <input type="text" class="form-control"
-                           ng-model="inventory.vehicle.status">
+                    <select class="form-control" ng-options="vehicleStatus for vehicleStatus in vehicleStatuses" ng-model="inventory.vehicle.status">
+                        <option value="">Vehicle Status</option>
+                    </select>
                 </div>
 
                 <div class="col-lg-12">
                     Physical Insurance Status :
-                    <input type="text" class="form-control"
-                           ng-model="inventory.vehicle.physicalInsuranceStatus">
+                    <select class="form-control" ng-options="insuranceMode for insuranceMode in insuranceModes" ng-model="inventory.vehicle.physicalInsuranceStatus">
+                        <option value="">Physical Insurance Status</option>
+                    </select>
                 </div>
 
                 <div class="col-lg-12">
                     Liability Insurance Status :
-                    <input type="text" class="form-control"
-                           ng-model="inventory.vehicle.liabilityInsuranceStatus">
+                    <select class="form-control" ng-options="insuranceMode for insuranceMode in insuranceModes" ng-model="inventory.vehicle.liabilityInsuranceStatus">
+                        <option value="">Liability Insurance Status</option>
+                    </select>
                 </div>
                 <div class="col-lg-12">
                     DriveMode :
-                    <input type="text" class="form-control"
-                           ng-model="inventory.vehicle.driveMode">
+                    <select class="form-control" ng-options="driveMode for driveMode in driveModes" ng-model="inventory.vehicle.driveMode">
+                        <option value="">Drive Mode</option>
+                    </select>
                 </div>
                 <div class="col-lg-12">
                     Dispense Reason :
