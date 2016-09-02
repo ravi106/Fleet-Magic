@@ -1,89 +1,101 @@
 <div id="rentalAgreement">
+    <div><b>Business Unit Name:{{rentalResponse.businessUnitName}}</b></div>
+    <div class="row">
+        <div class="col-lg-6 text-left">Location Address:{{rentalResponse.address}}</div>
+        <div class="col-lg-6 text-right">Location Id:{{rentalResponse.locationId}}</div>
+    </div>
+    <div>Location Fax:{{rentalResponse.locationFax}}</div>
     <table id="items">
         <tr>
-            <td colspan="3"><span>CustLastName: {{rentalResponse.customer1.lastName}}</span> <span>first Name: {{rentalResponse.customer1.firstName}}</span>
-                <span>MI : {{rentalResponse.customer1.middleName}}</span></td>
-            <td>Unit Number</td>
+            <td colspan="3"><span><b>CustLastName:</b> {{rentalResponse.customer1.lastName}}</span> <span><b>first Name:</b> {{rentalResponse.customer1.firstName}}</span>
+                <span><b>MI :</b> {{rentalResponse.customer1.middleName}}</span></td>
+            <td><b>Unit Number</b></td>
             <td class="item-name"></td>
         </tr>
 
         <tr class="item-row">
-            <td class="item-name" colspan="3">Home Address: {{rentalResponse.customer1.address1}}</td>
-            <td>Make-Model : {{rentalResponse.vehicle.make}} {{rentalResponse.vehicle.model}}</td>
-            <td class="item-name"><span class="price">Color : {{rentalResponse.vehicle.color}}</span></td>
+            <td class="item-name" colspan="3"><b>Home Address:</b> {{rentalResponse.customer1.address1}}</td>
+            <td><b>Make-Model :</b> {{rentalResponse.vehicle.make}} {{rentalResponse.vehicle.model}}</td>
+            <td class="item-name"><span class="price"><b>Color :</b> {{rentalResponse.vehicle.color}}</span></td>
         </tr>
 
         <tr class="item-row">
-            <td class="item-name" colspan="3">City: {{rentalResponse.customer1.city}} State:
-                {{rentalResponse.customer1.state}} Zip: {{rentalResponse.customer1.zip}}
+            <td class="item-name" colspan="3"><b>City:</b> {{rentalResponse.customer1.city}} <b>State:</b>
+                {{rentalResponse.customer1.state}} <b>Zip:</b> {{rentalResponse.customer1.zip}}
             </td>
-            <td>VIN: {{rentalResponse.vehicle.vin}}</td>
-            <td class="item-name"><span class="price">Tag Number</span></td>
+            <td><b>VIN:</b> {{rentalResponse.vehicle.vin}}</td>
+            <td class="item-name"><span class="price"><b>Tag Number</b></span></td>
         </tr>
 
         <tr>
-            <td colspan="3" class="item-name">Home Phone: {{rentalResponse.customer1.homePhone}} Other Phone:
-                {{rentalResponse.customer1.mobile}} Email Address: {{rentalResponse.customer1.email}}
+            <td colspan="3" class="item-name"><b>Home Phone:</b> {{rentalResponse.customer1.homePhone}} <b>Other Phone:</b>
+                {{rentalResponse.customer1.mobile}} <b>Email Address:</b> {{rentalResponse.customer1.email}}
             </td>
-            <td class="item-name">Replacement Vehicle</td>
+            <td class="item-name"><b>Replacement Vehicle</b></td>
             <td class="item-name">
-                <div id="subtotal">Color</div>
+                <div id="subtotal"><b>Color</b></div>
             </td>
         </tr>
         <tr>
 
-            <td colspan="3" class="item-name">Employer: {{rentalResponse.customer1.employer}}
-                City-State:{{rentalResponse.customer1.city}}{{rentalResponse.customer1.state}}
+            <td colspan="3" class="item-name"><b>Employer:</b> {{rentalResponse.customer1.employer}}
+                <b>City-State:</b>{{rentalResponse.customer1.city}}{{rentalResponse.customer1.state}}
             </td>
-            <td class="item-name">Make-Model {{rentalResponse.vehicle.make}} {{rentalResponse.vehicle.model}}</td>
+            <td class="item-name"><b>Make-Model </b>{{rentalResponse.vehicle.make}} {{rentalResponse.vehicle.model}}</td>
             <td class="item-name">
-                <div id="total">Tag Number</div>
+                <div id="total"><b>Tag Number</b></div>
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="item-name">Drivers Lic: {{rentalResponse.customer1.driversLicence}} State: {{rentalResponse.customer1.state}} Exp Date: {{rentalResponse.customer1.insuranceExpiryDate}}</td>
-            <td class="item-name">VIN {{rentalResponse.vehicle.vin}}</td>
-            <td class="item-name">Date Out : {{rentalResponse.startDate}}</td>
+            <td colspan="3" class="item-name"><b>Drivers Lic: </b>{{rentalResponse.customer1.driversLicence}} <b>State:</b>
+                {{rentalResponse.customer1.state}} <b>Exp Date: </b>{{rentalResponse.customer1.insuranceExpiryDate}}
+            </td>
+            <td class="item-name"><b>VIN</b> {{rentalResponse.vehicle.vin}}</td>
+            <td class="item-name"><b>Date Out : </b>{{rentalResponse.startDate}}</td>
         </tr>
         <tr>
-            <td colspan="3" class="item-name">Social Security Number: {{rentalResponse.customer1.homePhone}} DOB: {{rentalResponse.customer1.dob}}</td>
-            <td class="item-name">MillesIn</td>
+            <td colspan="3" class="item-name"><b>Social Security Number:</b> {{rentalResponse.customer1.homePhone}} <b>DOB:</b>
+                {{rentalResponse.customer1.dob}}
+            </td>
+            <td class="item-name"><b>MillesIn</b></td>
             <td class="item-name">
-                <div class="due">Date Due In: {{rentalResponse.endDate}}</div>
+                <div class="due"><b>Date Due In:</b> {{rentalResponse.endDate}}</div>
             </td>
         </tr>
 
 
         <tr>
-            <td class="item-name agreementHeadings" colspan="3">Additional Driver</td>
-            <td>Miles Out</td>
-            <td>Date Time In</td>
+            <td class="item-name agreementHeadings" colspan="3"><b>Additional Driver</b></td>
+            <td><b>Miles Out</b></td>
+            <td><b>Date Time In</b></td>
         </tr>
 
         <tr>
-            <td colspan="3" class="item-name">Additional Driver: {{rentalResponse.customer2.lastName}} {{rentalResponse.customer2.firstName}}</td>
-            <td class="item-name">Total Miles</td>
+            <td colspan="3" class="item-name"><b>Additional Driver:</b> {{rentalResponse.customer2.lastName}}
+                {{rentalResponse.customer2.firstName}}
+            </td>
+            <td class="item-name"><b>Total Miles</b></td>
             <td rowspan="8" class="item-name agreementPaddings">
                 <table class="agreementWidth">
                     <tr>
-                        <th colspan="3">Rental</th>
+                        <th colspan="3"><b>Rental</b></th>
                     </tr>
                     <tr>
-                        <td>DAY@</td>
-                        <td>2</td>
+                        <td><b>DAY@</b></td>
+                        <td>{{rentalResponse.vehicle.perDayRent}}</td>
                     </tr>
                     <tr>
-                        <td>Month@</td>
-                        <td>550</td>
+                        <td><b>Month@</b></td>
+                        <td>{{rentalResponse.price}}</td>
                     </tr>
                     <tr>
-                        <td>Est Milleage</td>
+                        <td><b>Est Milleage</b></td>
                         <td>2</td>
                     </tr>
                     <tr>
                         <td>
-                            <div>Second Driver</div>
-                            <div>Tax</div>
+                            <div><b>Second Driver</b></div>
+                            <div><b>Tax</b></div>
                         </td>
                         <td>
                             <div>$</div>
@@ -95,26 +107,32 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>Amount Paid</td>
+                        <td><b>Amount Paid</b></td>
                         <td>2</td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3">Address: {{rentalResponse.customer2.address1}}</td>
-            <td class="item-name">Free Miles</td>
+            <td class="item-name" colspan="3"><b>Address: </b>{{rentalResponse.customer2.address1}}</td>
+            <td class="item-name"><b>Free Miles</b></td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3">City: {{rentalResponse.customer2.city}} State : {{rentalResponse.customer2.state}} Zip: {{rentalResponse.customer2.zip}}</td>
-            <td class="item-name">Excess Miles</td>
+            <td class="item-name" colspan="3"><b>City: </b>{{rentalResponse.customer2.city}} <b>State :</b>
+                {{rentalResponse.customer2.state}} <b>Zip: </b>{{rentalResponse.customer2.zip}}
+            </td>
+            <td class="item-name"><b>Excess Miles</b></td>
         </tr>
         <tr>
-            <td colspan="3" class="item-name">Driver License: {{rentalResponse.customer2.driversLicence}} State: {{rentalResponse.customer2.state}} Exp Date: {{rentalResponse.customer2.insuranceExpiryDate}}</td>
+            <td colspan="3" class="item-name"><b>Driver License: </b>{{rentalResponse.customer2.driversLicence}} <b>State:</b>
+                {{rentalResponse.customer2.state}} <b>Exp Date:</b> {{rentalResponse.customer2.insuranceExpiryDate}}
+            </td>
             <td class="item-name"></td>
         </tr>
         <tr>
-            <td colspan="3" class="item-name">DOB: {{rentalResponse.customer2.dob}} Phone: {{rentalResponse.customer2.mobile}} Email: {{rentalResponse.customer2.email}}</td>
+            <td colspan="3" class="item-name"><b>DOB: </b>{{rentalResponse.customer2.dob}} <b>Phone:</b>
+                {{rentalResponse.customer2.mobile}} <b>Email:</b> {{rentalResponse.customer2.email}}
+            </td>
             <td rowspan="4" class="item-name">VEHICLE MUST NOT BE DRIVEN OUTSIDE _______ MILE RADIUS. Customer is
                 allowed __2000__ miles free per day. Excess miles will be charged an additional rate of 25 cents per
                 mile. C.D.W.
@@ -125,36 +143,36 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="item-name">Insurance Company:</td>
+            <td colspan="3" class="item-name"><b>Insurance Company:</b></td>
         </tr>
         <tr>
-            <td colspan="3" class="item-name">Address:</td>
+            <td colspan="3" class="item-name"><b>Address:</b></td>
         </tr>
 
         <tr>
-            <td colspan="3" class="item-name">City: State: Zip:</td>
+            <td colspan="3" class="item-name"><b>City: State: Zip:</b></td>
             <td class="item-name">All charges subject to final audit</td>
-            <td rowspan="8" class="item-name agreementPaddings1">
+            <td rowspan="7" class="item-name agreementPaddings1">
                 <table class="agreementWidth">
                     <tr>
                         <th colspan="3">Rental Return</th>
                     </tr>
                     <tr>
-                        <td>DAY@</td>
-                        <td>2</td>
+                        <td><b>DAY@</b></td>
+                        <td>{{rentalResponse.vehicle.perDayRent}}</td>
                     </tr>
                     <tr>
-                        <td>Month@</td>
-                        <td>550</td>
+                        <td><b>Month@</b></td>
+                        <td>{{rentalResponse.price}}</td>
                     </tr>
                     <tr>
-                        <td>Est Milleage</td>
+                        <td><b>Est Milleage</b></td>
                         <td>2</td>
                     </tr>
                     <tr>
                         <td>
-                            <div>Second Driver</div>
-                            <div>Tax</div>
+                            <div><b>Second Driver</b></div>
+                            <div><b>Tax</b></div>
                         </td>
                         <td>
                             <div>$</div>
@@ -166,16 +184,14 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>Amount Paid</td>
+                        <td><b>Amount Paid</b></td>
                         <td>2</td>
                     </tr>
                 </table>
             </td>
         </tr>
-
-
         <tr>
-            <td colspan="3" class="item-name">Agent: Phone: Address:</td>
+            <td colspan="3" class="item-name"><b>Agent: Phone: Address:</b></td>
             <td class="item-name">
                 GAS E ¼ ½ ¾ F
                 OUT
@@ -209,21 +225,21 @@
             </td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3">Additional Charges and descriptions</td>
+            <td class="item-name" colspan="3"><b>Additional Charges and descriptions</b></td>
             <td class="item-name" colspan="2">
-                <div>Customer Signature</div>
+                <div><b>Customer Signature</b></div>
             </td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3">Exteded To: / /</td>
+            <td class="item-name" colspan="3"><b>Extended To:</b> / /</td>
             <td class="item-name" colspan="2">
-                <div>Second Driver Signature</div>
+                <div><b>Second Driver Signature</b></div>
             </td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3">Exteded To: / /</td>
+            <td class="item-name" colspan="3"><b>Extended To: </b>/ /</td>
             <td class="item-name" colspan="2">
-                <div>Agent Signature</div>
+                <div><b>Agent Signature</b></div>
             </td>
         </tr>
         <tr>
