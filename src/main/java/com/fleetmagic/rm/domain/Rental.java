@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fleetmagic.cm.domain.Customer;
+import com.fleetmagic.fm.domain.BusinessUnit;
 import com.fleetmagic.fm.domain.InsuranceMode;
 import com.fleetmagic.fm.domain.Vehicle;
 
@@ -26,6 +27,8 @@ public class Rental {
 	private Payment payment;
 	@OneToOne
 	private Vehicle vehicle;
+	@OneToOne
+	private BusinessUnit businessUnit;
 	
 	private Date startDate;
 	private Date endDate;
@@ -102,6 +105,12 @@ public class Rental {
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public BusinessUnit getBusinessUnit() {
+		return businessUnit;
+	}
+	public void setBusinessUnit(BusinessUnit businessUnit) {
+		this.businessUnit = businessUnit;
 	}
 	@Override
 	public String toString() {

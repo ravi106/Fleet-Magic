@@ -21,6 +21,12 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     
     public List<Vehicle> findByStatus(VehicleStatus status);
     
+    @Query(value=FleetConstants.FETCH_VEH_ON_BUSINESSUNIT, nativeQuery = true)
+    public List<Vehicle> findBusinessUnitVehciles(String businessUnit);
+    
+    @Query(value=FleetConstants.FETCH_VEH_ON_BUSINESSUNIT_ON_STATUS, nativeQuery = true)
+    public List<Vehicle> findBusinessUnitVehcilesWithStatus(String businessUnit,String status);
+    
     public List<Vehicle> findByType(Type type);
  
 }

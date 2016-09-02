@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -53,6 +54,8 @@ public class Vehicle {
 	private DriveMode driveMode;
 	private String dispenseReason;
 	private int perDayRent;
+	@OneToOne
+	private BusinessUnit businessUnit;
 	
 
 	public int getPerDayRent() {
@@ -255,6 +258,14 @@ public class Vehicle {
 		this.model = model;
 	}
 	
+
+	public BusinessUnit getBusinessUnit() {
+		return businessUnit;
+	}
+
+	public void setBusinessUnit(BusinessUnit businessUnit) {
+		this.businessUnit = businessUnit;
+	}
 
 	@Override
 	public String toString() {

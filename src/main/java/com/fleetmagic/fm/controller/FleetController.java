@@ -11,39 +11,55 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fleetmagic.fm.domain.Vehicle;
 import com.fleetmagic.fm.service.FleetService;
 
-
-
 @RestController
 public class FleetController {
 
-    @Autowired
-    FleetService fleetService;
-    
-    @RequestMapping(value = "/vehicles", method = RequestMethod.GET, produces = "application/json")
-    public List<Vehicle> getVehicles() {
+	@Autowired
+	FleetService fleetService;
+
+	@RequestMapping(value = "/vehicles", method = RequestMethod.GET, produces = "application/json")
+	public List<Vehicle> getVehicles() {
+
+		System.out.println("FleetController.getVehicles()");
+
+		return fleetService.getVehicles();
+
+	}
+
+	@RequestMapping(value = "/vehiclesByStatus/{status}", method = RequestMethod.GET, produces = "application/json")
+	public List<Vehicle> getVehiclesByStatus(@PathVariable("status") String status) {
+
+		System.out.println("FleetController.getVehiclesByStatus()");
+
+		return fleetService.fetchByStatus(status);
+
+	}
 	
-	System.out.println("FleetController.getVehicles()");
+	@RequestMapping(value = "/vehiclesByBusinessUnit/{businessUnit}", method = RequestMethod.GET, produces = "application/json")
+	public List<Vehicle> vehiclesByBusinessUnit(@PathVariable("businessUnit") String businessUnit) {
 
-	return fleetService.getVehicles();
+		System.out.println("FleetController.vehiclesByBusinessUnit()");
 
-    }
-    
-    @RequestMapping(value = "/vehiclesByStatus/{status}", method = RequestMethod.GET, produces = "application/json")
-    public List<Vehicle> getVehiclesByStatus(@PathVariable("status") String status) {
+		return fleetService.fetchBusinessUnitVehcilesByStatus(businessUnit, "ALL");
+
+	}
 	
-	System.out.println("FleetController.getVehiclesByStatus()");
+	@RequestMapping(value = "/vehiclesByBusinessUnit/{businessUnit}/status/{status}", method = RequestMethod.GET, produces = "application/json")
+	public List<Vehicle> vehiclesByBusinessUnitAndStatus(@PathVariable("businessUnit") String businessUnit,@PathVariable("status") String status) {
 
-	return fleetService.fetchByStatus(status);
+		System.out.println("FleetController.vehiclesByBusinessUnitAndStatus()");
 
-    }
-    
-    @RequestMapping(value = "/vehiclesByType/{type}", method = RequestMethod.GET, produces = "application/json")
-    public List<Vehicle> getVehiclesByType(@PathVariable("type") String type) {
-	
-	System.out.println("FleetController.getVehiclesByStatus()");
+		return fleetService.fetchBusinessUnitVehcilesByStatus(businessUnit, status);
 
-	return fleetService.fetchByType(type);
+	}
 
-    }
+	@RequestMapping(value = "/vehiclesByType/{type}", method = RequestMethod.GET, produces = "application/json")
+	public List<Vehicle> getVehiclesByType(@PathVariable("type") String type) {
+
+		System.out.println("FleetController.getVehiclesByStatus()");
+
+		return fleetService.fetchByType(type);
+
+	}
 
 }
