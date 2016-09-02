@@ -51,6 +51,12 @@ public class FleetService {
 		else
 			return vehicleRepository.findByType(Type.valueOf(type));
 	}
+	
+	public Vehicle saveVehicle(Vehicle vehicle){
+		System.err.println("In FleetService.saveVehicle()");
+		return vehicleRepository.saveAndFlush(vehicle);
+		
+	}
 
 	public List<Vehicle> getVehicleFallback() {
 
