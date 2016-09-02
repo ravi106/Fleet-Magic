@@ -353,4 +353,14 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         $scope.customer1 = rental.customer2;
         $scope.payment = rental.payment;
     }
+
+    $scope.destroyDetails = function () {
+        $scope.accordion.selectedCarFullDetails = {};
+        $scope.accordion.showDetails = false;
+        $scope.rental = {};
+        $scope.isExistingcustomer = false;
+        $scope.customer = {};
+        $scope.customer1 = {};
+        $scope.payment = {};
+    }
 }]);
