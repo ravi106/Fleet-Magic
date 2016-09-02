@@ -186,7 +186,7 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
             for (var i = 0; i < $scope.fleetMagic.vehicles.length; i++) {
                 var car = {};
                 car.id = $scope.fleetMagic.vehicles[i].id;
-                car.carDetails = $scope.fleetMagic.vehicles[i].make + " " + $scope.fleetMagic.vehicles[i].model + ", " + $scope.fleetMagic.vehicles[i].color;
+                car.carDetails = $scope.fleetMagic.vehicles[i].make + " " + $scope.fleetMagic.vehicles[i].model + ", " + $scope.fleetMagic.vehicles[i].color + ", {" + $scope.fleetMagic.vehicles[i].vin + "}";
                 $scope.carList.push(car);
             }
         }).error(function (err) {
@@ -218,17 +218,21 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.customer = {};
     $scope.rental = {};
     var startDate, endDate, oneDay;
+    $scope.additionalDriverCharge = 0;
     $scope.checkPrice = function () {
-        startDate = new Date($scope.rental.startDate);
-        endDate = new Date($scope.rental.endDate);
+        startDate = new Date($scope.rental.startDate).getTime();
+        endDate = new Date($scope.rental.endDate).getTime();
         oneDay = 24 * 60 * 60 * 1000;
-        $scope.rental.startDate = startDate.getTime();
-        $scope.rental.endDate = endDate.getTime();
+        $scope.rental.startDate = startDate;
+        $scope.rental.endDate = endDate;
         if ($scope.rental.startDate != null && $scope.rental.endDate != null && $scope.accordion.selectedCarFullDetails.perDayRent) {
-            $scope.rental.price = Math.ceil(((endDate - startDate) / oneDay) * $scope.accordion.selectedCarFullDetails.perDayRent);
+            $scope.rental.price = Math.ceil(Math.abs(((endDate - startDate) / oneDay) * $scope.accordion.selectedCarFullDetails.perDayRent));
         }
+        $scope.tax = ($scope.rental.price + $scope.additionalDriverCharge) * 0.06;
+        $scope.total = $scope.tax + $scope.rental.price + $scope.additionalDriverCharge;
     };
 
+    $scope.additionalDriver = false;
     $scope.submitPaymentDetails = function () {
         $scope.rental.payment = {};
 
@@ -350,6 +354,7 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         $scope.rental = rental;
         $scope.isExistingcustomer = true;
         $scope.customer = rental.customer1;
+        $scope.additionalDriver =true;
         $scope.customer1 = rental.customer2;
         $scope.payment = rental.payment;
     }
