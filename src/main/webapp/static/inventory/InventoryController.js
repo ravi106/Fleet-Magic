@@ -6,7 +6,7 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
 
     $scope.inventory = {};
     $scope.initInventoryController = function () {
-        $http.get(ClientConfig.CLIENT_BASE_URL + "vehicles").success(function (data) {
+        $http.get(ClientConfig.CLIENT_BASE_URL + "vehiclesByBusinessUnit/" + $scope.selectedBusinessUnit.id).success(function (data) {
             $scope.inventory.vehicles = data;
             $scope.carList = [];
             for (var i = 0; i < $scope.inventory.vehicles.length; i++) {
@@ -29,9 +29,18 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
         $scope.inventory.showDetails = true;
     };
 
-    $scope.updateVehicle = function () {
-        $http.post(ClientConfig.CLIENT_BASE_URL + "updateVehicle", convertDates($scope.inventory.vehicle)).success(function (res) {
+    $scope.addOrUpdateVehicle = function () {
+        $http.post(ClientConfig.CLIENT_BASE_URL + "vehicle", convertDates($scope.inventory.vehicle)).success(function (res) {
             console.log(res);
+        });
+    };
+
+    $scope.selectedBusinessUnit = {};
+    $scope.getBusinessUnits = function () {
+        $http.get(ClientConfig.CLIENT_BASE_URL + "businessUnits").success(function (res) {
+            $scope.businessUnits = res;
+            $scope.selectedBusinessUnit = $scope.businessUnits[0];
+            $scope.initInventoryController();
         });
     };
 
@@ -42,15 +51,8 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
         vehicle.purchaseDate = new Date(vehicle.purchaseDate).getTime();
         vehicle.lastServiceDate = new Date(vehicle.lastServiceDate).getTime();
         vehicle.dispenseDate = new Date(vehicle.dispenseDate).getTime();
-        console.log(vehicle);
         return vehicle;
     }
-
-    $scope.addVehicle = function () {
-        $http.post(ClientConfig.CLIENT_BASE_URL + "addVehicle", convertDates($scope.inventory.vehicle)).success(function (res) {
-            console.log(res);
-        })
-    };
 
     $scope.lastServiceDate = {
         opened: false,

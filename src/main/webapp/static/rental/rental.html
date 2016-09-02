@@ -1,5 +1,8 @@
-<div class="container" ng-init="initRentalController()">
-
+<div class="container" ng-init="getBusinessUnits();">
+    <div class="row">
+        <div class="col-lg-4">Select Business Unit :</div>
+        <div class="col-lg-4"><select class="form-control" ng-change="initRentalController()" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="selectedBusinessUnit"></select></div>
+    </div>
     <div ng-init="isExistingRental=false">
         <label>
             <input type="radio" ng-model="isExistingRental" ng-value="true" ng-change="destroyDetails()">
@@ -38,7 +41,8 @@
         <table class="table table-bordered">
             <tr>
                 <th>Select One</th>
-                <th>ID</th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -50,7 +54,8 @@
                            ng-value="existingRental.id"
                            ng-change="selectRental(existingRental)">
                 </td>
-                <td>{{existingRental.id}}</td>
+                <td>{{existingRental.startDate}}</td>
+                <td>{{existingRental.endDate}}</td>
                 <td>{{existingRental.customer1.firstName}}</td>
                 <td>{{existingRental.customer1.lastName}}</td>
                 <td>{{existingRental.customer1.email}}</td>
@@ -652,6 +657,14 @@
         <div uib-accordion-group class="panel-primary" heading="Payment Information"
              is-open="accordion.paymentDetailsPanelOpen">
 
+                <div class="row">
+                    <div class="col-lg-3">
+                        Payment Method :
+                    </div>
+                    <div class="col-lg-6">
+
+                    </div>
+                </div>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="row customer">

@@ -1,4 +1,10 @@
-<div ng-init="initInventoryController()">
+<div ng-init="getBusinessUnits()">
+
+    <div class="row">
+        <div class="col-lg-4">Select Business Unit :</div>
+        <div class="col-lg-4"><select class="form-control" ng-change="initInventoryController()" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="selectedBusinessUnit"></select></div>
+    </div>
+
     <div class="form-group">
         <label>Select table or add:</label>
         <ui-select ng-model="inventory.selectedCar" on-select="showCarDetails($item)">
@@ -28,6 +34,11 @@
                     Model :
                     <input type="text" class="form-control"
                            ng-model="inventory.vehicle.model">
+                </div>
+                <div class="col-lg-12">
+                    Vin :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.vin">
                 </div>
                 <div class="col-lg-12">
                     Last Service Date :
@@ -83,6 +94,9 @@
                     Cost Price :
                     <input type="text" class="form-control"
                            ng-model="inventory.vehicle.costPrice">
+                </div>
+                <div class="col-lg-12">
+                    Business Unit : <select class="form-control" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="inventory.vehicle.businessUnit"></select>
                 </div>
             </div>
         </div>
@@ -175,13 +189,16 @@
                     <input type="text" class="form-control"
                            ng-model="inventory.vehicle.dispenseReason">
                 </div>
+                <div class="col-lg-12">
+                    Per Day Rent :
+                    <input type="text" class="form-control"
+                           ng-model="inventory.vehicle.perDayRent">
+                </div>
+                <div class="col-lg-12">
+                    <button class="btn btn-primary" ng-click="addOrUpdateVehicle()">Add/Update</button>
+                </div>
             </div>
         </div>
-        <div class="row" ng-show="inventory.showDetails">
-            <button class="btn btn-primary" ng-click="updateVehicle()">Update</button>
-        </div>
-        <div class="row" ng-hide="inventory.showDetails">
-            <button class="btn btn-primary" ng-click="addVehicle()">Add Vehicle</button>
-        </div>
+
     </div>
 </div>

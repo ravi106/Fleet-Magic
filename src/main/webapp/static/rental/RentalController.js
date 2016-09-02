@@ -22,8 +22,9 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
 
     function toggleMin() {
         this.inlineOptions.minDate = this.inlineOptions.minDate ? null : new Date();
-        this.dateOptions.minDate=this.inlineOptions.minDate;
+        this.dateOptions.minDate = this.inlineOptions.minDate;
     }
+
     function open() {
         this.opened = true;
     }
@@ -128,14 +129,14 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     }
 
     $scope.initRentalController = function () {
-        $http.get(ClientConfig.CLIENT_BASE_URL + "vehiclesByStatus/AVAILABLE").success(function (data) {
+        $http.get(ClientConfig.CLIENT_BASE_URL + "vehiclesByBusinessUnit/" + $scope.selectedBusinessUnit.id + "/status/AVAILABLE").success(function (data) {
             $scope.fleetMagic.vehicles = data;
             $scope.accordion = {};
             $scope.carList = [];
             for (var i = 0; i < $scope.fleetMagic.vehicles.length; i++) {
                 var car = {};
                 car.id = $scope.fleetMagic.vehicles[i].id;
-                car.carDetails = $scope.fleetMagic.vehicles[i].make + " " + $scope.fleetMagic.vehicles[i].model + ", " + $scope.fleetMagic.vehicles[i].color + ", {" + $scope.fleetMagic.vehicles[i].vin + "}";
+                car.carDetails = $scope.fleetMagic.vehicles[i].make + " " + $scope.fleetMagic.vehicles[i].model + ", " + $scope.fleetMagic.vehicles[i].color + ", {" + $scope.fleetMagic.vehicles[i].registration + "}";
                 $scope.carList.push(car);
             }
         }).error(function (err) {
@@ -195,7 +196,7 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         $scope.rental.customer1.dlExperiryDate = new Date($scope.customer.dlExperiryDate).getTime();
 
         $scope.rental.insuranceStatus = "ON";
-        $scope.rental.insuranceExpirationDate=new Date($scope.rental.insuranceExpirationDate).getTime();
+        $scope.rental.insuranceExpirationDate = new Date($scope.rental.insuranceExpirationDate).getTime();
         $scope.rental.rentalPaymentId = 2;
         if ($scope.customer1) {
             $scope.rental.customer2 = $scope.customer1;
@@ -277,6 +278,14 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
             console.log(err);
         });
     };
+    $scope.selectedBusinessUnit = {};
+    $scope.getBusinessUnits = function () {
+        $http.get(ClientConfig.CLIENT_BASE_URL + "businessUnits").success(function (res) {
+            $scope.businessUnits = res;
+            $scope.selectedBusinessUnit = $scope.businessUnits[0];
+            $scope.initRentalController();
+        });
+    };
 
     $scope.searchRentals = function () {
         var url;
@@ -305,10 +314,10 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         $scope.rental = rental;
         $scope.isExistingcustomer = true;
         $scope.customer = rental.customer1;
-        if(rental.customer2) {
+        if (rental.customer2) {
             $scope.additionalDriver = true;
-        }else{
-            $scope.additionalDriver= false;
+        } else {
+            $scope.additionalDriver = false;
         }
         $scope.customer1 = rental.customer2;
         $scope.payment = rental.payment;
