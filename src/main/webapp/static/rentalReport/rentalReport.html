@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-lg-6">
+        <span class="input-group">
+            <input type="text" ng-blur="checkPrice()" class="form-control" uib-datepicker-popup="{{format}}"
+                   is-open="dateOut.opened" ng-model="rentalReport.startDate"
+                   placeholder="From Date">
+            <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="dateOut.open()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </span>
+    </div>
+    <div class="col-lg-6">
+        <span class="input-group">
+            <input type="text" ng-blur="checkPrice()" class="form-control" uib-datepicker-popup="{{format}}"
+                   is-open="dateIn.opened" ng-model="rentalReport.endDate"
+                   placeholder="To Date">
+            <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="dateIn.open()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </span>
+    </div>
+</div>
+<div class="row">
+    <button class="btn btn-primary" ng-click="getRentalReport()">Report</button>
+</div>
+<div class="row">
+    {{rentalReport}}
+</div>
