@@ -2,7 +2,7 @@
     <div><b>Business Unit Name:{{rentalResponse.businessUnit.name}}</b></div>
     <div class="row">
         <div class="col-lg-6 text-left">Location Address:{{rentalResponse.businessUnit.address}}</div>
-        <div class="col-lg-6 text-right">Location Id:{{rentalResponse.businessUnit.id}}</div>
+        <div class="col-lg-6 text-right">Location Id:{{rentalResponse.number}}</div>
     </div>
     <div>Location Fax:{{rentalResponse.businessUnit.fax}}</div>
     <table id="items">
@@ -33,15 +33,14 @@
             </td>
             <td class="item-name"><b>Replacement Vehicle</b></td>
             <td class="item-name">
-                <div id="subtotal"><b>Color</b></div>
+                <div id="subtotal"><b>Color :</b> {{rentalResponse.replacementVehicle.color}}</div>
             </td>
         </tr>
         <tr>
-
             <td colspan="3" class="item-name"><b>Employer:</b> {{rentalResponse.customer1.employer}}
                 <b>City-State:</b>{{rentalResponse.customer1.city}}{{rentalResponse.customer1.state}}
             </td>
-            <td class="item-name"><b>Make-Model </b>{{rentalResponse.vehicle.make}} {{rentalResponse.vehicle.model}}</td>
+            <td class="item-name"><b>Make-Model </b>{{rentalResponse.replacementVehicle.make}} {{rentalResponse.replacementVehicle.model}}</td>
             <td class="item-name">
                 <div id="total"><b>Tag Number</b></div>
             </td>
@@ -231,13 +230,13 @@
             </td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3"><b>Extended To:</b> / /</td>
+            <td class="item-name" colspan="3"><b>Extended To:</b>{{rentalResponse.extenstion1 | date : 'MM/dd/yyyy'}}</td>
             <td class="item-name" colspan="2">
                 <div><b>Second Driver Signature</b></div>
             </td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3"><b>Extended To: </b>/ /</td>
+            <td class="item-name" colspan="3"><b>Extended To:</b>{{rentalResponse.extenstion2 | date : 'MM/dd/yyyy'}}</td>
             <td class="item-name" colspan="2">
                 <div><b>Agent Signature</b></div>
             </td>
