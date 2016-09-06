@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Formula;
+
 import com.fleetmagic.cm.domain.Customer;
 import com.fleetmagic.fm.domain.BusinessUnit;
 import com.fleetmagic.fm.domain.InsuranceMode;
@@ -23,6 +25,7 @@ public class Rental {
 	@GeneratedValue
 	private Long id;
 	
+	private String number;
 	@OneToOne
 	private Payment payment;
 	@OneToOne
@@ -46,7 +49,11 @@ public class Rental {
 	private InsuranceMode insuranceStatus;
 	private int rentalPaymentId;
 	private int additionalDriverCharge;
-	
+	private Vehicle replacemetVehicle;
+	private Date extenstion1;
+	private double extenstion1Amount;
+	private Date extenstion2;
+	private double extenstion2Amount;
 	
 	public InsuranceMode getInsuranceStatus() {
 		return insuranceStatus;
@@ -147,6 +154,42 @@ public class Rental {
 	}
 	public void setAdditionalDriverCharge(int additionalDriverCharge) {
 		this.additionalDriverCharge = additionalDriverCharge;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	public Vehicle getReplacemetVehicle() {
+		return replacemetVehicle;
+	}
+	public void setReplacemetVehicle(Vehicle replacemetVehicle) {
+		this.replacemetVehicle = replacemetVehicle;
+	}
+	public Date getExtenstion1() {
+		return extenstion1;
+	}
+	public void setExtenstion1(Date extenstion1) {
+		this.extenstion1 = extenstion1;
+	}
+	public double getExtenstion1Amount() {
+		return extenstion1Amount;
+	}
+	public void setExtenstion1Amount(double extenstion1Amount) {
+		this.extenstion1Amount = extenstion1Amount;
+	}
+	public Date getExtenstion2() {
+		return extenstion2;
+	}
+	public void setExtenstion2(Date extenstion2) {
+		this.extenstion2 = extenstion2;
+	}
+	public double getExtenstion2Amount() {
+		return extenstion2Amount;
+	}
+	public void setExtenstion2Amount(double extenstion2Amount) {
+		this.extenstion2Amount = extenstion2Amount;
 	}
 	@Override
 	public String toString() {

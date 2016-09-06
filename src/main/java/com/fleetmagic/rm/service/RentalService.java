@@ -19,45 +19,87 @@ import com.fleetmagic.rm.repository.RentalRepository;
 
 @Service
 public class RentalService {
-	
-	
+
 	@Resource
 	private RentalRepository rentalRepository;
-	
+
 	@Resource
 	private PaymentRepository paymentRepository;
-	
+
 	@Resource
 	private CardInfoRepository cardInfoRepository;
-	
+
 	@Resource
 	private CustomerService customerService;
-	
+
 	@Resource
 	private VehicleRepository vehicleRepository;
 
 	public Rental createRental(Rental rental) {
-		
-		
+		System.err.println(rental);
 		Customer customer1 = customerService.saveCustomer(rental.getCustomer1());
 		Customer customer2 = customerService.saveCustomer(rental.getCustomer2());
-				
+
 		rental.setCustomer1(customer1);
 		rental.setCustomer2(customer2);
-		if(rental.getPayment() != null){
-			CardInfo cardInfo =cardInfoRepository.saveAndFlush(rental.getPayment().getCardInfo());
-			System.err.println(cardInfo);
-			rental.getPayment().setCardInfo(cardInfo);
+		if(rental.getNumber() == null){
+			String suffix = "1";
+			if(rental.getBusinessUnit() != null ){
+				suffix = rental.getBusinessUnit().getId().toString();
+			}
+			rental.setNumber(suffix+ "-" + System.currentTimeMillis());
+		}
+		System.err.println("rental Payment:" + rental.getPayment());
+		if (rental.getPayment() != null) {
+			if (rental.getPayment().getCardInfo() != null) {
+				CardInfo cardInfo = cardInfoRepository.saveAndFlush(rental.getPayment().getCardInfo());
+				System.err.println(cardInfo);
+				rental.getPayment().setCardInfo(cardInfo);
+
+			}
+			System.err.println("rental Payment:" + rental.getPayment());
 			Payment payment = paymentRepository.saveAndFlush(rental.getPayment());
 			rental.setPayment(payment);
 		}
-		
-		rental.getVehicle().setStatus(VehicleStatus.RENTED);
-		vehicleRepository.saveAndFlush(rental.getVehicle());
-		
-		
-		
+		if(rental.getId() == null){
+			rental.getVehicle().setStatus(VehicleStatus.RENTED);
+			vehicleRepository.saveAndFlush(rental.getVehicle());
+		}
 		return rentalRepository.saveAndFlush(rental);
+	}
+	
+	public Rental closeRental(Rental rental){
+		rental.getVehicle().setStatus(VehicleStatus.AVAILABLE);
+		vehicleRepository.saveAndFlush(rental.getVehicle());
+		return rentalRepository.saveAndFlush(rental);
+		//IF any status maintained at rental we can mark this or w can add closeDate in rental
+		
+	}
+	
+	public Rental replaceVehicle(Rental rental){
+		rental.getVehicle().setStatus(VehicleStatus.AVAILABLE);
+		vehicleRepository.saveAndFlush(rental.getVehicle());
+		rental.getReplacemetVehicle().setStatus(VehicleStatus.RENTED);
+		vehicleRepository.saveAndFlush(rental.getReplacemetVehicle());
+		//IF any status maintained at rental we can mark this or w can add closeDate in rental
+		return rentalRepository.saveAndFlush(rental);
+		
+	}
+	
+	public Rental extendRental(Rental rental){
+		Rental dbRental = rentalRepository.findOne(rental.getId());
+		if(dbRental.getExtenstion1() != null || dbRental.getExtenstion2() != null){
+			if(dbRental.getExtenstion1() == null){
+				rental.setPrice(dbRental.getPrice() + rental.getExtenstion1Amount());
+			}else{
+				rental.setPrice(dbRental.getPrice() + rental.getExtenstion2Amount());
+			}
+			return rentalRepository.saveAndFlush(rental);
+		}
+		return rental;
+		//IF any status maintained at rental we can mark this or w can add closeDate in rental
+		
+		
 	}
 
 	public void updateRental(Rental rental) {
@@ -65,29 +107,27 @@ public class RentalService {
 	}
 
 	public void fetchRental(Rental rental) {
-		
-	}
-	
 
-	public List<Rental> getRentals(){
+	}
+
+	public List<Rental> getRentals() {
 		return rentalRepository.findAll();
-		
+
 	}
-	
-	public List<Rental> getRentalsByEmail(String email){
+
+	public List<Rental> getRentalsByEmail(String email) {
 		return rentalRepository.getRentalByEmail(email);
-		
+
 	}
-	
-	public List<Rental> getRentalsByMobile(String mobile){
+
+	public List<Rental> getRentalsByMobile(String mobile) {
 		return rentalRepository.getRentalByMobile(mobile);
-		
+
 	}
-	
-	public List<Rental> getRentalsByNumber(String number){
+
+	public List<Rental> getRentalsByNumber(String number) {
 		return rentalRepository.getRentalByNumber(number);
-		
+
 	}
-	
 
 }

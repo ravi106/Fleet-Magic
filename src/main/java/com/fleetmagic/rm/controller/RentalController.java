@@ -62,4 +62,19 @@ public class RentalController {
 		return rentalService.createRental(rental);
 
 	}
+	
+
+	@RequestMapping(value = "/closeRental", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public Rental closeRental(@RequestBody Rental rental) {
+
+		return rentalService.closeRental(rental);
+
+	}
+	
+	@RequestMapping(value = "/replaceVehicle", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public Rental replaceVehicle(@RequestBody Rental rental) {
+
+		return rentalService.replaceVehicle(rental);
+
+	}
 }
