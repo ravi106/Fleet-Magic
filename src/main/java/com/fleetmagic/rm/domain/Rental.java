@@ -49,7 +49,8 @@ public class Rental {
 	private InsuranceMode insuranceStatus;
 	private int rentalPaymentId;
 	private int additionalDriverCharge;
-	private Vehicle replacemetVehicle;
+	@OneToOne
+	private Vehicle replacementVehicle;
 	private Date extenstion1;
 	private double extenstion1Amount;
 	private Date extenstion2;
@@ -161,11 +162,11 @@ public class Rental {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	public Vehicle getReplacemetVehicle() {
-		return replacemetVehicle;
+	public Vehicle getReplacementVehicle() {
+		return replacementVehicle;
 	}
-	public void setReplacemetVehicle(Vehicle replacemetVehicle) {
-		this.replacemetVehicle = replacemetVehicle;
+	public void setReplacementVehicle(Vehicle replacemetVehicle) {
+		this.replacementVehicle = replacemetVehicle;
 	}
 	public Date getExtenstion1() {
 		return extenstion1;

@@ -1,6 +1,9 @@
 package com.fleetmagic.rm.service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.annotation.Resource;
 
@@ -79,8 +82,8 @@ public class RentalService {
 	public Rental replaceVehicle(Rental rental){
 		rental.getVehicle().setStatus(VehicleStatus.AVAILABLE);
 		vehicleRepository.saveAndFlush(rental.getVehicle());
-		rental.getReplacemetVehicle().setStatus(VehicleStatus.RENTED);
-		vehicleRepository.saveAndFlush(rental.getReplacemetVehicle());
+		rental.getReplacementVehicle().setStatus(VehicleStatus.RENTED);
+		vehicleRepository.saveAndFlush(rental.getReplacementVehicle());
 		//IF any status maintained at rental we can mark this or w can add closeDate in rental
 		return rentalRepository.saveAndFlush(rental);
 		
@@ -129,5 +132,17 @@ public class RentalService {
 		return rentalRepository.getRentalByNumber(number);
 
 	}
+	
+	public static void getRentalsDashBoard(String number) {
+		LocalDate start = LocalDate.parse("2016-02-28"),
+		          end   = LocalDate.parse("2016-03-02");
+		Stream.iterate(start, date -> date.plusDays(1))
+        .limit(ChronoUnit.DAYS.between(start, end) + 1)
+        .forEach(System.out::println);
+		
 
+	}
+	public static void main(String[] args) {
+		RentalService.getRentalsDashBoard("1");
+	}
 }
