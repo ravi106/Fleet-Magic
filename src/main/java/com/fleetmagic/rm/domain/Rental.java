@@ -51,6 +51,7 @@ public class Rental {
 	private int additionalDriverCharge;
 	@OneToOne
 	private Vehicle replacementVehicle;
+	private Date replacementDate;
 	private Date extenstion1;
 	private double extenstion1Amount;
 	private Date extenstion2;
@@ -191,6 +192,12 @@ public class Rental {
 	}
 	public void setExtenstion2Amount(double extenstion2Amount) {
 		this.extenstion2Amount = extenstion2Amount;
+	}
+	public Date getReplacementDate() {
+		return replacementDate;
+	}
+	public void setReplacementDate(Date replacementDate) {
+		this.replacementDate = replacementDate;
 	}
 	@Override
 	public String toString() {
