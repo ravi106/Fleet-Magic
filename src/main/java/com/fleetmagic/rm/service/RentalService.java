@@ -134,12 +134,12 @@ public class RentalService {
 	}
 	
 	public static void getRentalsDashBoard(String number) {
-		LocalDate start = LocalDate.parse("2016-02-28"),
-		          end   = LocalDate.parse("2016-03-02");
-		Stream.iterate(start, date -> date.plusDays(1))
-        .limit(ChronoUnit.DAYS.between(start, end) + 1)
-        .forEach(System.out::println);
-		
+//		LocalDate start = LocalDate.parse("2016-02-28"),
+//		          end   = LocalDate.parse("2016-03-02");
+//		Stream.iterate(start, date -> date.plusDays(1))
+//        .limit(ChronoUnit.DAYS.between(start, end) + 1)
+//        .forEach(System.out::println);
+//		
 
 	}
 	public static void main(String[] args) {
