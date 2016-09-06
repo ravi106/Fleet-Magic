@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="css/fleetMagic.css">
     <link rel="stylesheet" href="css/sticky-footer-navbar.css">
 
-    <script src="lib/jquery/jquery.min.js"></script>
+    <!--<script src="lib/jquery/jquery.min.js"></script>-->
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-ui-router.min.js"></script>
     <script src="lib/angular/ui-bootstrap-tpls-2.1.2.min.js"></script>
-    <script src="lib/bootstrap/bootstrap.min.js"></script>
+    <!--<script src="lib/bootstrap/bootstrap.min.js"></script>-->
     <script src="lib/angular/select.min.js"></script>
     <script src="lib/angular/angular-sanitize.js"></script>
     <script src="lib/html2canvas.js"></script>
@@ -28,10 +28,11 @@
     <script src="js/ClientConfig.js"></script>
     <script src="js/fleetMagic.js"></script>
     <script src="rental/RentalController.js"></script>
-    <script src="js/AgreementController.js"></script>
+    <script src="agreement/AgreementController.js"></script>
     <script src="js/FleetMagicService.js"></script>
     <script src="inventory/InventoryController.js"></script>
     <script src="customer/CustomerController.js"></script>
+    <script src="rentalReport/RentalReportController.js"></script>
     <script src="js/StateConfig.js"></script>
 </head>
 
@@ -54,16 +55,7 @@
                 <li ui-sref-active="active"><a ui-sref="customer">Customer</a></li>
                 <li ui-sref-active="active"><a ui-sref="inventory">Inventory</a></li>
                 <li ui-sref-active="active" ng-class="{active:state.is('agreement')}"><a ui-sref="rental">Rental</a></li>
-                <li ui-sref-active="active" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Report <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li ui-sref-active="active"><a ui-sref="report">Action</a></li>
-                        <li ui-sref-active="active"><a href="#">Another action</a></li>
-                        <li ui-sref-active="active"><a href="#">Something else here</a></li>
-                        <li ui-sref-active="active"><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
+                <li ui-sref-active="active"><a ui-sref="rentalReport">Rental Report</a></li>
             </ul>
         </div>
     </div>

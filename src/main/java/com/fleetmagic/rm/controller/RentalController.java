@@ -65,6 +65,12 @@ public class RentalController {
 
 	}
 
+	@RequestMapping(value = "/extendRental", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public Rental extendRental(@RequestBody Rental rental) {
+		return rentalService.extendRental(rental);
+
+	}
+	
 	@RequestMapping(value = "/closeRental", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public Rental closeRental(@RequestBody Rental rental) {
 

@@ -18,12 +18,13 @@ angular.module('fleetMagic').config(['$stateProvider', '$urlRouterProvider', fun
         url: '/rental',
         templateUrl: 'rental/rental.html',
         controller: 'RentalController'
-    }).state('report', {
-        url: '/report',
-        templateUrl: 'partials/report.html'
+    }).state('rentalReport', {
+        url: '/rentalReport',
+        templateUrl: 'rentalReport/rentalReport.html',
+        controller:'RentalReportController'
     }).state('agreement', {
         url: '/agreement',
-        templateUrl: 'partials/agreement.html',
+        templateUrl: 'agreement/agreement.html',
         controller: 'AgreementController'
     });
 

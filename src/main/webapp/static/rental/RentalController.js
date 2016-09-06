@@ -6,8 +6,8 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.fleetMagic = {};
     $scope.formats = ['dd-MMMM-yyyy', 'MM/dd/yyyy', 'dd.MM.yyyy', 'shortDate'];
     $scope.paymentMethods = ["CASH", "CHEQUE", "DEBITCARD", "VISA", "MASTER", "AMEX"];
-    $scope.expiryMonths = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-    $scope.expiryYears = ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027"];
+    $scope.expiryMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    $scope.expiryYears = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027];
     $scope.format = $scope.formats[1];
     $scope.rentalSearchCriteria = {};
     var dateOptions = {
@@ -134,6 +134,9 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
                 car.id = $scope.fleetMagic.vehicles[i].id;
                 car.carDetails = $scope.fleetMagic.vehicles[i].make + " " + $scope.fleetMagic.vehicles[i].model + ", " + $scope.fleetMagic.vehicles[i].color + ", {" + $scope.fleetMagic.vehicles[i].registration + "}";
                 $scope.carList.push(car);
+                if (!$scope.isExistingRental) {
+                    $scope.isEditRental = true;
+                }
             }
         }).error(function (err) {
             console.log(err);
@@ -142,7 +145,6 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
 
     $scope.getPersonalDetails = function () {
         if ($scope.fleetMagic.selectedCar != null && $scope.fleetMagic.selectedCar != "Select A Car") {
-            // $scope.accordion.selectCarPanelOpen = !$scope.accordion.selectCarPanelOpen;
             $scope.accordion.selectInsurancePanelOpen = !$scope.accordion.selectInsurancePanelOpen;
         } else {
             $scope.accordion.selectCarPanelError = true;
@@ -152,11 +154,20 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.showCarDetails = function (item) {
         for (var i = 0; i < $scope.fleetMagic.vehicles.length; i++) {
             if (item.id == $scope.fleetMagic.vehicles[i].id) {
-                $scope.accordion.selectedCarFullDetails = $scope.fleetMagic.vehicles[i];
+                $scope.rental.vehicle = $scope.fleetMagic.vehicles[i];
             }
         }
         $scope.accordion.selectCarPanelError = false;
         $scope.accordion.showDetails = true;
+    };
+
+    $scope.showReplaceCarDetails = function (item) {
+        for (var i = 0; i < $scope.fleetMagic.vehicles.length; i++) {
+            if (item.id == $scope.fleetMagic.vehicles[i].id) {
+                $scope.rental.replacementVehicle = $scope.fleetMagic.vehicles[i];
+            }
+        }
+        $scope.fleetMagic.showReplaceCarDetails = true;
     };
 
     $scope.payment = {};
@@ -164,15 +175,27 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.customer = {};
     $scope.rental = {};
     $scope.fleetMagic.pricePerMonth =0;
-    var startDate, endDate, oneDay;
+
+    var startDate, endDate, oneDay = 24 * 60 * 60 * 1000;
+    $scope.checkExtendedPrice = function (extention1Or2) {
+        if(extention1Or2 ==1 ) {
+            startDate = new Date($scope.rental.endDate).getTime();
+            endDate = new Date($scope.rental.extenstion1).getTime();
+            $scope.rental.extenstion1Amount = Math.ceil(Math.abs(((endDate - startDate) / oneDay) * $scope.rental.vehicle.perDayRent));
+        }else{
+            startDate = new Date($scope.rental.extenstion1).getTime();
+            endDate = new Date($scope.rental.extenstion2).getTime();
+            $scope.rental.extenstion2Amount = Math.ceil(Math.abs(((endDate - startDate) / oneDay) * $scope.rental.vehicle.perDayRent));
+        }
+    };
+
     $scope.checkPrice = function () {
         startDate = new Date($scope.rental.startDate).getTime();
         endDate = new Date($scope.rental.endDate).getTime();
-        oneDay = 24 * 60 * 60 * 1000;
         $scope.rental.startDate = startDate;
         $scope.rental.endDate = endDate;
-        if ($scope.rental.startDate != null && $scope.rental.endDate != null && $scope.accordion.selectedCarFullDetails.perDayRent) {
-            $scope.fleetMagic.pricePerMonth = Math.ceil(Math.abs(((endDate - startDate) / oneDay) * $scope.accordion.selectedCarFullDetails.perDayRent));
+        if ($scope.rental.startDate != null && $scope.rental.endDate != null && $scope.rental.vehicle.perDayRent) {
+            $scope.fleetMagic.pricePerMonth = Math.ceil(Math.abs(((endDate - startDate) / oneDay) * $scope.rental.vehicle.perDayRent));
         }
         if ($scope.rental.additionalDriverCharge) {
             $scope.fleetMagic.tax = ($scope.fleetMagic.pricePerMonth + $scope.rental.additionalDriverCharge) * 0.06;
@@ -184,46 +207,38 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     };
 
     $scope.additionalDriver = false;
+    $scope.rental.payment = {};
     $scope.submitPaymentDetails = function () {
-        $scope.rental.payment = {};
-
-        $scope.rental.payment.cardInfo = $scope.payment.cardInfo;
-
-//        $scope.rental.payment.cardInfo.id = 4;
-        $scope.rental.vehicle = $scope.accordion.selectedCarFullDetails;
-
-        $scope.rental.customer1 = $scope.customer;
         $scope.rental.customer1.dob = new Date($scope.customer.dob).getTime();
         $scope.rental.customer1.dlExperiryDate = new Date($scope.customer.dlExperiryDate).getTime();
-
         $scope.rental.insuranceStatus = "ON";
         $scope.rental.insuranceExpirationDate = new Date($scope.rental.insuranceExpirationDate).getTime();
         $scope.rental.rentalPaymentId = 2;
         $scope.rental.businessUnit = $scope.selectedBusinessUnit;
-        if ($scope.customer1) {
-            $scope.rental.customer2 = $scope.customer1;
+        if ($scope.rental.customer2) {
             $scope.rental.customer2.dob = new Date($scope.customer1.dob).getTime();
             $scope.rental.customer2.dlExperiryDate = new Date($scope.customer1.dlExperiryDate).getTime();
         }
-        $http.post(ClientConfig.CLIENT_BASE_URL + "rental", $scope.rental).success(function (response) {
-            $state.go("agreement");
-            fleetMagicService.setRentalAgreement(response);
-        }).error(function (err) {
-            console.log(err);
-        })
+        if($scope.isExtendRental){
+            $http.post(ClientConfig.CLIENT_BASE_URL + "extendRental", $scope.rental).success(function (response) {
+                $state.go("agreement");
+                fleetMagicService.setRentalAgreement(response);
+            }).error(function (err) {
+                console.log(err);
+            })
+        }else {
+            $http.post(ClientConfig.CLIENT_BASE_URL + "rental", $scope.rental).success(function (response) {
+                $state.go("agreement");
+                fleetMagicService.setRentalAgreement(response);
+            }).error(function (err) {
+                console.log(err);
+            })
+        }
     };
 
     $scope.searchCriteria = {};
     $scope.searchCriteria1 = {};
     $scope.selectedCustomer = 0;
-
-    $scope.selectCustomer = function (customer) {
-        $scope.customer = customer;
-    };
-
-    $scope.selectCustomer1 = function (customer) {
-        $scope.customer1 = customer;
-    };
 
     $scope.searchAdditionalExistingDriver = function () {
         $scope.error1 = null;
@@ -304,27 +319,69 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
                 $scope.existingRental = [];
             } else {
                 $scope.existingRental = res[0];
-                $scope.selectRental($scope.existingRental);
                 $scope.existingRentals = [];
             }
+            $scope.selectRental(res[0]);
+            $scope.selectedRental = res[0].id;
         });
+        $scope.fleetMagic.rentalType = "edit";
+        $scope.selectRentalType();
     };
 
     $scope.selectRental = function (rental) {
-        $scope.accordion.selectedCarFullDetails = rental.vehicle;
         $scope.accordion.showDetails = true;
         $scope.rental = rental;
         $scope.isExistingcustomer = true;
-        $scope.customer = rental.customer1;
         if (rental.customer2) {
             $scope.additionalDriver = true;
         } else {
             $scope.additionalDriver = false;
         }
-        $scope.customer1 = rental.customer2;
-        $scope.payment = rental.payment;
-        $scope.tax = ($scope.rental.price + $scope.rental.additionalDriverCharge) * 0.06;
-        $scope.total = $scope.tax + $scope.rental.price + $scope.rental.additionalDriverCharge;
+        $scope.checkPrice();
+    };
+
+    $scope.selectRentalType = function () {
+        if ($scope.fleetMagic.rentalType == 'edit') {
+            $scope.isCloseRental = false;
+            $scope.isExtendRental = false;
+            $scope.isEditRental = true;
+            $scope.isReplaceVehicleRental = false;
+        } else if ($scope.fleetMagic.rentalType == 'extend') {
+            $scope.isCloseRental = false;
+            $scope.isExtendRental = true;
+            $scope.isEditRental = false;
+            $scope.isReplaceVehicleRental = false;
+        } else if ($scope.fleetMagic.rentalType == 'close') {
+            $scope.isCloseRental = true;
+            $scope.isExtendRental = false;
+            $scope.isEditRental = false;
+            $scope.isReplaceVehicleRental = false;
+        } else {
+            $scope.isCloseRental = false;
+            $scope.isExtendRental = false;
+            $scope.isEditRental = false;
+            $scope.isReplaceVehicleRental = true;
+        }
+    };
+
+    $scope.closeRental = function () {
+        if (confirm("Do you really want to close?")) {
+            $http.post(ClientConfig.CLIENT_BASE_URL + "closeRental", $scope.rental).success(function (response) {
+                $state.go("agreement");
+                fleetMagicService.setRentalAgreement(response);
+            }).error(function (err) {
+                console.log(err);
+            })
+        }
+    };
+
+    $scope.replaceVehicle = function () {
+        $http.post(ClientConfig.CLIENT_BASE_URL + "replaceVehicle", $scope.rental).success(function (response) {
+            $state.go("agreement");
+            fleetMagicService.setRentalAgreement(response);
+        }).error(function (err) {
+            console.log(err);
+        })
     };
 
     $scope.destroyDetails = function () {
@@ -335,5 +392,11 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         $scope.customer = {};
         $scope.customer1 = {};
         $scope.payment = {};
+        $scope.existingRental=null;
+        $scope.existingRentals=[];
+        $scope.isExtendRental = false;
+        $scope.isCloseRental = false;
+        $scope.isReplaceVehicleRental=false;
+        $scope.isEditRental=true;
     }
 }]);
