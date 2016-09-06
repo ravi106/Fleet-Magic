@@ -99,7 +99,7 @@ public class RentalService {
 
 	public Rental extendRental(Rental rental) {
 		Rental dbRental = rentalRepository.findOne(rental.getId());
-		if (dbRental.getExtenstion1() != null || dbRental.getExtenstion2() != null) {
+		if (dbRental.getExtenstion1() == null || dbRental.getExtenstion2() == null) {
 			if (dbRental.getExtenstion1() == null) {
 				rental.setPrice(dbRental.getPrice() + rental.getExtenstion1Amount());
 			} else {
