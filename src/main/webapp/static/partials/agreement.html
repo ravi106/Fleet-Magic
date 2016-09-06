@@ -1,10 +1,10 @@
 <div id="rentalAgreement">
-    <div><b>Business Unit Name:{{rentalResponse.businessUnitName}}</b></div>
+    <div><b>Business Unit Name:{{rentalResponse.businessUnit.name}}</b></div>
     <div class="row">
-        <div class="col-lg-6 text-left">Location Address:{{rentalResponse.address}}</div>
-        <div class="col-lg-6 text-right">Location Id:{{rentalResponse.locationId}}</div>
+        <div class="col-lg-6 text-left">Location Address:{{rentalResponse.businessUnit.address}}</div>
+        <div class="col-lg-6 text-right">Location Id:{{rentalResponse.businessUnit.id}}</div>
     </div>
-    <div>Location Fax:{{rentalResponse.locationFax}}</div>
+    <div>Location Fax:{{rentalResponse.businessUnit.fax}}</div>
     <table id="items">
         <tr>
             <td colspan="3"><span><b>CustLastName:</b> {{rentalResponse.customer1.lastName}}</span> <span><b>first Name:</b> {{rentalResponse.customer1.firstName}}</span>
@@ -51,7 +51,7 @@
                 {{rentalResponse.customer1.state}} <b>Exp Date: </b>{{rentalResponse.customer1.insuranceExpiryDate}}
             </td>
             <td class="item-name"><b>VIN</b> {{rentalResponse.vehicle.vin}}</td>
-            <td class="item-name"><b>Date Out : </b>{{rentalResponse.startDate}}</td>
+            <td class="item-name"><b>Date Out : </b>{{rentalResponse.startDate | date : 'MM/dd/yyyy'}}</td>
         </tr>
         <tr>
             <td colspan="3" class="item-name"><b>Social Security Number:</b> {{rentalResponse.customer1.homePhone}} <b>DOB:</b>
@@ -59,7 +59,7 @@
             </td>
             <td class="item-name"><b>MillesIn</b></td>
             <td class="item-name">
-                <div class="due"><b>Date Due In:</b> {{rentalResponse.endDate}}</div>
+                <div class="due"><b>Date Due In:</b> {{rentalResponse.endDate | date  : 'MM/dd/yyyy'}}</div>
             </td>
         </tr>
 
@@ -143,7 +143,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="item-name"><b>Insurance Company:</b></td>
+            <td colspan="3" class="item-name"><b>Insurance Company: {{rentalResponse.insuranceCompanyName}}</b></td>
         </tr>
         <tr>
             <td colspan="3" class="item-name"><b>Address:</b></td>
@@ -191,7 +191,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="item-name"><b>Agent: Phone: Address:</b></td>
+            <td colspan="3" class="item-name"><b>Agent: Phone: {{rentalResponse.insuranceCompanyContactNumber}} Address:</b></td>
             <td class="item-name">
                 GAS E ¼ ½ ¾ F
                 OUT

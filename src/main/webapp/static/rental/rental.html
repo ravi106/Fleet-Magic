@@ -60,8 +60,8 @@
                            ng-value="existingRental.id"
                            ng-change="selectRental(existingRental)">
                 </td>
-                <td>{{existingRental.startDate}}</td>
-                <td>{{existingRental.endDate}}</td>
+                <td>{{existingRental.startDate  | date : 'MM/dd/yyyy'}}</td>
+                <td>{{existingRental.endDate  | date : 'MM/dd/yyyy'}}</td>
                 <td>{{existingRental.customer1.firstName}}</td>
                 <td>{{existingRental.customer1.lastName}}</td>
                 <td>{{existingRental.customer1.email}}</td>
@@ -69,7 +69,6 @@
             </tr>
         </table>
     </div>
-
     <uib-accordion close-others="false">
         <div uib-accordion-group is-open="accordion.selectCarPanelOpen" class="panel-primary" heading="Choose Your Car">
             <div class="form-group">
@@ -181,7 +180,7 @@
                             Price Per day :
                         </div>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" ng-blur="checkPrice()"
+                            <input type="number" class="form-control" ng-blur="checkPrice()"
                                    ng-model="accordion.selectedCarFullDetails.perDayRent">
                         </div>
                     </div>
@@ -190,7 +189,7 @@
                             Price Per Month :
                         </div>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" ng-model="rental.price">
+                            <input type="number" class="form-control" ng-model="fleetMagic.pricePerMonth">
                         </div>
                     </div>
                 </div>
@@ -200,7 +199,7 @@
                             Additional Driver Charge :
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-blur="checkPrice()"
+                            <input type="number" class="form-control" ng-blur="checkPrice()"
                                    ng-model="rental.additionalDriverCharge">
                         </div>
                     </div>
@@ -209,7 +208,7 @@
                             Tax :
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="tax">
+                            <input type="number" class="form-control" ng-model="fleetMagic.tax">
                         </div>
                     </div>
                     <div class="row">
@@ -217,7 +216,7 @@
                             Total :
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" ng-model="total">
+                            <input type="number" class="form-control" ng-model="rental.price">
                         </div>
                     </div>
                 </div>
