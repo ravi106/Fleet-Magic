@@ -199,10 +199,14 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         }
         if ($scope.rental.additionalDriverCharge) {
             $scope.fleetMagic.tax = ($scope.fleetMagic.pricePerMonth + $scope.rental.additionalDriverCharge) * 0.06;
-            $scope.rental.price = $scope.fleetMagic.tax + $scope.fleetMagic.pricePerMonth + $scope.rental.additionalDriverCharge;
+            if(!$scope.rental.price) {
+                $scope.rental.price = $scope.fleetMagic.tax + $scope.fleetMagic.pricePerMonth + $scope.rental.additionalDriverCharge;
+            }
         } else {
             $scope.fleetMagic.tax = $scope.fleetMagic.pricePerMonth * 0.06;
-            $scope.rental.price = $scope.fleetMagic.tax + $scope.fleetMagic.pricePerMonth;
+            if(!$scope.rental.price) {
+                $scope.rental.price = $scope.fleetMagic.tax + $scope.fleetMagic.pricePerMonth;
+            }
         }
     };
 
@@ -326,6 +330,7 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         });
         $scope.fleetMagic.rentalType = "edit";
         $scope.selectRentalType();
+
     };
 
     $scope.selectRental = function (rental) {
@@ -398,5 +403,7 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         $scope.isCloseRental = false;
         $scope.isReplaceVehicleRental=false;
         $scope.isEditRental=true;
+        $scope.fleetMagic.pricePerMonth=0;
+        $scope.fleetMagic.tax=0;
     }
 }]);
