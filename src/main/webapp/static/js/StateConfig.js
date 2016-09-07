@@ -1,7 +1,7 @@
 angular.module('fleetMagic').config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.html5Mode = true;
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/rental');
 
     $stateProvider.state('home', {
         url: '/',

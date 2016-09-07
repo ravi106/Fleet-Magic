@@ -9,10 +9,8 @@ angular.module('fleetMagic').controller('CustomerController', ['$scope', '$http'
         console.log($scope.searchCriteria);
         if($scope.searchCriteria.type=="mobile"){
             url = ClientConfig.CLIENT_BASE_URL + "customer/mobile/"+$scope.searchCriteria.mobile;
-
         }else if($scope.searchCriteria.type=="email"){
-            url = ClientConfig.CLIENT_BASE_URL + "customer/email/"+$scope.searchCriteria.email
-
+            url = ClientConfig.CLIENT_BASE_URL + "customer/email/"+$scope.searchCriteria.email;
         }else{
             url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/"+$scope.searchCriteria.firstName+"/lastName/"+$scope.searchCriteria.lastName;
         }
@@ -30,9 +28,9 @@ angular.module('fleetMagic').controller('CustomerController', ['$scope', '$http'
         $scope.customer = customer;
     };
     $scope.updateCustomer = function(){
-    	   
     	$http.post(ClientConfig.CLIENT_BASE_URL + "customer",convertDates($scope.customer)).success(function (data) {
     	    console.log(data);
+            alert("Successfully Updated Customer Details")
         }).error(function(err){
         	console.log(err);
         });
@@ -44,4 +42,12 @@ angular.module('fleetMagic').controller('CustomerController', ['$scope', '$http'
         return customer;
     }
 
+    $scope.licenseExpiryDate = {
+        opened: false,
+        open: open
+    };
+
+    function open() {
+        this.opened = true;
+    }
 }]);

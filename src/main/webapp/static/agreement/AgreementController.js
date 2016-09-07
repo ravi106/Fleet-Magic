@@ -5,7 +5,6 @@
 angular.module('fleetMagic').controller('AgreementController',['$scope','fleetMagicService',function ($scope, fleetMagicService) {
 
     $scope.rentalResponse = fleetMagicService.getRentalAgreement();
-    console.log($scope.rentalResponse);
 
     $scope.printDiv = function () {
         var printContents = document.getElementById("rentalAgreement").innerHTML;
@@ -15,11 +14,11 @@ angular.module('fleetMagic').controller('AgreementController',['$scope','fleetMa
         popupWin.document.close();
     };
 
-
     $scope.saveAsPdf = function () {
         html2canvas(document.getElementById('rentalAgreement'), {
             onrendered: function (canvas) {
                 var data = canvas.toDataURL();
+                console.log('Data: ' + data);
                 var docDefinition = {
                     content: [{
                         image: data
