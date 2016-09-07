@@ -4,9 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 public class RentalDashBoard {
+	
+	
 	private Date date;
 	private List<Long> rentedVehicles;
-
+	
 	public Date getDate() {
 		return date;
 	}

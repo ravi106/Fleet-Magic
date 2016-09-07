@@ -88,10 +88,8 @@ public class RentalController {
 	@RequestMapping(value = "/rentalsBetweenDates", method = RequestMethod.GET, produces = "application/json")
 	public List<RentalDashBoard> replaceVehicle(@RequestParam String startDate, @RequestParam String endDate) throws Exception {
 		System.err.println(startDate + ":" + endDate);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date startDate1 = sdf.parse(startDate);
-		Date endDate1 = sdf.parse(endDate);
+		Date startDate1 = new Date(Long.parseLong(startDate));
+		Date endDate1 = new Date(Long.parseLong(endDate));
 		return rentalService.getRentalsDashBoard(startDate1, endDate1);
-
 	}
 }

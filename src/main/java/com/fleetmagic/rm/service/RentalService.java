@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.fleetmagic.cm.domain.Customer;
 import com.fleetmagic.cm.service.CustomerService;
-import com.fleetmagic.fm.domain.Vehicle;
 import com.fleetmagic.fm.domain.VehicleStatus;
 import com.fleetmagic.repository.VehicleRepository;
 import com.fleetmagic.rm.domain.CardInfo;
 import com.fleetmagic.rm.domain.Payment;
 import com.fleetmagic.rm.domain.Rental;
 import com.fleetmagic.rm.domain.RentalDashBoard;
+//import com.fleetmagic.rm.domain.RentedVehicle;
 import com.fleetmagic.rm.repository.CardInfoRepository;
 import com.fleetmagic.rm.repository.PaymentRepository;
 import com.fleetmagic.rm.repository.RentalRepository;
@@ -100,11 +100,15 @@ public class RentalService {
 	public Rental extendRental(Rental rental) {
 		Rental dbRental = rentalRepository.findOne(rental.getId());
 		if (dbRental.getExtenstion1() == null || dbRental.getExtenstion2() == null) {
+			System.err.println(dbRental.getPrice());
 			if (dbRental.getExtenstion1() == null) {
+				System.err.println("First Extenstion");
 				rental.setPrice(dbRental.getPrice() + rental.getExtenstion1Amount());
 			} else {
+				System.err.println("Second Extenstion");
 				rental.setPrice(dbRental.getPrice() + rental.getExtenstion2Amount());
 			}
+			System.err.println(rental);
 			return rentalRepository.saveAndFlush(rental);
 		}
 		return rental;
@@ -158,6 +162,7 @@ public class RentalService {
 			// Do your job here with `date`.
 			System.out.println(date);
 			RentalDashBoard rentalDashBoard2 = new RentalDashBoard();
+			
 			rentalDashBoard2.setDate(date);
 			rentalDashBoard2.setRentedVehicles(new ArrayList<Long>());
 			for (Rental rental : rentals) {
@@ -167,6 +172,9 @@ public class RentalService {
 				rentalEndDate = rental.getExtenstion2() != null ? rental.getExtenstion2() : rentalEndDate;
 				if ((date.after(rental.getStartDate()) && (date.before(rentalEndDate)))
 						|| (date.equals(rental.getStartDate()) || date.equals(rentalEndDate))) {
+//					RentedVehicle rentedVehicle = new RentedVehicle();
+//					rentedVehicle.setRentalId(rental.getId());
+//					rentedVehicle.setVehicleId(rental.getVehicle().getId());
 					rentalDashBoard2.getRentedVehicles().add(rental.getVehicle().getId());
 				}
 			}

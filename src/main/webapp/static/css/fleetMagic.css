@@ -71,3 +71,9 @@ table td, table th {
 .customer button.btn-default {
     margin-top: 3px;
 }
+
+.rentedColor{
+    background-color: green;
+    width: 45px;
+    height: 38px;
+}

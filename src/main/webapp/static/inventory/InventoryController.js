@@ -39,6 +39,7 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
         $http.post(ClientConfig.CLIENT_BASE_URL + "vehicle", convertDates($scope.inventory.vehicle)).success(function (res) {
             console.log(res);
             alert("Successfully loaded");
+            $scope.initInventoryController();
         });
     };
 
