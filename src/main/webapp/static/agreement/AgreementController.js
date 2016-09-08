@@ -17,16 +17,29 @@ angular.module('fleetMagic').controller('AgreementController',['$scope','fleetMa
     $scope.saveAsPdf = function () {
         html2canvas(document.getElementById('rentalAgreement'), {
             onrendered: function (canvas) {
-                var data = canvas.toDataURL();
-                console.log('Data: ' + data);
-                var docDefinition = {
-                    content: [{
-                        image: data
-                    }]
-                };
-                pdfMake.createPdf(docDefinition).download("Score_Details.pdf");
-            },
-            logging: true
+                var data = canvas.toDataURL('image/png');
+                var imgWidth = 189;
+                var pageHeight = 287;
+                var imgHeight = canvas.height * imgWidth / canvas.width;
+
+                var heightLeft = imgHeight;
+
+                var pdf = new jsPDF('p','mm');
+                var position = 0;
+                pdf.addImage(data, 'PNG', 10, 10, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(data, 'PNG', 10, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+                if($scope.rentalResponse){
+                    pdf.save($scope.rentalResponse.number+ ".pdf");
+                }else{
+                    pdf.save("rentalAgreement.pdf");
+                }
+            }
         });
     }
 }]);
