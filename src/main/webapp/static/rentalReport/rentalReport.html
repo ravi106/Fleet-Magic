@@ -22,9 +22,7 @@
         </span>
     </div>
 </div>
-<div class="row">
-    <button class="btn btn-primary" ng-click="getRentalReport()">Report</button>
-</div>
+<button class="btn btn-primary" ng-click="getRentalReport()">Report</button>
 <div class="row" ng-if="rentalReport.data">
     <table class="table table-bordered">
         <tr>
@@ -43,3 +41,34 @@
         </tr>
     </table>
 </div>
+
+
+
+<!--
+<div class="row" ng-init="getRentalReport()">
+    <table class="table table-bordered">
+        <tr>
+            <th colspan="4">Date</th>
+            <th ng-repeat="rental in rentalReport.data">{{rental.date | date : 'MMM/dd'}}</th>
+        </tr>
+        <tr>
+            <th colspan="2">Vehicle Id</th>
+            <th colspan="2">Vehicle</th>
+            <th ng-repeat="rental in rentalReport.data">
+                <div ng-repeat="rentedVehicle in rental.rentedVehicles">
+                    {{rentedVehicle.rentalId}}
+                </div>
+            </th>
+        </tr>
+        <tr ng-repeat="vehicle in rentalReport.vehicles">
+            <td colspan="2">{{vehicle.id}}</td>
+            <td colspan="2">{{vehicle.make}} {{vehicle.model}}, {{vehicle.color}}({{vehicle.registration}})</td>
+            <td ng-repeat="rental in rentalReport.data">
+                <div ng-repeat="rentedVehicle in rental.rentedVehicles " ng-if="rentedVehicle.vehicleId == vehicle.id">
+                    <div ng-class="{'rentedColor': rentedVehicle.vehicleId == vehicle.id}">
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>-->

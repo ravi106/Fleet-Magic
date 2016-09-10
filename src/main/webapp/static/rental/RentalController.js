@@ -4,125 +4,17 @@
 angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', '$state', 'ClientConfig', 'fleetMagicService', function ($scope, $http, $state, ClientConfig, fleetMagicService) {
 
     $scope.fleetMagic = {};
-    $scope.formats = ['dd-MMMM-yyyy', 'MM/dd/yyyy', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[1];
+    $scope.format = 'MM/dd/yyyy';
     $scope.paymentMethods = ["CASH", "CHEQUE", "DEBITCARD", "VISA", "MASTER", "AMEX"];
     $scope.expiryMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     $scope.expiryYears = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027];
     $scope.rentalSearchCriteria = {};
-    var dateOptions = {
-        dateDisabled: disabled,
-        formatYear: 'yy',
-        maxDate: new Date(2020, 5, 22),
-        minDate: new Date(),
-        startingDay: 1
-    };
-    var inlineOptions = {
-        customClass: getDayClass,
-        minDate: new Date(),
-        showWeeks: true
-    };
-
-    function toggleMin() {
-        this.inlineOptions.minDate = this.inlineOptions.minDate ? null : new Date();
-        this.dateOptions.minDate = this.inlineOptions.minDate;
-    }
-
-    function open() {
-        this.opened = true;
-    }
-
-    $scope.dob = {
-        opened: false,
-        dateOptions: dateOptions,
-        inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
-        open: open
-    };
-
-    $scope.dob1 = {
-        opened: false,
-        dateOptions: dateOptions,
-        inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
-        open: open
-    };
-
-    $scope.dateOut = {
-        opened: false,
-        dateOptions: dateOptions,
-        inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
-        open: open
-    };
-
-    $scope.dateIn = {
-        opened: false,
-        dateOptions: dateOptions,
-        inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
-        open: open
-    };
-
-    $scope.licenseExpiryDate = {
-        opened: false,
-        dateOptions: dateOptions,
-        inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
-        open: open
-    };
-
-    $scope.insuranceExpirationDate = {
-        opened: false,
-        dateOptions: dateOptions,
-        inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
-        open: open
-    };
-
-    $scope.licenseExpiryDate1 = {
-        opened: false,
-        dateOptions: dateOptions,
-        inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
-        open: open
-    };
-
-    function disabled(data) {
-        var date = data.date,
-            mode = data.mode;
-        return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-    }
-
-    var tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    var afterTomorrow = new Date();
-    afterTomorrow.setDate(tomorrow.getDate() + 1);
-    $scope.events = [
-        {
-            date: tomorrow,
-            status: 'full'
-        },
-        {
-            date: afterTomorrow,
-            status: 'partially'
-        }
-    ];
-
-    function getDayClass(data) {
-        var date = data.date,
-            mode = data.mode;
-        if (mode === 'day') {
-            var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
-            for (var i = 0; i < $scope.events.length; i++) {
-                var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
-                if (dayToCheck === currentDay) {
-                    return $scope.events[i].status;
-                }
-            }
-        }
-        return '';
-    }
+    $scope.rentalSearchCriteria.type="id";
+    $scope.searchCriteria = {};
+    $scope.searchCriteria1 = {};
+    $scope.selectedCustomer = 0;
+    $scope.searchCriteria.type = "mobile";
+    $scope.searchCriteria1.type = "mobile";
 
     $scope.initRentalController = function () {
         $http.get(ClientConfig.CLIENT_BASE_URL + "vehiclesByBusinessUnit/" + $scope.selectedBusinessUnit.id + "/status/AVAILABLE").success(function (data) {
@@ -239,10 +131,6 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
             })
         }
     };
-
-    $scope.searchCriteria = {};
-    $scope.searchCriteria1 = {};
-    $scope.selectedCustomer = 0;
 
     $scope.searchAdditionalExistingDriver = function () {
         $scope.error1 = null;
@@ -405,5 +293,119 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         $scope.isEditRental=true;
         $scope.fleetMagic.pricePerMonth=0;
         $scope.fleetMagic.tax=0;
+    };
+
+    var dateOptions = {
+        dateDisabled: disabled,
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: new Date(),
+        startingDay: 1
+    };
+    var inlineOptions = {
+        customClass: getDayClass,
+        minDate: new Date(),
+        showWeeks: true
+    };
+
+    function toggleMin() {
+        this.inlineOptions.minDate = this.inlineOptions.minDate ? null : new Date();
+        this.dateOptions.minDate = this.inlineOptions.minDate;
+    }
+
+    function open() {
+        this.opened = true;
+    }
+
+    $scope.dob = {
+        opened: false,
+        dateOptions: dateOptions,
+        inlineOptions: inlineOptions,
+        toggleMin: toggleMin,
+        open: open
+    };
+
+    $scope.dob1 = {
+        opened: false,
+        dateOptions: dateOptions,
+        inlineOptions: inlineOptions,
+        toggleMin: toggleMin,
+        open: open
+    };
+
+    $scope.dateOut = {
+        opened: false,
+        dateOptions: dateOptions,
+        inlineOptions: inlineOptions,
+        toggleMin: toggleMin,
+        open: open
+    };
+
+    $scope.dateIn = {
+        opened: false,
+        dateOptions: dateOptions,
+        inlineOptions: inlineOptions,
+        toggleMin: toggleMin,
+        open: open
+    };
+
+    $scope.licenseExpiryDate = {
+        opened: false,
+        dateOptions: dateOptions,
+        inlineOptions: inlineOptions,
+        toggleMin: toggleMin,
+        open: open
+    };
+
+    $scope.insuranceExpirationDate = {
+        opened: false,
+        dateOptions: dateOptions,
+        inlineOptions: inlineOptions,
+        toggleMin: toggleMin,
+        open: open
+    };
+
+    $scope.licenseExpiryDate1 = {
+        opened: false,
+        dateOptions: dateOptions,
+        inlineOptions: inlineOptions,
+        toggleMin: toggleMin,
+        open: open
+    };
+
+    function disabled(data) {
+        var date = data.date,
+            mode = data.mode;
+        return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+    }
+
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    var afterTomorrow = new Date();
+    afterTomorrow.setDate(tomorrow.getDate() + 1);
+    $scope.events = [
+        {
+            date: tomorrow,
+            status: 'full'
+        },
+        {
+            date: afterTomorrow,
+            status: 'partially'
+        }
+    ];
+
+    function getDayClass(data) {
+        var date = data.date,
+            mode = data.mode;
+        if (mode === 'day') {
+            var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
+            for (var i = 0; i < $scope.events.length; i++) {
+                var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
+                if (dayToCheck === currentDay) {
+                    return $scope.events[i].status;
+                }
+            }
+        }
+        return '';
     }
 }]);
