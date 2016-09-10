@@ -8,7 +8,7 @@ public class FleetConstants {
 	
 	public static final String FETCH_VEH_ON_BUSINESSUNIT_ON_STATUS = "SELECT * FROM vehicle v where businessunit_id = ? and status =?";
 	
-	public static final String FETCH_CUST_BY_ID = "SELECT * from Customer c where id = ?";
+	public static final String FETCH_CUST_BY_ID = "SELECT * from Customer c where number= ?";
 	
 	public static final String FETCH_CUST_BY_EMAIL = "SELECT * from Customer c where email = ?";
 	

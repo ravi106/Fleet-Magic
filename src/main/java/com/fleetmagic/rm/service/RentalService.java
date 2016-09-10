@@ -52,7 +52,8 @@ public class RentalService {
 			if (rental.getBusinessUnit() != null) {
 				suffix = rental.getBusinessUnit().getId().toString();
 			}
-			rental.setNumber(suffix + "-" + System.currentTimeMillis());
+			long x = System.currentTimeMillis()/100000;
+			rental.setNumber(suffix + "-" + x );
 		}
 		System.err.println("rental Payment:" + rental.getPayment());
 		if (rental.getPayment() != null) {
@@ -182,16 +183,10 @@ public class RentalService {
 		}
 
 		return rentalDashboard;
-		// LocalDate start = LocalDate.parse("2016-02-28"),
-		// end = LocalDate.parse("2016-03-02");
-		// Stream.iterate(start, date -> date.plusDays(1))
-		// .limit(ChronoUnit.DAYS.between(start, end) + 1)
-		// .forEach(System.out::println);
-		//
-		
-
 	}
 
 	public static void main(String[] args) {
+		long x = System.currentTimeMillis()/1000;
+		System.err.println(x);
 	}
 }
