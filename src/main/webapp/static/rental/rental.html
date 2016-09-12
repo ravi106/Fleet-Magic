@@ -341,11 +341,11 @@
              is-open="accordion.personalDetailsPanelOpen" ng-show="isEditRental">
             <div ng-init="isExistingcustomer=false">
                 <label>
-                    <input type="radio" ng-model="isExistingcustomer" ng-value="true">
+                    <input type="radio" ng-model="isExistingcustomer" ng-value="true" ng-change="destroyCustomer(1)">
                     Existing Customer
                 </label>
                 <label>
-                    <input type="radio" ng-model="isExistingcustomer" ng-value="false">
+                    <input type="radio" ng-model="isExistingcustomer" ng-value="false" ng-change="destroyCustomer(1)">
                     New Customer
                 </label>
                 <div ng-if="isExistingcustomer" class="row">
@@ -381,7 +381,7 @@
                     </div>
                 </div>
 
-                <div class="row" ng-if="customers.length >1">
+                <div class="row" ng-show="customers.length>1">
                     <table class="table table-bordered">
                         <tr>
                             <th>Select One</th>
@@ -548,22 +548,22 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <div ng-init="fleetMagic.additionalDriver=false">
                 <button class="btn btn-xs btn-success"
                         ng-click="accordion.paymentDetailsPanelOpen = !accordion.paymentDetailsPanelOpen">
                     Next
                 </button>
-                <a ng-click="additionalDriver=true">Add Driver</a>
+                <a ng-click="destroyCustomer(3)">Add Driver</a>
             </div>
 
 
-            <div ng-init="isExistingcustomer1=false" ng-show="additionalDriver">
+            <div ng-init="isExistingcustomer1=false" ng-if="fleetMagic.additionalDriver">
                 <label>
-                    <input type="radio" ng-model="isExistingcustomer1" ng-value="true">
+                    <input type="radio" ng-model="isExistingcustomer1" ng-value="true" ng-change="destroyCustomer(2)">
                     Existing Customer
                 </label>
                 <label>
-                    <input type="radio" ng-model="isExistingcustomer1" ng-value="false">
+                    <input type="radio" ng-model="isExistingcustomer1" ng-value="false" ng-change="destroyCustomer(2)">
                     New Customer
                 </label>
                 <div ng-if="isExistingcustomer1" class="row">
@@ -599,7 +599,7 @@
                     </div>
                 </div>
 
-                <div class="row" ng-if="customers1.length >1">
+                <div class="row" ng-if="customers1.length > 1">
                     <table class="table table-bordered">
                         <tr>
                             <th>Select One</th>
@@ -830,8 +830,10 @@
                             Card Details
                         </div>
                         <div class="col-lg-12">
-                            <input type="text" class="form-control" ng-model="rental.payment.cardInfo.type"
-                                   placeholder="Card Type">
+                            <select class="form-control" ng-options="cardType for cardType in cardTypes"
+                                ng-model="rental.payment.cardInfo.type">
+                                <option value="">Card Type</option>
+                            </select>
                         </div>
                         <div class="col-lg-12">
                             <input type="text" class="form-control"

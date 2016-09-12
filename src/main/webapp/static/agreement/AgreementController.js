@@ -5,6 +5,9 @@
 angular.module('fleetMagic').controller('AgreementController',['$scope','fleetMagicService',function ($scope, fleetMagicService) {
 
     $scope.rentalResponse = fleetMagicService.getRentalAgreement();
+    if($scope.rentalResponse && $scope.rentalResponse.vehicle){
+       $scope.rentalResponse.vehicle.vin = $scope.rentalResponse.vehicle.vin.substr($scope.rentalResponse.vehicle.vin.length-6,$scope.rentalResponse.vehicle.vin.length);
+    }
 
     $scope.printDiv = function () {
         var printContents = document.getElementById("rentalAgreement").innerHTML;

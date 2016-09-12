@@ -1,5 +1,5 @@
 <div id="rentalAgreement">
-    <div><b>Business Unit Name:{{rentalResponse.businessUnit.name}}</b></div>
+    <div><b>Business Unit Name:{{rentalResponse.businessUnit.name | uppercase}}</b></div>
     <div class="row">
         <div class="col-lg-6 text-left">Location Address:{{rentalResponse.businessUnit.address}}</div>
         <div class="col-lg-6 text-right">Location Id:{{rentalResponse.number}}</div>
@@ -7,10 +7,9 @@
     <div>Location Fax:{{rentalResponse.businessUnit.fax}}</div>
     <table id="items">
         <tr>
-            <td colspan="3"><span><b>CustLastName:</b> {{rentalResponse.customer1.lastName}}</span> <span><b>first Name:</b> {{rentalResponse.customer1.firstName}}</span>
-                <span><b>MI :</b> {{rentalResponse.customer1.middleName}}</span></td>
+            <td colspan="3"><span><b>Customer Name:</b> {{rentalResponse.customer1.firstName | uppercase}} {{rentalResponse.customer1.middleName | uppercase}} {{rentalResponse.customer1.lastName | uppercase}}</span></td>
             <td><b>Unit Number</b></td>
-            <td class="item-name"></td>
+            <td class="item-name">{{rentalResponse.registration}}</td>
         </tr>
 
         <tr class="item-row">
@@ -20,11 +19,11 @@
         </tr>
 
         <tr class="item-row">
-            <td class="item-name" colspan="3"><b>City:</b> {{rentalResponse.customer1.city}} <b>State:</b>
-                {{rentalResponse.customer1.state}} <b>Zip:</b> {{rentalResponse.customer1.zip}}
+            <td class="item-name" colspan="3"><b>City:</b> {{rentalResponse.customer1.city | uppercase}} <b>State:</b>
+                {{rentalResponse.customer1.state | uppercase}} <b>Zip:</b> {{rentalResponse.customer1.zip | uppercase}}
             </td>
             <td><b>VIN:</b> {{rentalResponse.vehicle.vin}}</td>
-            <td class="item-name"><span class="price"><b>Tag Number</b></span></td>
+            <td class="item-name"><span class="price"><b>Tag Number :</b>{{rentalResponse.registration}}</span></td>
         </tr>
 
         <tr>
@@ -38,7 +37,7 @@
         </tr>
         <tr>
             <td colspan="3" class="item-name"><b>Employer:</b> {{rentalResponse.customer1.employer}}
-                <b>City-State:</b>{{rentalResponse.customer1.city}}{{rentalResponse.customer1.state}}
+                <b>City-State:</b>{{rentalResponse.customer1.city | uppercase}}{{rentalResponse.customer1.state | uppercase}}
             </td>
             <td class="item-name"><b>Make-Model </b>{{rentalResponse.replacementVehicle.make}} {{rentalResponse.replacementVehicle.model}}</td>
             <td class="item-name">
@@ -61,8 +60,6 @@
                 <div class="due"><b>Date Due In:</b> {{rentalResponse.endDate | date  : 'MM/dd/yyyy'}}</div>
             </td>
         </tr>
-
-
         <tr>
             <td class="item-name agreementHeadings" colspan="3"><b>Additional Driver</b></td>
             <td><b>Miles Out</b></td>
@@ -89,7 +86,7 @@
                     </tr>
                     <tr>
                         <td><b>Est Milleage</b></td>
-                        <td>2</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>
@@ -97,8 +94,8 @@
                             <div><b>Tax</b></div>
                         </td>
                         <td>
-                            <div>$</div>
-                            <div>$20</div>
+                            <div></div>
+                            <div></div>
                         </td>
                     </tr>
                     <tr>
@@ -107,7 +104,7 @@
                     </tr>
                     <tr>
                         <td><b>Amount Paid</b></td>
-                        <td>2</td>
+                        <td></td>
                     </tr>
                 </table>
             </td>
@@ -117,14 +114,14 @@
             <td class="item-name"><b>Free Miles</b></td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3"><b>City: </b>{{rentalResponse.customer2.city}} <b>State :</b>
-                {{rentalResponse.customer2.state}} <b>Zip: </b>{{rentalResponse.customer2.zip}}
+            <td class="item-name" colspan="3"><b>City: </b>{{rentalResponse.customer2.city | uppercase}} <b>State :</b>
+                {{rentalResponse.customer2.state | uppercase}} <b>Zip: </b>{{rentalResponse.customer2.zip | uppercase}}
             </td>
             <td class="item-name"><b>Excess Miles</b></td>
         </tr>
         <tr>
             <td colspan="3" class="item-name"><b>Driver License: </b>{{rentalResponse.customer2.driversLicence}} <b>State:</b>
-                {{rentalResponse.customer2.state}} <b>Exp Date:</b> {{rentalResponse.customer2.insuranceExpiryDate}}
+                {{rentalResponse.customer2.state | uppercase}} <b>Exp Date:</b> {{rentalResponse.customer2.insuranceExpiryDate}}
             </td>
             <td class="item-name"></td>
         </tr>
@@ -158,15 +155,15 @@
                     </tr>
                     <tr>
                         <td><b>DAY@</b></td>
-                        <td>{{rentalResponse.vehicle.perDayRent}}</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td><b>Month@</b></td>
-                        <td>{{rentalResponse.price}}</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td><b>Est Milleage</b></td>
-                        <td>2</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>
@@ -190,8 +187,8 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="item-name"><b>Agent: Phone: {{rentalResponse.insuranceCompanyContactNumber}} Address:</b></td>
-            <td class="item-name">
+            <td colspan="3" class="item-name removePadding"><b>Agent: Phone: {{rentalResponse.insuranceCompanyContactNumber}} Address:</b></td>
+            <td class="item-name rentalFont removePadding">
                 GAS E ¼ ½ ¾ F
                 OUT
                 GAS E ¼ ½ ¾ F
@@ -202,18 +199,18 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="item-name">Collision Damage Waiver (CDW)
+            <td colspan="3" class="item-name rentalFont removePadding"><b>Collision Damage Waiver (CDW)</b><br/>
 
                 __ By initialing here, you agree to purchase our CDW.
                 Our damage waiver does not cover all instances of damage to
                 the vehicle. There are exclusions. Subject to the conditions in
                 paragraph 5, your responsibility for Physical Damage to the
-                Vehicle is limited to $ 1000__ .
+                Vehicle is limited to $ 1000__ .<br/>
                 ___ By initialing here, you decline our Collision Damage
                 Waiver. You agree to be responsible for all damage to, or loss
                 of, the Vehicle.
             </td>
-            <td class="item-name">By signing below, you agree to
+            <td class="item-name rentalFont removePadding">By signing below, you agree to
                 all of the terms and conditions
                 of this rental agreement. Your
                 signature below authorizes us to
@@ -224,30 +221,31 @@
             </td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3"><b>Additional Charges and descriptions</b></td>
-            <td class="item-name" colspan="2">
+            <td class="item-name removePadding" colspan="3"><b>Additional Charges and descriptions</b></td>
+            <td class="item-name removePadding" colspan="2">
                 <div><b>Customer Signature</b></div>
             </td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3"><b>Extended To:</b>{{rentalResponse.extenstion1 | date : 'MM/dd/yyyy'}}</td>
-            <td class="item-name" colspan="2">
+            <td class="item-name removePadding" colspan="3"><b>Extended To:</b>{{rentalResponse.extenstion1 | date : 'MM/dd/yyyy'}}</td>
+            <td class="item-name removePadding" colspan="2">
                 <div><b>Second Driver Signature</b></div>
             </td>
         </tr>
         <tr>
-            <td class="item-name" colspan="3"><b>Extended To:</b>{{rentalResponse.extenstion2 | date : 'MM/dd/yyyy'}}</td>
-            <td class="item-name" colspan="2">
+            <td class="item-name removePadding" colspan="3"><b>Extended To:</b>{{rentalResponse.extenstion2 | date : 'MM/dd/yyyy'}}</td>
+            <td class="item-name removePadding" colspan="2">
                 <div><b>Agent Signature</b></div>
             </td>
         </tr>
         <tr>
-            <td colspan="5">
+            <td colspan="5" class="rentalFont removePadding">
                 <div class="text-center"><b>No Drivers Under 21</b></div>
             </td>
         </tr>
     </table>
-    <p>
+    <br/>
+    <div class="rentalFont">
     <div><b>Terms and Conditions</b></div>
     <br/>
 
@@ -343,7 +341,7 @@
     provision of this Agreement. Unless prohibited by law, you release us from any liability for consequential, special
     or punitive damages in connection with this rental or the reservation of a vehicle. If any provision of this
     Agreement is deemed void or unenforceable, the remaining provisions are valid and enforceable.
-    </p>
+    </div>
 </div>
 <button class="btn btn-xs btn-success" ng-click="printDiv()">Print</button>
 <button class="btn btn-xs btn-success" ng-click="saveAsPdf()">Save as Pdf</button>

@@ -60,7 +60,7 @@ table td, table th {
 }
 
 .agreementPaddings1 {
-    padding: 0 0 264px 0;
+    padding: 0 0 134px 0;
 }
 
 .customer input {
@@ -74,4 +74,12 @@ table td, table th {
 
 .rentedColor{
     background-color: green;
+}
+
+.rentalFont{
+    font-size: 11px;
+}
+
+.removePadding{
+    padding: 0px;
 }
