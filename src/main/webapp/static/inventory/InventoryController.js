@@ -7,7 +7,7 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
     $scope.inventory = {};
     $scope.vehicleTypes=["SEDAN", "COUPE", "HATCHBACK", "CONVERTABLE", "VAN", "SUV"];
     $scope.vehicleTitles=["CLEAN", "SALVAGE"];
-    $scope.vehicleCategories=["COMPACT", "MIDSIZE", "SUV", "FULLSIZE"];
+    $scope.vehicleCategories=["COMPACT", "MIDSIZE", "SUV", "FULLSIZE", "SEDAN"];
     $scope.vehicleStatuses = ["AVAILABLE", "NOT_AVAILABLE", "RENTED", "MAINTENANCE"];
     $scope.insuranceModes=["ON", "OFF"];
     $scope.driveModes=["AUTO", "MANUAL"];

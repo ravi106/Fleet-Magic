@@ -6,7 +6,6 @@ angular.module('fleetMagic').controller('CustomerController', ['$scope', '$http'
     $scope.search = function (){
         $scope.error=null;
         var url =null;
-        console.log($scope.searchCriteria);
         if($scope.searchCriteria.type=="mobile"){
             url = ClientConfig.CLIENT_BASE_URL + "customer/mobile/"+$scope.searchCriteria.mobile;
         }else if($scope.searchCriteria.type=="email"){
