@@ -25,16 +25,16 @@ public class Payment {
 	@OneToOne
 	private CardInfo cardInfo;	
 	private String payStatus;	
-	private int rentalPaymentId;
+	private String rentalPaymentId;
 	private String paidFor;
 	private String chequeNumber;
 	private String chequeIssuedBy;
 	
-	public int getRentalPaymentId() {
+	public String getRentalPaymentId() {
 		return rentalPaymentId;
 	}
 
-	public void setRentalPaymentId(int rentalPaymentId) {
+	public void setRentalPaymentId(String rentalPaymentId) {
 		this.rentalPaymentId = rentalPaymentId;
 	}
 

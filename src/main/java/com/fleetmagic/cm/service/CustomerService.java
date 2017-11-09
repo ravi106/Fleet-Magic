@@ -29,7 +29,7 @@ public class CustomerService {
  }
 
  public List<Customer> getCustomersByMobile(String mobile){
-	 return customerRepository.getCustomerByMobile(mobile);
+	 return customerRepository.getCustomerByMobile(mobile, mobile);
  }
 
  public List<Customer> getCustomersByFirstNameAndLastName(String firstName,String lastName){

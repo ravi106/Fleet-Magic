@@ -3,10 +3,7 @@ angular.module('fleetMagic').config(['$stateProvider', '$urlRouterProvider', fun
     $urlRouterProvider.html5Mode = true;
     $urlRouterProvider.otherwise('/rental');
 
-    $stateProvider.state('home', {
-        url: '/',
-        templateUrl: 'partials/home.html'
-    }).state('inventory', {
+    $stateProvider.state('inventory', {
         url: '/inventory',
         templateUrl: 'inventory/inventory.html',
         controller: 'InventoryController'

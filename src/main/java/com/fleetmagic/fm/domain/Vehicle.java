@@ -18,7 +18,6 @@ import javax.persistence.Table;
 @Table(name = "vehicle")
 public class Vehicle {
 
-
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -29,6 +28,7 @@ public class Vehicle {
 	private Date lastServiceDate;
 	private int serviceIntervalDays;
 	private String color;
+	private int year;
 
 	@Enumerated(EnumType.STRING)
 	private Type type;
@@ -56,7 +56,6 @@ public class Vehicle {
 	private int perDayRent;
 	@OneToOne
 	private BusinessUnit businessUnit;
-	
 
 	public int getPerDayRent() {
 		return perDayRent;
@@ -257,7 +256,6 @@ public class Vehicle {
 	public void setModel(String model) {
 		this.model = model;
 	}
-	
 
 	public BusinessUnit getBusinessUnit() {
 		return businessUnit;
@@ -267,23 +265,26 @@ public class Vehicle {
 		this.businessUnit = businessUnit;
 	}
 
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
 	@Override
 	public String toString() {
-		return "Vehicle [id=" + id + ", registration=" + registration
-				+ ", vin=" + vin + ", make=" + make + ", model=" + model
-				+ ", lastServiceDate=" + lastServiceDate
-				+ ", serviceIntervalDays=" + serviceIntervalDays + ", color="
-				+ color + ", type=" + type + ", title=" + title
-				+ ", dispenseDate=" + dispenseDate + ", soldPrice=" + soldPrice
-				+ ", costPrice=" + costPrice + ", category=" + category
-				+ ", tankCapacity=" + tankCapacity + ", nextInspectionDate="
-				+ nextInspectionDate + ", roadTaxExpiryDate="
-				+ roadTaxExpiryDate + ", insuranceExpiryDate="
-				+ insuranceExpiryDate + ", purchaseDate=" + purchaseDate
-				+ ", status=" + status + ", physicalInsuranceStatus="
-				+ physicalInsuranceStatus + ", liabilityInsuranceStatus="
-				+ liabilityInsuranceStatus + ", driveMode=" + driveMode
-				+ ", dispenseReason=" + dispenseReason + "]";
+		return "Vehicle [id=" + id + ", registration=" + registration + ", vin=" + vin + ", make=" + make + ", model="
+				+ model + ", lastServiceDate=" + lastServiceDate + ", serviceIntervalDays=" + serviceIntervalDays
+				+ ", color=" + color + ", year=" + year + ", type=" + type + ", title=" + title + ", dispenseDate="
+				+ dispenseDate + ", soldPrice=" + soldPrice + ", costPrice=" + costPrice + ", category=" + category
+				+ ", tankCapacity=" + tankCapacity + ", nextInspectionDate=" + nextInspectionDate
+				+ ", roadTaxExpiryDate=" + roadTaxExpiryDate + ", insuranceExpiryDate=" + insuranceExpiryDate
+				+ ", purchaseDate=" + purchaseDate + ", status=" + status + ", physicalInsuranceStatus="
+				+ physicalInsuranceStatus + ", liabilityInsuranceStatus=" + liabilityInsuranceStatus + ", driveMode="
+				+ driveMode + ", dispenseReason=" + dispenseReason + ", perDayRent=" + perDayRent + ", businessUnit="
+				+ businessUnit + "]";
 	}
 
 }

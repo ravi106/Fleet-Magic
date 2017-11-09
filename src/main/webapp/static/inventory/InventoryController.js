@@ -8,9 +8,10 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
     $scope.vehicleTypes=["SEDAN", "COUPE", "HATCHBACK", "CONVERTABLE", "VAN", "SUV"];
     $scope.vehicleTitles=["CLEAN", "SALVAGE"];
     $scope.vehicleCategories=["COMPACT", "MIDSIZE", "SUV", "FULLSIZE", "SEDAN"];
-    $scope.vehicleStatuses = ["AVAILABLE", "NOT_AVAILABLE", "RENTED", "MAINTENANCE"];
+    $scope.vehicleStatuses = ["AVAILABLE", "NOT_AVAILABLE", "RENTED", "MAINTENANCE", "SOLD"];
     $scope.insuranceModes=["ON", "OFF"];
     $scope.driveModes=["AUTO", "MANUAL"];
+    $scope.format = 'MM/dd/yyyy';
     $scope.initInventoryController = function () {
         $http.get(ClientConfig.CLIENT_BASE_URL + "vehiclesByBusinessUnit/" + $scope.selectedBusinessUnit.id).success(function (data) {
             $scope.inventory.vehicles = data;
@@ -73,16 +74,19 @@ angular.module('fleetMagic').controller('InventoryController', ['$scope', '$http
 
     $scope.nextInspectionDate = {
         opened: false,
-        open: open
+        open: open,
+        minDate: new Date()
     };
     $scope.roadTaxExpiryDate = {
         opened: false,
-        open: open
+        open: open,
+        minDate: new Date()
     };
 
     $scope.insuranceExpiryDate = {
         opened: false,
-        open: open
+        open: open,
+        minDate: new Date()
     };
     $scope.purchaseDate = {
         opened: false,

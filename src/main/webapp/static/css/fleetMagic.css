@@ -77,7 +77,8 @@ table td, table th {
 }
 
 .rentalFont{
-    font-size: 11px;
+    font-size: 0.7365em;
+    margin-top: 50px;
 }
 
 .removePadding{

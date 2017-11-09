@@ -40,7 +40,7 @@ public class RentalController {
 
 	@RequestMapping(value = "/rental/number/{number}", method = RequestMethod.GET, produces = "application/json")
 	public List<Rental> getRentalsByNumber(@PathVariable("number") String number) {
-		System.out.println("RentalController.getRentalsByNumber()");
+		System.out.println("RentalController.getRentalsByNumber()" + number);
 		List<Rental> rentalList = rentalService.getRentalsByNumber(number);
 		System.out.println(rentalList);
 		return rentalList;

@@ -16,11 +16,18 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     $scope.selectedCustomer = 0;
     $scope.searchCriteria.type = "mobile";
     $scope.searchCriteria1.type = "mobile";
+    $scope.addressChecked = false;
+    var oldComment= "";
 
     $scope.initRentalController = function () {
         $http.get(ClientConfig.CLIENT_BASE_URL + "vehiclesByBusinessUnit/" + $scope.selectedBusinessUnit.id + "/status/AVAILABLE").success(function (data) {
             $scope.fleetMagic.vehicles = data;
             $scope.accordion = {};
+            $scope.accordion.selectCarPanelOpen = true;
+            $scope.accordion.selectInsurancePanelOpen = true;
+            $scope.accordion.selectPricePanelOpen = true;
+            $scope.accordion.personalDetailsPanelOpen = true;
+            $scope.accordion.paymentDetailsPanelOpen = true;
             $scope.carList = [];
             for (var i = 0; i < $scope.fleetMagic.vehicles.length; i++) {
                 var car = {};
@@ -34,14 +41,6 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         }).error(function (err) {
             console.log(err);
         });
-    };
-
-    $scope.getPersonalDetails = function () {
-        if ($scope.fleetMagic.selectedCar != null && $scope.fleetMagic.selectedCar != "Select A Car") {
-            $scope.accordion.selectInsurancePanelOpen = !$scope.accordion.selectInsurancePanelOpen;
-        } else {
-            $scope.accordion.selectCarPanelError = true;
-        }
     };
 
     $scope.showCarDetails = function (item) {
@@ -72,13 +71,23 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     var startDate, endDate, oneDay = 24 * 60 * 60 * 1000;
     $scope.checkExtendedPrice = function (extention1Or2) {
         if(extention1Or2 ==1 ) {
-            startDate = new Date($scope.rental.endDate).getTime();
-            endDate = new Date($scope.rental.extenstion1).getTime();
-            $scope.rental.extenstion1Amount = Math.ceil(Math.abs(((endDate - startDate) / oneDay) * $scope.rental.vehicle.perDayRent));
+            startDate = new Date($scope.rental.endDate);
+            endDate = new Date($scope.rental.extenstion1);
+            if(endDate > startDate){
+                $scope.rental.extenstion1Amount = Math.ceil(Math.abs(((endDate.getTime() - startDate.getTime()) / oneDay) * $scope.rental.vehicle.perDayRent));
+            }else{
+                alert("To date should be greater than from date!");
+                $scope.rental.extenstion1 = "";
+            }
         }else{
-            startDate = new Date($scope.rental.extenstion1).getTime();
-            endDate = new Date($scope.rental.extenstion2).getTime();
-            $scope.rental.extenstion2Amount = Math.ceil(Math.abs(((endDate - startDate) / oneDay) * $scope.rental.vehicle.perDayRent));
+            startDate = new Date($scope.rental.extenstion1);
+            endDate = new Date($scope.rental.extenstion2);
+            if(endDate > startDate){
+                $scope.rental.extenstion2Amount = Math.ceil(Math.abs(((endDate.getTime() - startDate.getTime()) / oneDay) * $scope.rental.vehicle.perDayRent));
+            }else{
+                alert("To date should be greater than from date!");
+                $scope.rental.extenstion2 = "";
+            }
         }
     };
 
@@ -103,6 +112,21 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         }
     };
 
+    $scope.fillAddress = function(){
+        var cardInfo = $scope.rental.payment.cardInfo;
+        var customer = $scope.rental.customer1;
+        $scope.addressChecked = !$scope.addressChecked;
+        if($scope.rental.customer1 && $scope.addressChecked){
+            cardInfo.address1 = customer.address1;
+            cardInfo.address2 = customer.address2;
+            cardInfo.city = customer.city;
+            cardInfo.state = customer.state;
+            cardInfo.zip = customer.zip;
+        }else if($scope.addressChecked){
+            alert("Please fill customer details properly");
+        }
+    }
+
     $scope.additionalDriver = false;
     $scope.rental.payment = {};
     $scope.submitPaymentDetails = function () {
@@ -125,6 +149,13 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         if ($scope.rental.customer2) {
             $scope.rental.customer2.dob = new Date($scope.customer1.dob).getTime();
             $scope.rental.customer2.dlExperiryDate = new Date($scope.customer1.dlExperiryDate).getTime();
+        }
+        if(oldComment && oldComment != $scope.rental.comments){
+            $scope.rental.comments = oldComment + " - " + $scope.rental.comments;
+        }
+        if($scope.rental.payment.cardInfo){
+            $scope.rental.payment.cardInfo.customer = $scope.rental.customer1;
+            // $scope.rental.payment.rentalPaymentId = $scope.rental.number;
         }
         if($scope.isExtendRental){
             $http.post(ClientConfig.CLIENT_BASE_URL + "extendRental", $scope.rental).success(function (response) {
@@ -152,7 +183,9 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         } else if ($scope.searchCriteria1.type == "email") {
             url = ClientConfig.CLIENT_BASE_URL + "customer/email/" + $scope.searchCriteria1.email
         } else {
-            url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/" + $scope.searchCriteria1.firstName + "/lastName/" + $scope.searchCriteria1.lastName;
+            var firstName = $scope.searchCriteria1.firstName ? $scope.searchCriteria1.firstName : "-";
+            var lastName = $scope.searchCriteria1.lastName ? $scope.searchCriteria1.lastName : "-";
+            url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/" + firstName + "/lastName/" + lastName;
         }
         $http.get(url).success(function (data) {
             if (data.length == 1) {
@@ -181,7 +214,9 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         } else if ($scope.searchCriteria.type == "email") {
             url = ClientConfig.CLIENT_BASE_URL + "customer/email/" + $scope.searchCriteria.email
         } else {
-            url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/" + $scope.searchCriteria.firstName + "/lastName/" + $scope.searchCriteria.lastName;
+            var firstName = $scope.searchCriteria.firstName ? $scope.searchCriteria.firstName : "-";
+            var lastName = $scope.searchCriteria.lastName ? $scope.searchCriteria.lastName : "-";
+            url = ClientConfig.CLIENT_BASE_URL + "customers/firstName/" + firstName + "/lastName/" + lastName;
         }
         $http.get(url).success(function (data) {
             if (data.length == 1) {
@@ -253,6 +288,9 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
                 rental.payment.cardInfo.expMonth = "0" + rental.payment.cardInfo.expMonth; 
             }
         }
+        if(rental.comments){
+            oldComment = rental.comments;
+        }
         $scope.checkPrice();
     };
 
@@ -263,6 +301,11 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
             $scope.isEditRental = true;
             $scope.isReplaceVehicleRental = false;
         } else if ($scope.fleetMagic.rentalType == 'extend') {
+            if($scope.rental.extenstion1){
+                $scope.dateIn.dateOptions.minDate = $scope.rental.extenstion1 + 86400000;//oneDay;
+            }else{
+                $scope.dateOut.dateOptions.minDate = $scope.rental.endDate + 86400000;
+            }
             $scope.isCloseRental = false;
             $scope.isExtendRental = true;
             $scope.isEditRental = false;
@@ -333,16 +376,16 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
     };
 
     var dateOptions = {
-        dateDisabled: disabled,
-        formatYear: 'yy',
-        maxDate: new Date(2020, 5, 22),
+        // dateDisabled: disabled,
+        // formatYear: 'yy',
+        maxDate: new Date(2029, 5, 22),
         minDate: new Date(),
-        startingDay: 1
+        // startingDay: 1
     };
     var inlineOptions = {
-        customClass: getDayClass,
-        minDate: new Date(),
-        showWeeks: true
+        // customClass: getDayClass,
+        // minDate: new Date(),
+        // showWeeks: true
     };
 
     function toggleMin() {
@@ -358,7 +401,7 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         opened: false,
         dateOptions: dateOptions,
         inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
+        // toggleMin: toggleMin,
         open: open
     };
 
@@ -366,7 +409,6 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         opened: false,
         dateOptions: dateOptions,
         inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
         open: open
     };
 
@@ -374,7 +416,6 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         opened: false,
         dateOptions: dateOptions,
         inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
         open: open
     };
 
@@ -382,7 +423,6 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         opened: false,
         dateOptions: dateOptions,
         inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
         open: open
     };
 
@@ -390,7 +430,6 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         opened: false,
         dateOptions: dateOptions,
         inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
         open: open
     };
 
@@ -398,7 +437,6 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         opened: false,
         dateOptions: dateOptions,
         inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
         open: open
     };
 
@@ -406,7 +444,13 @@ angular.module('fleetMagic').controller('RentalController', ['$scope', '$http', 
         opened: false,
         dateOptions: dateOptions,
         inlineOptions: inlineOptions,
-        toggleMin: toggleMin,
+        open: open
+    };
+
+    $scope.vehicleReplacedDate = {
+        opened: false,
+        dateOptions: dateOptions,
+        inlineOptions: inlineOptions,
         open: open
     };
 

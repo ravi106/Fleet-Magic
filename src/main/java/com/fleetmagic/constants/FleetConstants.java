@@ -12,9 +12,9 @@ public class FleetConstants {
 	
 	public static final String FETCH_CUST_BY_EMAIL = "SELECT * from Customer c where email = ?";
 	
-	public static final String FETCH_CUST_BY_MOBILE = "SELECT * from Customer c where mobile = ?";
+	public static final String FETCH_CUST_BY_MOBILE = "SELECT * from Customer c where mobile = ? or homePhone = ?";
 	
-	public static final String FETCH_CUST_BY_FNLN = "SELECT * from Customer c where firstName = ? and lastName =?";
+	public static final String FETCH_CUST_BY_FNLN = "SELECT * from Customer c where (firstName = ?) or (lastName = ?)";
 	
 	public static final String FETCH_RENTAL_BY_EMAIL = "SELECT * from rental r join customer c on r.customer1_id = c.id where c.email=? order by startDate Desc";
 	

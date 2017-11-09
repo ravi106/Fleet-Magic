@@ -16,7 +16,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     public List<Customer> getCustomerByEmail(String email);
 	
 	@Query(value=FleetConstants.FETCH_CUST_BY_MOBILE, nativeQuery = true)
-    public List<Customer> getCustomerByMobile(String mobile);
+    public List<Customer> getCustomerByMobile(String mobile, String homePhone);
 	
 	@Query(value=FleetConstants.FETCH_CUST_BY_FNLN, nativeQuery = true)
     public List<Customer> getCustomerByFirstNameAndLastName(String firstName,String lastName);

@@ -1,7 +1,7 @@
 <div ng-init="getBusinessUnits()">
 
     <div class="row">
-        <div class="col-lg-4">Select Business Unit :</div>
+        <div class="col-lg-4"><strong>Select Business Unit :</strong></div>
         <div class="col-lg-4">
             <select class="form-control" ng-change="initInventoryController()" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="selectedBusinessUnit">
                 <option value="">Business Unit</option>
@@ -25,27 +25,27 @@
         <div class="col-lg-6">
             <div class="row">
                 <div class="col-lg-12">
-                    Registration :
-                    <input type="text" class="form-control"
+                    <strong>Registration :</strong>
+                    <input type="text" class="form-control" uppercased
                            ng-model="inventory.vehicle.registration">
                 </div>
                 <div class="col-lg-12">
-                    Make :
-                    <input type="text" class="form-control"
+                    <strong>Make :</strong>
+                    <input type="text" class="form-control" uppercased
                            ng-model="inventory.vehicle.make">
                 </div>
                 <div class="col-lg-12">
-                    Model :
-                    <input type="text" class="form-control"
+                    <strong>Model :</strong>
+                    <input type="text" class="form-control" uppercased
                            ng-model="inventory.vehicle.model">
                 </div>
                 <div class="col-lg-12">
-                    Vin :
-                    <input type="text" class="form-control"
+                    <strong>Vin :</strong>
+                    <input type="text" class="form-control" uppercased
                            ng-model="inventory.vehicle.vin">
                 </div>
                 <div class="col-lg-12">
-                    Last Service Date :
+                    <strong>Last Service Date :</strong>
                     <span class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                is-open="lastServiceDate.opened"
@@ -57,30 +57,30 @@
                     </span>
                 </div>
                 <div class="col-lg-12">
-                    Service Interval Days :
+                    <strong>Service Interval Days :</strong>
                     <input type="text" class="form-control"
                            ng-model="inventory.vehicle.serviceIntervalDays">
                 </div>
                 <div class="col-lg-12">
-                    Color :
-                    <input type="text" class="form-control"
+                    <strong>Color :</strong>
+                    <input type="text" class="form-control" uppercased
                            ng-model="inventory.vehicle.color">
                 </div>
                 <div class="col-lg-12">
-                    Type :
-                    <select class="form-control" ng-options="vehicleType for vehicleType in vehicleTypes" ng-model="inventory.vehicle.type">
+                    <strong>Type :</strong>
+                    <select class="form-control" ng-options="vehicleType for vehicleType in vehicleTypes" uppercased ng-model="inventory.vehicle.type">
                         <option value="">Vehicle Type</option>
                     </select>
                 </div>
                 <div class="col-lg-12">
-                    Title :
-                    <select class="form-control" ng-options="vehicleTitle for vehicleTitle in vehicleTitles" ng-model="inventory.vehicle.title">
+                    <strong>Title :</strong>
+                    <select class="form-control" uppercased ng-options="vehicleTitle for vehicleTitle in vehicleTitles" ng-model="inventory.vehicle.title">
                         <option value="">Vehicle Title</option>
                     </select>
                 </div>
 
                 <div class="col-lg-12">
-                    DispenseDate :
+                    <strong>DispenseDate :</strong>
                     <span class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                is-open="dispenseDate.opened"
@@ -92,17 +92,17 @@
                     </span>
                 </div>
                 <div class="col-lg-12">
-                    Sold Price :
+                    <strong>Sold Price :</strong>
                     <input type="text" class="form-control"
                            ng-model="inventory.vehicle.soldPrice">
                 </div>
                 <div class="col-lg-12">
-                    Cost Price :
+                    <strong>Cost Price :</strong>
                     <input type="text" class="form-control"
                            ng-model="inventory.vehicle.costPrice">
                 </div>
                 <div class="col-lg-12">
-                    Business Unit : <select class="form-control" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="inventory.vehicle.businessUnit">
+                    <strong>Business Unit :</strong> <select class="form-control" ng-options="businessUnit as businessUnit.name for businessUnit in businessUnits track by businessUnit.id" ng-model="inventory.vehicle.businessUnit">
                     <option value="">Business Unit</option>
                 </select>
                 </div>
@@ -112,21 +112,25 @@
         <div class="col-lg-6">
             <div class="row">
                 <div class="col-lg-12">
-                    Category :
+                    <strong>Year :</strong>
+                    <input type="text" class="form-control" ng-model="inventory.vehicle.year">
+                </div>
+                <div class="col-lg-12">
+                    <strong>Category :</strong>
                     <select class="form-control" ng-options="vehicleCategory for vehicleCategory in vehicleCategories" ng-model="inventory.vehicle.category">
                         <option value="">Vehicle Category</option>
                     </select>
                 </div>
                 <div class="col-lg-12">
-                    Tank Capacity :
-                    <input type="text" class="form-control"
+                    <strong>Tank Capacity :</strong>
+                    <input type="text" class="form-control" uppercased
                            ng-model="inventory.vehicle.tankCapacity">
                 </div>
                 <div class="col-lg-12">
-                    Next Inspection Date :
+                    <strong>Next Inspection Date :</strong>
                     <span class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                               is-open="nextInspectionDate.opened"
+                               is-open="nextInspectionDate.opened" datepicker-options="nextInspectionDate"
                                ng-model="inventory.vehicle.nextInspectionDate">
                         <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="nextInspectionDate.open()"><i
@@ -135,10 +139,10 @@
                     </span>
                 </div>
                 <div class="col-lg-12">
-                    Road Tax ExpiryDate :
+                    <strong>Road Tax ExpiryDate :</strong>
                     <span class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                               is-open="roadTaxExpiryDate.opened"
+                               is-open="roadTaxExpiryDate.opened" datepicker-options="roadTaxExpiryDate"
                                ng-model="inventory.vehicle.roadTaxExpiryDate">
                         <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="roadTaxExpiryDate.open()"><i
@@ -148,10 +152,10 @@
                 </div>
 
                 <div class="col-lg-12">
-                    Insurance ExpiryDate :
+                    <strong>Insurance ExpiryDate :</strong>
                     <span class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                               is-open="insuranceExpiryDate.opened"
+                               is-open="insuranceExpiryDate.opened" datepicker-options="insuranceExpiryDate"
                                ng-model="inventory.vehicle.insuranceExpiryDate">
                         <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="insuranceExpiryDate.open()"><i
@@ -160,7 +164,7 @@
                     </span>
                 </div>
                 <div class="col-lg-12">
-                    PurchaseDate :
+                    <strong>PurchaseDate :</strong>
                     <span class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                is-open="purchaseDate.opened"
@@ -172,38 +176,38 @@
                     </span>
                 </div>
                 <div class="col-lg-12">
-                    Status
+                    <strong>Status :</strong>
                     <select class="form-control" ng-options="vehicleStatus for vehicleStatus in vehicleStatuses" ng-model="inventory.vehicle.status">
                         <option value="">Vehicle Status</option>
                     </select>
                 </div>
 
                 <div class="col-lg-12">
-                    Physical Insurance Status :
+                    <strong>Physical Insurance Status :</strong>
                     <select class="form-control" ng-options="insuranceMode for insuranceMode in insuranceModes" ng-model="inventory.vehicle.physicalInsuranceStatus">
                         <option value="">Physical Insurance Status</option>
                     </select>
                 </div>
 
                 <div class="col-lg-12">
-                    Liability Insurance Status :
+                    <strong>Liability Insurance Status :</strong>
                     <select class="form-control" ng-options="insuranceMode for insuranceMode in insuranceModes" ng-model="inventory.vehicle.liabilityInsuranceStatus">
                         <option value="">Liability Insurance Status</option>
                     </select>
                 </div>
                 <div class="col-lg-12">
-                    DriveMode :
+                    <strong>DriveMode :</strong>
                     <select class="form-control" ng-options="driveMode for driveMode in driveModes" ng-model="inventory.vehicle.driveMode">
                         <option value="">Drive Mode</option>
                     </select>
                 </div>
                 <div class="col-lg-12">
-                    Dispense Reason :
-                    <input type="text" class="form-control"
+                    <strong>Dispense Reason :</strong>
+                    <input type="text" class="form-control" uppercased
                            ng-model="inventory.vehicle.dispenseReason">
                 </div>
                 <div class="col-lg-12">
-                    Per Day Rent :
+                    <strong>Per Day Rent :</strong>
                     <input type="text" class="form-control"
                            ng-model="inventory.vehicle.perDayRent">
                 </div>
@@ -212,6 +216,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

@@ -33,9 +33,6 @@
 			<version>3.0.1</version>
 		</dependency>
 
-
-
-
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -73,12 +70,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-
-
-
-
-
 
 		<!-- Jackson JSON -->
 		<dependency>

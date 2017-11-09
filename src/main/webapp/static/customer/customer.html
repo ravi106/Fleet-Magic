@@ -33,7 +33,6 @@
         <table class="table table-bordered">
             <tr>
                 <th>Select One</th>
-                <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -41,11 +40,8 @@
             </tr>
             <tr ng-repeat="cust in customers">
                 <td>
-                    <input type="radio" name="customer" ng-model="$parent.selectedCustomer"
-                           ng-value="cust.id"
-                           ng-change="selectCustomer(cust)">
+                    <input type="radio" name="customer" ng-model="$parent.selectedCustomer" ng-value="cust.id" ng-change="selectCustomer(cust)">
                 </td>
-                <td>{{cust.id}}</td>
                 <td>{{cust.firstName}}</td>
                 <td>{{cust.lastName}}</td>
                 <td>{{cust.email}}</td>
@@ -59,23 +55,19 @@
                         Details
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.firstName" placeholder="First Name">
+                        <input type="text" class="form-control" ng-model="customer.firstName" uppercased placeholder="First Name">
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.lastName" placeholder="Last Name">
+                        <input type="text" class="form-control" ng-model="customer.lastName" uppercased placeholder="Last Name">
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.middleName" placeholder="Middle Name">
+                        <input type="text" class="form-control" ng-model="customer.middleName" uppercased placeholder="Middle Name">
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control" ng-model="customer.ssn"
-                               placeholder="SSN">
+                        <input type="text" class="form-control" uppercased ng-model="customer.ssn" placeholder="SSN">
                     </div>
                     <div class="col-lg-12">
-                            <span class="input-group">
+                        <span class="input-group">
                                 <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                        is-open="dob.opened" datepicker-options="dob.dateOptions"
                                        ng-model="customer.dob"
@@ -84,7 +76,7 @@
                                 <button type="button" class="btn btn-default" ng-click="dob.open()"><i
                                         class="glyphicon glyphicon-calendar"></i></button>
                               </span>
-                            </span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -94,25 +86,20 @@
                         Address Details
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.address1" placeholder="Address1">
+                        <input type="text" class="form-control" ng-model="customer.address1" uppercased placeholder="Address1">
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.address2" placeholder="Address">
+                        <input type="text" class="form-control" ng-model="customer.address2" uppercased placeholder="Address">
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control" ng-model="customer.city"
-                               placeholder="City">
+                        <input type="text" class="form-control" uppercased ng-model="customer.city" placeholder="City">
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.state" placeholder="State">
+                        <input type="text" class="form-control" ng-model="customer.state" uppercased placeholder="State">
                     </div>
 
                     <div class="col-lg-12">
-                        <input type="text" class="form-control" style="width: 52%" ng-model="customer.zip"
-                               placeholder="Zip">
+                        <input type="text" class="form-control" style="width: 52%" ng-model="customer.zip" placeholder="Zip">
                     </div>
                 </div>
             </div>
@@ -122,16 +109,13 @@
                         Contact Details
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.homePhone" placeholder="Home Phone">
+                        <input type="text" class="form-control" ng-model="customer.homePhone" placeholder="Home Phone">
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.mobile" placeholder="Mobile">
+                        <input type="text" class="form-control" ng-model="customer.mobile" placeholder="Mobile">
                     </div>
                     <div class="col-lg-12">
-                        <input type="email" class="form-control"
-                               ng-model="customer.email" placeholder="email">
+                        <input type="email" class="form-control" ng-model="customer.email" placeholder="email">
                     </div>
                 </div>
             </div>
@@ -142,16 +126,13 @@
                         <label>Employer Details</label>
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.employer" placeholder="Employer">
+                        <input type="text" class="form-control" ng-model="customer.employer" uppercased placeholder="Employer">
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.employerCity" placeholder="Employer City">
+                        <input type="text" class="form-control" ng-model="customer.employerCity" uppercased placeholder="Employer City">
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.employerState" placeholder="Employer State">
+                        <input type="text" class="form-control" ng-model="customer.employerState" uppercased placeholder="Employer State">
                     </div>
                 </div>
             </div>
@@ -161,27 +142,23 @@
             <div class="col-lg-6">
                 <div class="row customer">
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.driversLicence" placeholder="Licence Number">
+                        <input type="text" class="form-control" ng-model="customer.driversLicence" placeholder="Licence Number">
                     </div>
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.dlState" placeholder="Licence Issuing State">
+                        <input type="text" class="form-control" ng-model="customer.dlState" uppercased placeholder="Licence Issuing State">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="row customer">
                     <div class="col-lg-12">
-                        <input type="text" class="form-control"
-                               ng-model="customer.dlCountry"
-                               placeholder="Licence Issuing Country">
+                        <input type="text" class="form-control" ng-model="customer.dlCountry" uppercased placeholder="Licence Issuing Country">
                     </div>
                     <div class="col-lg-12">
                         <span class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
                                is-open="licenseExpiryDate.opened"
-                               datepicker-options="licenseExpiryDate.dateOptions"
+                               datepicker-options="licenseExpiryDate"
                                ng-model="customer.dlExperiryDate"
                                placeholder="Licence Expire Date (mm/yyyy)">
                         <span class="input-group-btn">

@@ -61,7 +61,6 @@ public class RentalService {
 				CardInfo cardInfo = cardInfoRepository.saveAndFlush(rental.getPayment().getCardInfo());
 				System.err.println(cardInfo);
 				rental.getPayment().setCardInfo(cardInfo);
-
 			}
 			System.err.println("rental Payment:" + rental.getPayment());
 			Payment payment = paymentRepository.saveAndFlush(rental.getPayment());
@@ -93,9 +92,9 @@ public class RentalService {
 		vehicleRepository.saveAndFlush(rental.getVehicle());
 		rental.getReplacementVehicle().setStatus(VehicleStatus.RENTED);
 		vehicleRepository.saveAndFlush(rental.getReplacementVehicle());
-		rental.setReplacementDate(new Date());
+		rental.setReplacementDate(rental.getReplacementDate());
+		rental.setVehicle(rental.getReplacementVehicle());
 		return rentalRepository.saveAndFlush(rental);
-
 	}
 
 	public Rental extendRental(Rental rental) {
@@ -110,6 +109,16 @@ public class RentalService {
 				rental.setPrice(dbRental.getPrice() + rental.getExtenstion2Amount());
 			}
 			System.err.println(rental);
+			if (rental.getPayment() != null) {
+				if (rental.getPayment().getCardInfo() != null) {
+					CardInfo cardInfo = cardInfoRepository.saveAndFlush(rental.getPayment().getCardInfo());
+					System.err.println(cardInfo);
+					rental.getPayment().setCardInfo(cardInfo);
+				}
+				System.err.println("rental Payment:" + rental.getPayment());
+				Payment payment = paymentRepository.saveAndFlush(rental.getPayment());
+				rental.setPayment(payment);
+			}
 			return rentalRepository.saveAndFlush(rental);
 		}
 		return rental;
